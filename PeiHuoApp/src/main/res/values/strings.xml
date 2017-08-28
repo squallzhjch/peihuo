@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">peihuo</string>
+    <string name="login_name">生鲜电商生产执行系统</string>
+    <string name="user_number">员工编号</string>
+    <string name="user_password">登录密码</string>
+    <string name="remember_password">记住密码</string>
+    <string name="forget_passwor">忘记密码?</string>
+    <string name="login">登录</string>
 </resources>
