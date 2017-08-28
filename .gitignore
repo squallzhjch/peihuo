@@ -3,6 +3,7 @@ gradle
 *.iml
 .gradle
 .idea
+/gradle
 /peihuo.iml
 /gradlew
 /gradlew.bat
