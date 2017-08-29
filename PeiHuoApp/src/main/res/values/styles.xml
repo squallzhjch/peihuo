@@ -2,7 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme"> </style>
-    <style name="checkbox_default_style" >
+
+    <style name="checkbox_default_style" commit="默认复选框">
         <item name="android:button">@null</item>
         <item name="android:drawableLeft">@drawable/select_default_checkbox</item>
         <item name="android:gravity">center_vertical</item>

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="shadowPadding" commint="阴影背景内边距">4px</dimen>
     <dimen name="shadowRadius" commint="阴影背景圆角">10dp</dimen>
+
+    <dimen name="h1_title_size">26sp</dimen>
 </resources>
