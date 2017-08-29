@@ -1,4 +1,4 @@
-package com.peihuo;
+package com.peihuo.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.util.Log;
 import android.widget.ImageView;
 
 //import com.bumptech.glide.Glide;
+
+import com.peihuo.R;
 
 import java.io.IOException;
 
