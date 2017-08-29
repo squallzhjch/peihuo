@@ -3,6 +3,7 @@ package com.peihuo.db;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.peihuo.R;
 import com.peihuo.entity.UserInfo;
 import com.peihuo.thread.LoginCallback;
 import com.peihuo.thread.ThreadManager;
@@ -47,7 +48,7 @@ public class MySqlManager {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://47.94.134.88:3306/yichuDev?characterEncoding=UTF-8", "root", "1234");
         } catch (Exception e) {
-            Toast.makeText(mContext, "数据库连接失败！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, mContext.getText(R.string.db_connect_error), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
             LogManager.writeLogtoFile("数据库查询", "链接数据库失败", e.toString());
             return false;
@@ -69,7 +70,7 @@ public class MySqlManager {
     private void showLoading() {
         if (mLoadingDialog == null) {
             mLoadingDialog = new LoadingDialog(mContext);
-            mLoadingDialog.setText("正在登陆");
+            mLoadingDialog.setText(mContext.getText(R.string.logining));
         }
         mLoadingDialog.show();
     }

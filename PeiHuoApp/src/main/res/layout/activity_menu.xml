@@ -14,58 +14,27 @@
         android:columnCount="2">
 
         <Button
-            android:background="@drawable/select_drawable_menu_button"
             android:drawableTop="@mipmap/menu_gongdan_icon"
-            android:text="生产计划和工单"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
-            android:textColor="@color/white_color"
-            android:layout_margin="10dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"/>
+            android:text="@string/menu_button_gongdan"
+            style="@style/menu_activity_button_style"/>
 
         <Button
             android:enabled="false"
-            android:background="@drawable/select_drawable_menu_button"
             android:drawableTop="@mipmap/menu_dingdan_icon"
-            android:text="客户订单跟踪"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
-            android:textColor="@color/white_color"
-            android:layout_margin="10dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"/>
+            android:text="@string/menu_button_dingdan"
+            style="@style/menu_activity_button_style"/>
 
         <Button
             android:enabled="false"
-            android:background="@drawable/select_drawable_menu_button"
+            android:text="@string/menu_button_basedata"
             android:drawableTop="@mipmap/menu_jichushuju_icon"
-            android:text="基础数据"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
-            android:textColor="@color/white_color"
-            android:layout_margin="10dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"/>
+            style="@style/menu_activity_button_style"
+           />
 
         <Button
             android:enabled="false"
-            android:background="@drawable/select_drawable_menu_button"
             android:drawableTop="@mipmap/menu_error_icon"
-            android:text="生产异常"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
-            android:textColor="@color/white_color"
-            android:layout_margin="10dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"/>
+            android:text="@string/menu_button_error"
+            style="@style/menu_activity_button_style"/>
     </GridLayout>
 </FrameLayout>

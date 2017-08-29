@@ -1,6 +1,7 @@
 package com.peihuo.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,9 +45,9 @@ public class LoginActivity extends Activity {
                 public void onClick(View view) {
 
                     if (mUserName.getText() == null || mUserName.getText().toString().trim().length() == 0) {
-                        Toast.makeText(LoginActivity.this, "请输入员工编号", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, getText(R.string.input_user_num), Toast.LENGTH_SHORT).show();
                     } else if (mPassword.getText() == null || mPassword.getText().toString().trim().length() == 0) {
-                        Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, getText(R.string.input_password), Toast.LENGTH_SHORT).show();
                     } else {
                         mLoginButton.setEnabled(false);
                         MySqlManager.getInstance().login(mUserName.getText().toString().trim(),
@@ -55,17 +56,23 @@ public class LoginActivity extends Activity {
                                     @Override
                                     public void onSuccess(UserInfo value) {
                                         mLoginButton.setEnabled(true);
-                                        if(value == null)
+                                        if(value == null) {
+                                            Toast.makeText(LoginActivity.this, getText(R.string.get_userinfo_error), Toast.LENGTH_SHORT).show();
                                             return;
+                                        }
                                         SharedConfigHelper.getInstance().setPassword(mPassword.getText().toString().trim());
                                         SharedConfigHelper.getInstance().setUserId(value.getUserId());
                                         SharedConfigHelper.getInstance().setUserName(value.getUserName());
+                                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        finish();
                                     }
 
                                     @Override
                                     public void onError() {
                                         mLoginButton.setEnabled(true);
-                                        Toast.makeText(LoginActivity.this, "员工编号或密码错误！", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, getText(R.string.login_error), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     }
@@ -92,7 +99,7 @@ public class LoginActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(!isOut){
-            Toast.makeText(this,"再按一次退出程序", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getText(R.string.out_app), Toast.LENGTH_SHORT).show();
             isOut = true;
         }else {
             System.exit(0);

@@ -6,18 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.peihuo.R;
-import com.peihuo.db.MySqlManager;
 import com.peihuo.system.SharedConfigHelper;
 
 /**
- * Created by 123 on 2017/8/28.
+ * Created by 123 on 2017/8/29.
+ * 生产计划和工单
  */
 
-public class MenuActivity extends Activity {
-
+public class PlanSheetActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +24,7 @@ public class MenuActivity extends Activity {
 
             //标题
             TextView title = (TextView) findViewById(R.id.title_text);
-            title.setText(getText(R.string.menu_title));
+            title.setText(getText(R.string.plan_title));
 
             //用户名
             TextView userName = (TextView) findViewById(R.id.title_username_text);
@@ -37,7 +35,7 @@ public class MenuActivity extends Activity {
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(PlanSheetActivity.this, MenuActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
@@ -48,7 +46,7 @@ public class MenuActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+        Intent intent = new Intent(this, MenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

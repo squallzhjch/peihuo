@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="shadowPadding" commint="阴影背景内边距">4px</dimen>
-    <dimen name="shadowRadius" commint="阴影背景圆角">10dp</dimen>
+    <dimen name="shadowPadding" commit="阴影背景内边距">4px</dimen>
+    <dimen name="shadowRadius" commit="阴影背景圆角">10dp</dimen>
 
-    <dimen name="h1_title_size">26sp</dimen>
+    <dimen name="h1_title_size" commit="1号标题文字大小">30sp</dimen>
 </resources>
