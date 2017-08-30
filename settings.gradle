@@ -1,1 +1,2 @@
-include ':PeiHuoApp'// ':ThirdLibrary'
+include ':PeiHuoApp'
+include 'library'// ':ThirdLibrary'

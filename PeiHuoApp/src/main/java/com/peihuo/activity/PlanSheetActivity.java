@@ -2,6 +2,7 @@ package com.peihuo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -9,9 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.peihuo.R;
+import com.peihuo.fragment.AcceptanceListFragment;
+import com.peihuo.fragment.ProductionListFragment;
+import com.peihuo.fragment.SortingListFragment;
 import com.peihuo.system.SharedConfigHelper;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by 123 on 2017/8/29.
@@ -22,9 +24,15 @@ public class PlanSheetActivity extends FragmentActivity implements View.OnClickL
     private TextView mProduction;//生产单
     private TextView mSorting;//分拣单
     private TextView mAcceptance;//验收单
-    private View mLastSelectView;
+    private View mLastSelectView;//被选中的栏
     private FragmentManager mFragmentManager;
 
+    //分拣单
+    private SortingListFragment mSortingListFragment;
+    //生产计划单
+    private ProductionListFragment mProductionPlanFragment;
+    //验收单
+    private AcceptanceListFragment mAcceptanceListFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +107,27 @@ public class PlanSheetActivity extends FragmentActivity implements View.OnClickL
         }
         view.setSelected(true);
         mLastSelectView = view;
-//        mFragmentManager.
+        if(view == mProduction){
+            if(mProductionPlanFragment == null){
+                mProductionPlanFragment = new ProductionListFragment();
+            }
+            showFragment(mProductionPlanFragment);
+        }else if(view == mSorting){
+            if(mSortingListFragment == null){
+                mSortingListFragment = new SortingListFragment();
+            }
+            showFragment(mSortingListFragment);
+        }else if(view == mAcceptance){
+            if(mAcceptanceListFragment == null){
+                mAcceptanceListFragment = new AcceptanceListFragment();
+            }
+            showFragment(mAcceptanceListFragment);
+        }
+    }
+
+    private void showFragment(Fragment fragment){
+        if(mFragmentManager != null && fragment != null){
+            mFragmentManager.beginTransaction().replace(R.id.plan_fragment, fragment).commitAllowingStateLoss();
+        }
     }
 }

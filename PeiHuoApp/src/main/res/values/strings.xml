@@ -27,6 +27,32 @@
     <string name="plan_production">生产计划单</string>
     <string name="plan_acceptance">验收单</string>
 
+    <string name="production_list_level">级别</string>
+    <string name="production_list_sheet_number">计划单号</string>
+    <string name="production_list_product_number">产品编号</string>
+    <string name="production_list_product_name">产品名称</string>
+    <string name="production_list_start_time">开始时间</string>
+    <string name="production_list_end_time">计划完成日期</string>
+    <string name="production_list_plan_count">计划数量</string>
+    <string name="production_list_person">责任人</string>
+
+    <string name="sorting_list_sale_number">销售单号</string>
+    <string name="sorting_list_batch">批次</string>
+    <string name="sorting_list_serial">流水</string>
+    <string name="sorting_list_position">坑位</string>
+    <string name="sorting_list_status">状态</string>
+    <string name="sorting_list_operation">操作</string>
+
+
+    <!--<string name="acceptance_list_sale_number">销售单号</string>-->
+    <string name="acceptance_list_path">路径</string>
+    <string name="acceptance_list_customer">客户ID</string>
+    <string name="acceptance_list_batch">批号</string>
+    <string name="acceptance_list_time">单据时间</string>
+    <string name="acceptance_list_count">合计数量</string>
+    <!--<string name="acceptance_list_status">状态</string>-->
+    <!--<string name="acceptance_list_operation">操作</string>-->
+
     <string name="logining">正在登陆...</string>
     <string name="db_connect_error">数据库连接失败！</string>
 </resources>

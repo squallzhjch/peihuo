@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+        <TextView
+            android:text="@string/sorting_list_sale_number"
+            android:textColor="@color/color_default_red"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:text="@string/acceptance_list_path"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:text="@string/acceptance_list_customer"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:text="@string/acceptance_list_batch"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:text="@string/acceptance_list_time"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:text="@string/acceptance_list_count"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:text="@string/sorting_list_status"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:text="@string/sorting_list_operation"
+            style="@style/sorting_list_title_text_style" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_default_line"/>
+</LinearLayout>

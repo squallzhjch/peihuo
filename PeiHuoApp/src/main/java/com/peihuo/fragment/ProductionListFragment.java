@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import com.peihuo.R;
 
 /**
- * Created by hb on 2017/8/29.
- * 分拣单列表
+ * Created by 123 on 2017/8/30.
+ * 生产计划单
  */
 
-public class SortingListFragment extends Fragment{
+public class ProductionListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sorting_list, null);
+        View view = inflater.inflate(R.layout.fragment_production_list, null);
         initView(view);
         return view;
     }
