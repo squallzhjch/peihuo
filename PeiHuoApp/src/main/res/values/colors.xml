@@ -6,7 +6,7 @@
     <color name="color_default_text_black_1h" commit="大标题">#000000</color>
     <color name="color_default_text_black_2h" commit="小标题">#525659</color>
     <color name="color_default_text_gray" commit="">#8E9C9C</color>
-    <color name="color_default_line" commit="分割线">#f7f4f4</color>
+    <color name="color_default_line" commit="分割线">#CFD3D2</color>
     <color name="white_color">#FFFFFF</color>
     <!-- 阴影颜色渐变值-->
     <color name="shadow_color_1">#0a8c8c8c</color>

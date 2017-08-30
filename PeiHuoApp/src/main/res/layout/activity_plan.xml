@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_layout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/frame_gray_bg_blue"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/plan_title_sorting"
+            style="@style/plan_title_text_style"
+            android:layout_centerInParent="true"
+            android:text="@string/plan_sorting" />
+
+        <View
+            android:id="@+id/plan_title_sheet_left"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@id/plan_title_sorting"
+            android:layout_alignTop="@id/plan_title_sorting"
+            android:layout_toLeftOf="@id/plan_title_sorting"
+            android:background="@color/color_default_line" />
+
+        <View
+            android:id="@+id/plan_title_sheet_right"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@id/plan_title_sorting"
+            android:layout_alignTop="@id/plan_title_sorting"
+            android:layout_toRightOf="@id/plan_title_sorting"
+            android:background="@color/color_default_line" />
+
+        <TextView
+            android:id="@+id/plan_title_production"
+            style="@style/plan_title_text_style"
+            android:layout_toLeftOf="@id/plan_title_sheet_left"
+            android:text="@string/plan_production" />
+
+        <TextView
+            android:id="@+id/plan_title_acceptance"
+            style="@style/plan_title_text_style"
+            android:layout_toRightOf="@id/plan_title_sheet_right"
+            android:text="@string/plan_acceptance" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/plan_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+</LinearLayout>

@@ -23,6 +23,9 @@
 
     <!-- 生产计划工单-->
     <string name="plan_title">生产电商生产执行</string>
+    <string name="plan_sorting">分拣单</string>
+    <string name="plan_production">生产计划单</string>
+    <string name="plan_acceptance">验收单</string>
 
     <string name="logining">正在登陆...</string>
     <string name="db_connect_error">数据库连接失败！</string>

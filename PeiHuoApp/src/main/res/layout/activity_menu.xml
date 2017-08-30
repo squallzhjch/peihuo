@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/login_bg"
+    android:background="@mipmap/menu_bg"
    >
     <include layout="@layout/title_layout"/>
     <GridLayout
@@ -14,6 +14,7 @@
         android:columnCount="2">
 
         <Button
+            android:id="@+id/menu_plan"
             android:drawableTop="@mipmap/menu_gongdan_icon"
             android:text="@string/menu_button_gongdan"
             style="@style/menu_activity_button_style"/>

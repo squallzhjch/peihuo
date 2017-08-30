@@ -56,7 +56,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
+                android:maxLines="1"
                 android:hint="@string/user_number"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:background="@null"
                 android:textColor="@color/color_default_text_black_2h"
@@ -85,11 +88,14 @@
                 android:src="@mipmap/login_password_icon" />
 
             <EditText
+                android:maxLines="1"
                 android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:inputType="textPassword"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:background="@null"
                 android:hint="@string/user_password"
                 android:paddingLeft="10dp"
