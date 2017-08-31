@@ -1,4 +1,4 @@
-package com.peihuo.thread;
+package com.peihuo.db;
 
 import com.peihuo.entity.UserInfo;
 

@@ -14,7 +14,7 @@ import com.peihuo.R;
 import com.peihuo.db.MySqlManager;
 import com.peihuo.entity.UserInfo;
 import com.peihuo.system.SharedConfigHelper;
-import com.peihuo.thread.LoginCallback;
+import com.peihuo.db.LoginCallback;
 
 /**
  * Created by hb on 2017/8/25.

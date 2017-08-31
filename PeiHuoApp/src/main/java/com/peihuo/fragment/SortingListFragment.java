@@ -7,6 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.peihuo.R;
+import com.peihuo.adapter.SortingListAdapter;
+import com.peihuo.db.GetSortingListCallback;
+import com.peihuo.entity.SortingOrder;
+
+import java.util.List;
 
 /**
  * Created by hb on 2017/8/29.
@@ -14,6 +19,8 @@ import com.peihuo.R;
  */
 
 public class SortingListFragment extends BaseListFragment{
+
+    private SortingListAdapter mAdapter;
 
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -23,6 +30,17 @@ public class SortingListFragment extends BaseListFragment{
 
     @Override
     protected void initView(View view) {
+        mAdapter = new SortingListAdapter(getContext());
+        GetSortingListCallback callback = new GetSortingListCallback(getContext(), 10, 0, new GetSortingListCallback.OnLoadDataListener() {
+            @Override
+            public void onSuccess(List<SortingOrder> list) {
 
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
     }
 }

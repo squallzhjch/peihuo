@@ -5,7 +5,6 @@ import android.widget.Toast;
 
 import com.peihuo.R;
 import com.peihuo.entity.UserInfo;
-import com.peihuo.thread.LoginCallback;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.ui.dialog.LoadingDialog;
 import com.peihuo.util.LogManager;
@@ -43,7 +42,7 @@ public class MySqlManager {
         mContext = context;
     }
 
-    private boolean openDB() {
+    public boolean openDB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://47.94.134.88:3306/yichuDev?characterEncoding=UTF-8", "root", "1234");
@@ -56,7 +55,7 @@ public class MySqlManager {
         return true;
     }
 
-    private void closeDB() {
+    public void closeDB() {
         try {
             if (conn != null) {
                 conn.close();
@@ -150,6 +149,9 @@ public class MySqlManager {
                 dismissLoading();
             }
         });
+    }
 
+    public Connection getConnection(){
+        return conn;
     }
 }
