@@ -40,4 +40,15 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_default_line"/>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/plan_activity_fragment_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/color_default_line"
+        android:dividerHeight="1px"
+        ptr:ptrMode="pullFromEnd"
+        >
+
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
 </LinearLayout>

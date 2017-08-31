@@ -13,16 +13,16 @@ import com.peihuo.R;
  * 验收单
  */
 
-public class AcceptanceListFragment extends Fragment {
+public class AcceptanceListFragment extends BaseListFragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_acceptance_list, null);
-        initView(view);
         return view;
     }
 
-    private void initView(View view) {
+    @Override
+    protected void initView(View view) {
 
     }
 }

@@ -13,16 +13,16 @@ import com.peihuo.R;
  * 分拣单列表
  */
 
-public class SortingListFragment extends Fragment{
+public class SortingListFragment extends BaseListFragment{
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sorting_list, null);
-        initView(view);
         return view;
     }
 
-    private void initView(View view) {
+    @Override
+    protected void initView(View view) {
 
     }
 }
