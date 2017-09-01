@@ -31,10 +31,12 @@ public class SortingListFragment extends BaseListFragment{
     @Override
     protected void initView(View view) {
         mAdapter = new SortingListAdapter(getContext());
+        mListView.setAdapter(mAdapter);
         GetSortingListCallback callback = new GetSortingListCallback(getContext(), 10, 0, new GetSortingListCallback.OnLoadDataListener() {
             @Override
             public void onSuccess(List<SortingOrder> list) {
-
+                mAdapter.setData(list);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override

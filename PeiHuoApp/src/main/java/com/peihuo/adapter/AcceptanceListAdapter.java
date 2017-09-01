@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.peihuo.R;
+import com.peihuo.entity.AcceptanceOrder;
 import com.peihuo.entity.SortingOrder;
 
 import java.util.List;
@@ -18,12 +19,12 @@ import java.util.List;
  * 分拣单列表
  */
 
-public class SortingListAdapter extends BaseAdapter {
+public class AcceptanceListAdapter extends BaseAdapter {
 
-    private List<SortingOrder> mList;
+    private List<AcceptanceOrder> mList;
     Context mContext;
 
-    public SortingListAdapter(Context context) {
+    public AcceptanceListAdapter(Context context) {
         mContext = context;
     }
 
@@ -52,35 +53,40 @@ public class SortingListAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(
-                    R.layout.adapter_sorting_list, null);
+                    R.layout.adapter_acceptance_list, null);
 
             viewHolder = new ViewHolder();
-            viewHolder.code = (TextView) convertView.findViewById(R.id.adapter_sorting_code);
-            viewHolder.batch = (TextView) convertView.findViewById(R.id.adapter_sorting_batch);
-            viewHolder.operation = (Button) convertView.findViewById(R.id.adapter_sorting_operation);
-            viewHolder.position = (TextView) convertView.findViewById(R.id.adapter_sorting_position);
-            viewHolder.serial = (TextView) convertView.findViewById(R.id.adapter_sorting_serial);
-            viewHolder.status = (TextView) convertView.findViewById(R.id.adapter_sorting_status);
+            viewHolder.code = (TextView) convertView.findViewById(R.id.adapter_acceptance_code);
+            viewHolder.batch = (TextView) convertView.findViewById(R.id.adapter_acceptance_batch);
+            viewHolder.operation = (Button) convertView.findViewById(R.id.adapter_acceptance_operation);
+            viewHolder.path = (TextView) convertView.findViewById(R.id.adapter_acceptance_path);
+            viewHolder.customer = (TextView) convertView.findViewById(R.id.adapter_acceptance_customer);
+            viewHolder.endTime = (TextView)convertView.findViewById(R.id.adapter_acceptance_end_time);
+            viewHolder.total = (TextView)convertView.findViewById(R.id.adapter_acceptance_total);
+            viewHolder.status = (TextView) convertView.findViewById(R.id.adapter_acceptance_status);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         if(mList != null && mList.size() > position) {
-            SortingOrder order = mList.get(position);
+            AcceptanceOrder order = mList.get(position);
             viewHolder.code.setText(order.getCode());
             viewHolder.batch.setText(order.getBatchCount());
             viewHolder.status.setText(order.getAcceptanceState());
+            viewHolder.endTime.setText(order.getEndTime().substring(0,16));
+            viewHolder.total.setText(String.valueOf(order.getSuitUniteProductCount()));
+            viewHolder.path.setText(order.getPath());
         }
 
         return convertView;
     }
 
-    public void setData(List<SortingOrder> data) {
+    public void setData(List<AcceptanceOrder> data) {
         this.mList = data;
     }
 
     class ViewHolder {
-        TextView code, batch, serial, position, status;
+        TextView code, path, batch, customer, endTime, total, status;
         Button operation;
     }
 }

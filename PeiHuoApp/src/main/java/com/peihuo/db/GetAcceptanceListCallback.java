@@ -2,8 +2,8 @@ package com.peihuo.db;
 
 import android.content.Context;
 
+import com.peihuo.entity.AcceptanceOrder;
 import com.peihuo.entity.SortingOrder;
-import com.peihuo.entity.UserInfo;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.util.LogManager;
 
@@ -17,18 +17,18 @@ import java.util.List;
  * Created by 123 on 2017/8/31.
  */
 
-public class GetSortingListCallback extends BaseCallback{
+public class GetAcceptanceListCallback extends BaseCallback{
 
     private OnLoadDataListener mListener;
     private int mCount = 10;
     private int mPage = 0;
 
     public interface OnLoadDataListener{
-        void onSuccess(List<SortingOrder> list);
+        void onSuccess(List<AcceptanceOrder> list);
         void onError();
     }
 
-    public GetSortingListCallback(Context context, int count, int page, OnLoadDataListener listener){
+    public GetAcceptanceListCallback(Context context, int count, int page, OnLoadDataListener listener){
         super(context);
         mListener = listener;
         mCount = count;
@@ -38,10 +38,10 @@ public class GetSortingListCallback extends BaseCallback{
     @Override
     protected void loadData() {
         showLoading();
-        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<List<SortingOrder>>() {
+        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<List<AcceptanceOrder>>() {
             @Override
-            public List<SortingOrder> doInBackground() {
-                List<SortingOrder> list = null;
+            public List<AcceptanceOrder> doInBackground() {
+                List<AcceptanceOrder> list = null;
                 if (mySqlManager.openDB()) {
                     Statement statement = null;
                     ResultSet result = null;
@@ -64,8 +64,9 @@ public class GetSortingListCallback extends BaseCallback{
                             int suitUniteProductCountIndex = result.findColumn("suituniteproductcount");//合计验收数量
                             int acceptanceHuManIndex = result.findColumn("acceptancehuman");//验收人
                             int batchCountIndex = result.findColumn("batchcount");//批次
+                            int path = result.findColumn("path");
                             while (result.next()){
-                                SortingOrder order = new SortingOrder();
+                                AcceptanceOrder order = new AcceptanceOrder();
                                 order.setCode(result.getString(codeIndex));
                                 order.setId(result.getString(idIndex));
                                 order.setStartTime(result.getString(startTimeIndex));
@@ -77,6 +78,7 @@ public class GetSortingListCallback extends BaseCallback{
                                 order.setAcceptanceState(result.getString(acceptanceStateIndex));
                                 order.setSuitUniteProductCount(result.getInt(suitUniteProductCountIndex));
                                 order.setBatchCount(result.getString(batchCountIndex));
+                                order.setPath(result.getString(path));
                                 list.add(order);
                             }
                         }
@@ -103,7 +105,7 @@ public class GetSortingListCallback extends BaseCallback{
             }
 
             @Override
-            public void onSuccess(List<SortingOrder> value) {
+            public void onSuccess(List<AcceptanceOrder> value) {
                 dismissLoading();
                 if(mListener != null) {
                     if (value == null){

@@ -64,5 +64,7 @@
     <string name="pullToRefresh_push_loading">正在加载...</string>
 
     <string name="details">详情</string>
-    
+    <string name="sorting_over">分拣完成</string>
+    <string name="last_one">上一个</string>
+    <string name="next">下一个</string>
 </resources>

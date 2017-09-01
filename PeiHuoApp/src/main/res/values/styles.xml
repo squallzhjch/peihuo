@@ -54,4 +54,30 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/color_default_text_gray</item>
     </style>
+    
+    <style name="sorting_info_text_title_style" commit="分拣单详情标题">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_default_text_black_1h</item>
+    </style>
+
+    <style name="sorting_info_text_style" commit="分拣单详情" parent="sorting_info_text_title_style">
+        <item name="android:textColor">@color/color_default_text_gray</item>
+    </style>
+
+    <style name="red_frame_button_style" commit="红框按钮">
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/color_default_text_black_2h</item>
+        <item name="android:background">@drawable/select_frame_red_white_bg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

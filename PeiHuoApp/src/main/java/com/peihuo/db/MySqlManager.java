@@ -102,12 +102,6 @@ public class MySqlManager {
                             int uIdIndex = result.findColumn("uid");
                             userInfo.setUserName(result.getString(nameIndex));
                             userInfo.setUserId(result.getString(uIdIndex));
-//                int nameColumnIndex = result.findColumn("upassword");
-//                while (!result.isAfterLast()) {
-//                    Log.e("jingo", result.getString(idColumnIndex));
-//                    Log.e("jingo", result.getString(nameColumnIndex));
-//                    result.next();
-//                }
                         }
                     } catch (SQLException e) {
                         LogManager.writeLogtoFile("数据库查询", "失败", e.toString());
@@ -151,7 +145,7 @@ public class MySqlManager {
         });
     }
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         return conn;
     }
 }

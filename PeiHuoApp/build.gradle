@@ -25,5 +25,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation files('libs/mysql-connector-java-5.1.43-bin.jar')
-    implementation project(':library')
+    compile project(path: ':library')
 }

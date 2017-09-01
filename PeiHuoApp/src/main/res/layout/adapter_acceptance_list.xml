@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/adapter_acceptance_code"
+        style="@style/adapter_plan_list_text_style"
+         />
+
+    <TextView
+        android:id="@+id/adapter_acceptance_path"
+        style="@style/adapter_plan_list_text_style"
+        />
+
+    <TextView
+        android:id="@+id/adapter_acceptance_customer"
+        style="@style/adapter_plan_list_text_style"
+        android:text="客户ID"
+        />
+
+    <TextView
+        android:id="@+id/adapter_acceptance_batch"
+        style="@style/adapter_plan_list_text_style"
+        />
+
+    <TextView
+        android:id="@+id/adapter_acceptance_end_time"
+        style="@style/adapter_plan_list_text_style"
+        />
+
+    <TextView
+        android:id="@+id/adapter_acceptance_total"
+        style="@style/adapter_plan_list_text_style"
+        />
+
+    <TextView
+        android:id="@+id/adapter_acceptance_status"
+        style="@style/adapter_plan_list_text_style"
+        />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <Button
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/adapter_acceptance_operation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/select_color_red"
+            android:textColor="@color/white_color"
+            android:text="@string/details" />
+    </FrameLayout>
+
+</LinearLayout>
