@@ -1,18 +1,14 @@
 package com.peihuo.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.peihuo.R;
 import com.peihuo.adapter.AcceptanceListAdapter;
-import com.peihuo.adapter.SortingListAdapter;
-import com.peihuo.db.GetAcceptanceListCallback;
-import com.peihuo.db.GetSortingListCallback;
-import com.peihuo.entity.AcceptanceOrder;
-import com.peihuo.entity.SortingOrder;
+import com.peihuo.db.QueryAcceptanceListCallback;
+import com.peihuo.entity.AcceptanceForm;
 
 import java.util.List;
 
@@ -34,9 +30,9 @@ public class AcceptanceListFragment extends BaseListFragment {
     protected void initView(View view) {
         mAdapter = new AcceptanceListAdapter(getContext());
         mListView.setAdapter(mAdapter);
-        GetAcceptanceListCallback callback = new GetAcceptanceListCallback(getContext(), 10, 0, new GetAcceptanceListCallback.OnLoadDataListener() {
+        QueryAcceptanceListCallback callback = new QueryAcceptanceListCallback(getContext(), 10, 0, new QueryAcceptanceListCallback.OnLoadDataListener() {
             @Override
-            public void onSuccess(List<AcceptanceOrder> list) {
+            public void onSuccess(List<AcceptanceForm> list) {
                 mAdapter.setData(list);
                 mAdapter.notifyDataSetChanged();
             }

@@ -1,10 +1,12 @@
 package com.peihuo.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by 123 on 2017/8/31.
  */
 
-public class SortingOrder {
+public class AcceptanceForm implements Serializable{
     private String code;//验收单号
     private String id;
     private String startTime;//开单日期时间
@@ -16,6 +18,15 @@ public class SortingOrder {
     private int suitUniteProductCount;//合计验收数量
     private String acceptanceHuMan;//验收人
     private String batchCount;//批次
+    private String path;//路径
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public String getCode() {
         return code;

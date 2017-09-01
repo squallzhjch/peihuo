@@ -1,48 +1,49 @@
 package com.peihuo.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.peihuo.R;
-import com.peihuo.fragment.AcceptanceListFragment;
-import com.peihuo.fragment.ProductionListFragment;
-import com.peihuo.fragment.SortingListFragment;
+import com.peihuo.db.QuerySortingInfoCallback;
+import com.peihuo.entity.SortingForm;
+import com.peihuo.entity.SortingInfo;
 import com.peihuo.system.SharedConfigHelper;
+import com.peihuo.system.SystemConfig;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by 123 on 2017/8/29.
- * 生产计划和工单
+ * 分拣单详情
  */
 
-public class SortingInfoActivity extends Activity implements View.OnClickListener{
-    private TextView mProduction;//生产单
-    private TextView mSorting;//分拣单
-    private TextView mAcceptance;//验收单
-    private View mLastSelectView;//被选中的栏
-    private FragmentManager mFragmentManager;
+public class SortingInfoActivity extends Activity implements View.OnClickListener {
+    private TextView mCode;//单号
+    private TextView mCustomer;//用户ID
+    private TextView mBatch;//批次
+    private TextView mSerial;//流水
+    private TextView position;//坑位
+    private LinearLayout mLayout;//数据容器
+    private ArrayList<SortingForm> mList;//上个页面的数据
+    private int mSelectIndex = 0;// 当前所选分拣单的位置
 
-    //分拣单
-    private SortingListFragment mSortingListFragment;
-    //生产计划单
-    private ProductionListFragment mProductionPlanFragment;
-    //验收单
-    private AcceptanceListFragment mAcceptanceListFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            setContentView(R.layout.activity_plan);
+            setContentView(R.layout.activity_sorting_info);
 
             //标题
             TextView title = (TextView) findViewById(R.id.title_text);
             title.setText(getText(R.string.plan_title));
+
+            TextView leftTitle = (TextView) findViewById(R.id.title_text_left);
+            leftTitle.setText(getText(R.string.sorting_order_info));
 
             //用户名
             TextView userName = (TextView) findViewById(R.id.title_username_text);
@@ -52,83 +53,79 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
             ImageView back = (ImageView) findViewById(R.id.title_back_button);
             back.setOnClickListener(this);
 
+            mLayout = (LinearLayout) findViewById(R.id.sorting_info_list);
 
-            mFragmentManager = getSupportFragmentManager();
+            receiveData();
             initTitles();
+            initData();
+        }
+    }
+
+    private void initData() {
+        if (mList != null && mList.size() > mSelectIndex) {
+            SortingForm order = mList.get(mSelectIndex);
+            QuerySortingInfoCallback infoCallback = new QuerySortingInfoCallback(this, order.getCode(), new QuerySortingInfoCallback.OnLoadDataListener() {
+                @Override
+                public void onSuccess(ArrayList<SortingInfo> list) {
+                    mLayout.removeAllViews();
+                    if (list != null && list.size() > 0) {
+                        View view = View.inflate(SortingInfoActivity.this, R.layout.sorting_info_item, mLayout);
+                    }
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
+
+        }
+    }
+
+    /**
+     * 接收数据
+     */
+    private void receiveData() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            Serializable serializable = bundle.getSerializable(SystemConfig.BUNDLE_KEY_SORTING_LIST);
+            if (serializable != null && serializable instanceof ArrayList) {
+                mList = (ArrayList<SortingForm>) serializable;
+            }
+            mSelectIndex = bundle.getInt(SystemConfig.BUNDLE_KEY_SORTING_LIST_INDEX, 0);
         }
     }
 
     private void initTitles() {
-        mProduction = (TextView) findViewById(R.id.plan_title_production);
-        mSorting = (TextView) findViewById(R.id.plan_title_sorting);
-        mAcceptance = (TextView) findViewById(R.id.plan_title_acceptance);
+        mCode = (TextView) findViewById(R.id.sorting_info_code);//单号
+        mCustomer = (TextView) findViewById(R.id.sorting_info_customer);//用户ID
+        mBatch = (TextView) findViewById(R.id.sorting_info_patch);//批次
+        mSerial = (TextView) findViewById(R.id.sorting_info_serial);//流水
+        position = (TextView) findViewById(R.id.sorting_info_position);//坑位
 
-       switchFragment(mProduction);
-
-        mProduction.setOnClickListener(this);
-        mSorting.setOnClickListener(this);
-        mAcceptance.setOnClickListener(this);
+        if (mList != null && mList.size() > mSelectIndex) {
+            SortingForm order = mList.get(mSelectIndex);
+            mCode.setText(getString(R.string.format_sorting_sale_number, order.getCode()));
+            mCustomer.setText(getString(R.string.format_sorting_customer, "客户id"));
+            mBatch.setText(getString(R.string.format_sorting_batch, order.getBatchCount()));
+            mSerial.setText(getString(R.string.format_sorting_serial, "流水Id"));
+            position.setText(getString(R.string.format_sorting_position, "坑位id"));
+        }
     }
 
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MenuActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
+//        Intent intent = new Intent(this, MenuActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
+//        finish();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.title_back_button:
-                Intent intent = new Intent(SortingInfoActivity.this, MenuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.plan_title_acceptance:
-                switchFragment(view);
-                break;
-            case R.id.plan_title_production:
-                switchFragment(view);
-                break;
-            case R.id.plan_title_sorting:
-                switchFragment(view);
-                break;
+        switch (view.getId()) {
         }
     }
 
-    private void switchFragment(View view) {
-        if(view ==null || view.isSelected())
-            return;
-        if(mLastSelectView != null){
-            mLastSelectView.setSelected(false);
-        }
-        view.setSelected(true);
-        mLastSelectView = view;
-        if(view == mProduction){
-            if(mProductionPlanFragment == null){
-                mProductionPlanFragment = new ProductionListFragment();
-            }
-            showFragment(mProductionPlanFragment);
-        }else if(view == mSorting){
-            if(mSortingListFragment == null){
-                mSortingListFragment = new SortingListFragment();
-            }
-            showFragment(mSortingListFragment);
-        }else if(view == mAcceptance){
-            if(mAcceptanceListFragment == null){
-                mAcceptanceListFragment = new AcceptanceListFragment();
-            }
-            showFragment(mAcceptanceListFragment);
-        }
-    }
-
-    private void showFragment(Fragment fragment){
-        if(mFragmentManager != null && fragment != null){
-            mFragmentManager.beginTransaction().replace(R.id.plan_fragment, fragment).commitAllowingStateLoss();
-        }
-    }
 }

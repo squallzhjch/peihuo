@@ -45,6 +45,13 @@
     <string name="sorting_list_status">状态</string>
     <string name="sorting_list_operation">操作</string>
 
+    <string name="sorting_order_info">分拣单详情</string>
+
+    <string name="format_sorting_sale_number">销售单号：%1$s</string>
+    <string name="format_sorting_customer">客户ID：%1$s</string>
+    <string name="format_sorting_batch">批次：%1$s</string>
+    <string name="format_sorting_serial">流水：%1$s</string>
+    <string name="format_sorting_position">坑位：%1$s</string>
     <!-- 验收单 标题-->
     <!--<string name="acceptance_list_sale_number">销售单号</string>-->
     <string name="acceptance_list_path">路径</string>

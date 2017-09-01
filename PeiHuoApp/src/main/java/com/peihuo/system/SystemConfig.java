@@ -7,9 +7,9 @@ import android.os.Environment;
  */
 
 public class SystemConfig {
-    public static final String SD_PATH = Environment.getExternalStorageDirectory().toString();
-    public static final String SD_ROOT_NAME = SD_PATH + "/peihuo";
-    public static final String SD_LOG_PATH = SD_ROOT_NAME + "/Log";
+    public static final String SD_PATH = Environment.getExternalStorageDirectory().getPath() ;
+    public static final String SD_ROOT_NAME = SD_PATH + "/Peihuo";
+    public static final String SD_LOG_PATH = SD_ROOT_NAME + "/Log/";
 
 
     public static final String SP_USER_FILE_NAME = "sp_user_file_name";
@@ -17,4 +17,9 @@ public class SystemConfig {
     public static final String SP_KEY_USER_ID = "sp_key_user_id";
     public static final String SP_KEY_USER_PASSWORD = "sp_key_user_password";
     public static final String SP_KEY_REMEMBER_PASSWORD = "sp_key_remember_password";
+
+
+    public static final String BUNDLE_KEY_SORTING_LIST = "bundle_key_sorting_list";//分拣单列表
+    public static final String BUNDLE_KEY_SORTING_LIST_INDEX = "bundle_key_sorting_list_index";//分拣单列表所选位置
+    public static final int ACTIVITY_RESULT_BACK = 0x11;
 }

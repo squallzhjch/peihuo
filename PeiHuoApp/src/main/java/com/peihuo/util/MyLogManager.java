@@ -1,8 +1,8 @@
 package com.peihuo.util;
 
-import android.app.ActivityManager;
-import android.app.ActivityManager.MemoryInfo;
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 
@@ -23,13 +23,13 @@ import java.util.Date;
  * @version 1.0
  * @data 2016-8-23
  */
-public class LogManager {
+public class MyLogManager {
     //CrashHandler实例    
-    private static LogManager instance;
+    private static MyLogManager instance;
     private static Boolean MYLOG_SWITCH = true; //日志文件总开关
     private static Boolean MYLOG_WRITE_TO_FILE = true;//日志写入文件开关
     private static char MYLOG_TYPE = 'v';//输入日志类型，w代表只输出告警信息等，v代表输出所有信息
-    private static String MYLOG_PATH_SDCARD_DIR = SystemConfig.SD_LOG_PATH;// 日志文件在sdcard中的路径
+    private static String MYLOG_PATH_SDCARD_DIR = SystemConfig.SD_LOG_PATH ;// 日志文件在sdcard中的路径
     private static int SDCARD_LOG_FILE_SAVE_DAYS = 0;// sd卡中日志文件的最多保存天数
     private static String MYLOGFILEName = "Log.txt";// 本类输出的日志文件名称
     private static String STACKLOGFILEName = "StackLog.txt";// 本类输出的日志文件名称
@@ -43,9 +43,9 @@ public class LogManager {
     /**
      * 获取CrashHandler实例 ,单例模式
      */
-    public static LogManager getInstance() {
+    public static MyLogManager getInstance() {
         if (instance == null)
-            instance = new LogManager();
+            instance = new MyLogManager();
         return instance;
     }
 
@@ -54,6 +54,15 @@ public class LogManager {
      */
     public void init(Context context) {
         mContext = context;
+    }
+
+    public void createDirs(Activity activity, boolean qingqiu){
+        if (new File(MYLOG_PATH_SDCARD_DIR).exists() == false) {
+            if(!new File(MYLOG_PATH_SDCARD_DIR).mkdirs() && qingqiu) {
+                ActivityCompat.requestPermissions(activity, new String[]{android
+                        .Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
     }
 
     public static void w(String tag, Object msg) {//警告信息
@@ -138,12 +147,12 @@ public class LogManager {
                 String needWriteMessage = myLogSdf.format(nowtime) + "    " + mylogtype
                         + "    " + tag + "    " + text + "\r\n";
                 //输出内存使用情况
-                ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-                MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-                activityManager.getMemoryInfo(memoryInfo);
-                needWriteMessage += " 系统剩余内存: " + (memoryInfo.availMem / 1024) + "(KB)\n";
-                needWriteMessage += " 系统是否处于低内存运行： " + memoryInfo.lowMemory + "\n";
-                needWriteMessage += " 当系统剩余内存低于： " + (memoryInfo.threshold / 1024) + "(KB)\n";
+//                ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+//                MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+//                activityManager.getMemoryInfo(memoryInfo);
+//                needWriteMessage += " 系统剩余内存: " + (memoryInfo.availMem / 1024) + "(KB)\n";
+//                needWriteMessage += " 系统是否处于低内存运行： " + memoryInfo.lowMemory + "\n";
+//                needWriteMessage += " 当系统剩余内存低于： " + (memoryInfo.threshold / 1024) + "(KB)\n";
                 if (new File(MYLOG_PATH_SDCARD_DIR).exists() == false) {
                     new File(MYLOG_PATH_SDCARD_DIR).mkdirs();
                 }

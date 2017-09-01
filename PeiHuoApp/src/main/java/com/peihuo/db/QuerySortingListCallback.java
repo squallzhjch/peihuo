@@ -2,33 +2,31 @@ package com.peihuo.db;
 
 import android.content.Context;
 
-import com.peihuo.entity.SortingOrder;
-import com.peihuo.entity.UserInfo;
+import com.peihuo.entity.SortingForm;
 import com.peihuo.thread.ThreadManager;
-import com.peihuo.util.LogManager;
+import com.peihuo.util.MyLogManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 123 on 2017/8/31.
  */
 
-public class GetSortingListCallback extends BaseCallback{
+public class QuerySortingListCallback extends BaseCallback{
 
     private OnLoadDataListener mListener;
     private int mCount = 10;
     private int mPage = 0;
 
     public interface OnLoadDataListener{
-        void onSuccess(List<SortingOrder> list);
+        void onSuccess(ArrayList<SortingForm> list);
         void onError();
     }
 
-    public GetSortingListCallback(Context context, int count, int page, OnLoadDataListener listener){
+    public QuerySortingListCallback(Context context, int count, int page, OnLoadDataListener listener){
         super(context);
         mListener = listener;
         mCount = count;
@@ -38,16 +36,16 @@ public class GetSortingListCallback extends BaseCallback{
     @Override
     protected void loadData() {
         showLoading();
-        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<List<SortingOrder>>() {
+        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<ArrayList<SortingForm>>() {
             @Override
-            public List<SortingOrder> doInBackground() {
-                List<SortingOrder> list = null;
+            public ArrayList<SortingForm> doInBackground() {
+                ArrayList<SortingForm> list = null;
                 if (mySqlManager.openDB()) {
                     Statement statement = null;
                     ResultSet result = null;
 
                     String sql = "SELECT * FROM t_acceptanceform limit "+ mPage * mCount + ", " + mCount + ";";
-                    LogManager.writeLogtoFile("数据库查询", "登录", sql);
+                    MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
                         result = statement.executeQuery(sql);
@@ -65,7 +63,7 @@ public class GetSortingListCallback extends BaseCallback{
                             int acceptanceHuManIndex = result.findColumn("acceptancehuman");//验收人
                             int batchCountIndex = result.findColumn("batchcount");//批次
                             while (result.next()){
-                                SortingOrder order = new SortingOrder();
+                                SortingForm order = new SortingForm();
                                 order.setCode(result.getString(codeIndex));
                                 order.setId(result.getString(idIndex));
                                 order.setStartTime(result.getString(startTimeIndex));
@@ -81,7 +79,7 @@ public class GetSortingListCallback extends BaseCallback{
                             }
                         }
                     } catch (SQLException e) {
-                        LogManager.writeLogtoFile("数据库查询", "失败", e.toString());
+                        MyLogManager.writeLogtoFile("数据库查询", "失败", e.toString());
                         e.printStackTrace();
                     } finally {
                         try {
@@ -103,7 +101,7 @@ public class GetSortingListCallback extends BaseCallback{
             }
 
             @Override
-            public void onSuccess(List<SortingOrder> value) {
+            public void onSuccess(ArrayList<SortingForm> value) {
                 dismissLoading();
                 if(mListener != null) {
                     if (value == null){

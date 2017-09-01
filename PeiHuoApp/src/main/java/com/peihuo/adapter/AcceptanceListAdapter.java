@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.peihuo.R;
-import com.peihuo.entity.AcceptanceOrder;
-import com.peihuo.entity.SortingOrder;
+import com.peihuo.entity.AcceptanceForm;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ import java.util.List;
 
 public class AcceptanceListAdapter extends BaseAdapter {
 
-    private List<AcceptanceOrder> mList;
+    private List<AcceptanceForm> mList;
     Context mContext;
 
     public AcceptanceListAdapter(Context context) {
@@ -69,7 +68,7 @@ public class AcceptanceListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         if(mList != null && mList.size() > position) {
-            AcceptanceOrder order = mList.get(position);
+            AcceptanceForm order = mList.get(position);
             viewHolder.code.setText(order.getCode());
             viewHolder.batch.setText(order.getBatchCount());
             viewHolder.status.setText(order.getAcceptanceState());
@@ -81,7 +80,7 @@ public class AcceptanceListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void setData(List<AcceptanceOrder> data) {
+    public void setData(List<AcceptanceForm> data) {
         this.mList = data;
     }
 

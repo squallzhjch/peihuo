@@ -2,7 +2,9 @@ package com.peihuo.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,6 +17,9 @@ import com.peihuo.db.MySqlManager;
 import com.peihuo.entity.UserInfo;
 import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.db.LoginCallback;
+import com.peihuo.util.MyLogManager;
+
+import java.io.File;
 
 /**
  * Created by hb on 2017/8/25.
@@ -35,6 +40,7 @@ public class LoginActivity extends Activity {
         if (savedInstanceState == null) {
             setContentView(R.layout.activity_login);
             MySqlManager.getInstance().init(this);
+            MyLogManager.getInstance().createDirs(this, true);
 
             mUserName = (EditText) findViewById(R.id.login_user_name);
             mPassword = (EditText) findViewById(R.id.login_password);
@@ -103,6 +109,30 @@ public class LoginActivity extends Activity {
             isOut = true;
         }else {
             System.exit(0);
+        }
+    }
+
+    /**
+     * 用户权限处理,
+     * 如果全部获取, 则直接过.
+     * 如果权限缺失, 则提示Dialog.
+     *
+     * @param requestCode  请求码
+     * @param permissions  权限
+     * @param grantResults 结果
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //创建文件夹
+                    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                        MyLogManager.getInstance().createDirs(this, false);
+                    }
+                    break;
+                }
         }
     }
 }

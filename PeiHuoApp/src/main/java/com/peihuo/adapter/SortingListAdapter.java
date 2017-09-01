@@ -1,6 +1,7 @@
 package com.peihuo.adapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.peihuo.R;
-import com.peihuo.entity.SortingOrder;
+import com.peihuo.activity.SortingInfoActivity;
+import com.peihuo.entity.SortingForm;
+import com.peihuo.system.SystemConfig;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by 123 on 2017/8/31.
@@ -20,11 +23,11 @@ import java.util.List;
 
 public class SortingListAdapter extends BaseAdapter {
 
-    private List<SortingOrder> mList;
-    Context mContext;
+    private ArrayList<SortingForm> mList;
+    Activity mActivity;
 
-    public SortingListAdapter(Context context) {
-        mContext = context;
+    public SortingListAdapter(Activity context) {
+        mActivity = context;
     }
 
     @Override
@@ -48,10 +51,10 @@ public class SortingListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(
+            convertView = LayoutInflater.from(mActivity).inflate(
                     R.layout.adapter_sorting_list, null);
 
             viewHolder = new ViewHolder();
@@ -65,17 +68,27 @@ public class SortingListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        if(mList != null && mList.size() > position) {
-            SortingOrder order = mList.get(position);
+        if (mList != null && mList.size() > position) {
+            SortingForm order = mList.get(position);
             viewHolder.code.setText(order.getCode());
             viewHolder.batch.setText(order.getBatchCount());
             viewHolder.status.setText(order.getAcceptanceState());
+            viewHolder.operation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mActivity, SortingInfoActivity.class);
+                    intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST_INDEX, position);
+                    intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST, mList);
+                    mActivity.startActivity(intent);
+                    mActivity.finish();
+                }
+            });
         }
 
         return convertView;
     }
 
-    public void setData(List<SortingOrder> data) {
+    public void setData(ArrayList<SortingForm> data) {
         this.mList = data;
     }
 

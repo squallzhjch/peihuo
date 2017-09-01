@@ -2,10 +2,9 @@ package com.peihuo.db;
 
 import android.content.Context;
 
-import com.peihuo.entity.AcceptanceOrder;
-import com.peihuo.entity.SortingOrder;
+import com.peihuo.entity.AcceptanceForm;
 import com.peihuo.thread.ThreadManager;
-import com.peihuo.util.LogManager;
+import com.peihuo.util.MyLogManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,18 +16,18 @@ import java.util.List;
  * Created by 123 on 2017/8/31.
  */
 
-public class GetAcceptanceListCallback extends BaseCallback{
+public class QueryAcceptanceListCallback extends BaseCallback{
 
     private OnLoadDataListener mListener;
     private int mCount = 10;
     private int mPage = 0;
 
     public interface OnLoadDataListener{
-        void onSuccess(List<AcceptanceOrder> list);
+        void onSuccess(List<AcceptanceForm> list);
         void onError();
     }
 
-    public GetAcceptanceListCallback(Context context, int count, int page, OnLoadDataListener listener){
+    public QueryAcceptanceListCallback(Context context, int count, int page, OnLoadDataListener listener){
         super(context);
         mListener = listener;
         mCount = count;
@@ -38,16 +37,16 @@ public class GetAcceptanceListCallback extends BaseCallback{
     @Override
     protected void loadData() {
         showLoading();
-        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<List<AcceptanceOrder>>() {
+        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<List<AcceptanceForm>>() {
             @Override
-            public List<AcceptanceOrder> doInBackground() {
-                List<AcceptanceOrder> list = null;
+            public List<AcceptanceForm> doInBackground() {
+                List<AcceptanceForm> list = null;
                 if (mySqlManager.openDB()) {
                     Statement statement = null;
                     ResultSet result = null;
 
                     String sql = "SELECT * FROM t_acceptanceform limit "+ mPage * mCount + ", " + mCount + ";";
-                    LogManager.writeLogtoFile("数据库查询", "登录", sql);
+                    MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
                         result = statement.executeQuery(sql);
@@ -64,9 +63,9 @@ public class GetAcceptanceListCallback extends BaseCallback{
                             int suitUniteProductCountIndex = result.findColumn("suituniteproductcount");//合计验收数量
                             int acceptanceHuManIndex = result.findColumn("acceptancehuman");//验收人
                             int batchCountIndex = result.findColumn("batchcount");//批次
-                            int path = result.findColumn("path");
+                            int pathIndex = result.findColumn("transferpath");
                             while (result.next()){
-                                AcceptanceOrder order = new AcceptanceOrder();
+                                AcceptanceForm order = new AcceptanceForm();
                                 order.setCode(result.getString(codeIndex));
                                 order.setId(result.getString(idIndex));
                                 order.setStartTime(result.getString(startTimeIndex));
@@ -78,12 +77,12 @@ public class GetAcceptanceListCallback extends BaseCallback{
                                 order.setAcceptanceState(result.getString(acceptanceStateIndex));
                                 order.setSuitUniteProductCount(result.getInt(suitUniteProductCountIndex));
                                 order.setBatchCount(result.getString(batchCountIndex));
-                                order.setPath(result.getString(path));
+                                order.setPath(result.getString(pathIndex));
                                 list.add(order);
                             }
                         }
                     } catch (SQLException e) {
-                        LogManager.writeLogtoFile("数据库查询", "失败", e.toString());
+                        MyLogManager.writeLogtoFile("数据库查询", "失败", e.toString());
                         e.printStackTrace();
                     } finally {
                         try {
@@ -105,7 +104,7 @@ public class GetAcceptanceListCallback extends BaseCallback{
             }
 
             @Override
-            public void onSuccess(List<AcceptanceOrder> value) {
+            public void onSuccess(List<AcceptanceForm> value) {
                 dismissLoading();
                 if(mListener != null) {
                     if (value == null){

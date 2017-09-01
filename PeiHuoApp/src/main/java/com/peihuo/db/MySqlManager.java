@@ -7,7 +7,7 @@ import com.peihuo.R;
 import com.peihuo.entity.UserInfo;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.ui.dialog.LoadingDialog;
-import com.peihuo.util.LogManager;
+import com.peihuo.util.MyLogManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -49,7 +49,7 @@ public class MySqlManager {
         } catch (Exception e) {
             Toast.makeText(mContext, mContext.getText(R.string.db_connect_error), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
-            LogManager.writeLogtoFile("数据库查询", "链接数据库失败", e.toString());
+            MyLogManager.writeLogtoFile("数据库查询", "链接数据库失败", e.toString());
             return false;
         }
         return true;
@@ -92,7 +92,7 @@ public class MySqlManager {
                     ResultSet result = null;
 
                     String sql = "SELECT * FROM t_user WHERE uid = \"" + uid + "\" AND upassword = \"" + password + "\";";
-                    LogManager.writeLogtoFile("数据库查询", "登录", sql);
+                    MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = conn.createStatement();
                         result = statement.executeQuery(sql);
@@ -104,7 +104,7 @@ public class MySqlManager {
                             userInfo.setUserId(result.getString(uIdIndex));
                         }
                     } catch (SQLException e) {
-                        LogManager.writeLogtoFile("数据库查询", "失败", e.toString());
+                        MyLogManager.writeLogtoFile("数据库查询", "失败", e.toString());
                         e.printStackTrace();
                     } finally {
                         try {
