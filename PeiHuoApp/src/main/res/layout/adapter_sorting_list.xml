@@ -20,13 +20,11 @@
     <TextView
         android:id="@+id/adapter_sorting_serial"
         style="@style/adapter_plan_list_text_style"
-        android:text="流水"
         />
 
     <TextView
         android:id="@+id/adapter_sorting_position"
         style="@style/adapter_plan_list_text_style"
-        android:text="@string/sorting_list_position"
         />
 
     <TextView
@@ -49,7 +47,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:background="@drawable/select_color_red"
-            android:textColor="@color/white_color"
+            android:textColor="@color/color_default_white"
             android:text="@string/details" />
     </FrameLayout>
 

@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.peihuo.activity.LoginActivity"
+        <activity
+            android:name="com.peihuo.activity.LoginActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan">
@@ -20,25 +21,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.peihuo.activity.MenuActivity"
+        <activity
+            android:name="com.peihuo.activity.MenuActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
 
 
-        <activity android:name="com.peihuo.activity.PlanSheetActivity"
+        <activity
+            android:name="com.peihuo.activity.PlanFormActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
 
-        <activity android:name="com.peihuo.activity.SortingInfoActivity"
+        <activity
+            android:name="com.peihuo.activity.SortingInfoActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name="com.peihuo.activity.AcceptanceInfoActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
+
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.CAMERA" />
     <!--<uses-permission android:name="android.permission.RECORD_AUDIO" />-->
@@ -49,8 +56,6 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -70,7 +75,7 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.READ_LOGS" />\
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--<uses-permission android:name="android.permission.BLUETOOTH" />-->
     <!--<uses-permission android:name="android.permission.BATTERY_STATS" />-->
     <!--<uses-permission android:name="android.permission.BROADCAST_STICKY" />&lt;!&ndash; 震动 &ndash;&gt;-->

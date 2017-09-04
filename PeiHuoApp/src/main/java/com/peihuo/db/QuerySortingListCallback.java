@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.peihuo.entity.SortingForm;
 import com.peihuo.thread.ThreadManager;
+import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
 import com.peihuo.util.MyLogManager;
 
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Created by 123 on 2017/8/31.
+ * 获取分拣单列表
  */
 
 public class QuerySortingListCallback extends BaseCallback{
@@ -33,48 +35,57 @@ public class QuerySortingListCallback extends BaseCallback{
         mPage = page;
     }
 
+    public void loadData(int count, int page){
+        mCount = count;
+        mPage = page;
+        loadData();
+    }
+
     @Override
     protected void loadData() {
-        showLoading();
-        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<ArrayList<SortingForm>>() {
+
+        OnDatabaseOperationRunnable runnable = new OnDatabaseOperationRunnable<ArrayList<SortingForm>>() {
             @Override
             public ArrayList<SortingForm> doInBackground() {
                 ArrayList<SortingForm> list = null;
                 if (mySqlManager.openDB()) {
                     Statement statement = null;
                     ResultSet result = null;
-
-                    String sql = "SELECT * FROM t_acceptanceform limit "+ mPage * mCount + ", " + mCount + ";";
+                    String sql = "SELECT " +
+                            "t_acceptanceform.acceptanceformcode," +
+                            "t_acceptanceform.batchcount," +
+                            "t_acceptanceform.assemblelineno," +
+                            "t_acceptanceform.pitposition," +
+                            "t_acceptanceform.acceptancestate," +
+                            "t_acceptanceform.belongorderid," +
+                            "t_orders.customerId " +
+                            " FROM " +
+                            "t_acceptanceform LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersId " +
+                            " where t_acceptanceform.acceptancestate = '0' " +
+                            " limit "+ mPage * mCount + ", " + mCount + ";";
                     MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
+                        statement.setQueryTimeout(20);
                         result = statement.executeQuery(sql);
                         if (result != null) {
                             list = new ArrayList<>();
-                            int codeIndex = result.findColumn("acceptanceformcode");
-                            int idIndex = result.findColumn("belongorderid");
-                            int startTimeIndex = result.findColumn("starttime");//开单日期时间
-                            int endTimeIndex = result.findColumn("endtime");//结束日期时间
-                            int totalProductsIndex = result.findColumn("totalproducts");//货品总数
-                            int unitProductCountIndex = result.findColumn("uniteproductcount");//单品数量
-                            int suitCountIndex = result.findColumn("suitcount");//套装菜数量
-                            int acceptanceStateIndex = result.findColumn("acceptancestate");//验收状态
-                            int suitUniteProductCountIndex = result.findColumn("suituniteproductcount");//合计验收数量
-                            int acceptanceHuManIndex = result.findColumn("acceptancehuman");//验收人
+                            int codeIndex = result.findColumn("acceptanceformcode");//编号
                             int batchCountIndex = result.findColumn("batchcount");//批次
+                            int assemblelinenoIndex = result.findColumn("assemblelineno");//流水
+                            int pitpositionIndex = result.findColumn("pitposition");//坑位
+                            int acceptancestateIndex = result.findColumn("acceptancestate");//状态
+                            int customerIdIndex = result.findColumn("customerId");    //订单ID
+                            int belongorderidIndex = result.findColumn("belongorderid");//订单Id
                             while (result.next()){
                                 SortingForm order = new SortingForm();
                                 order.setCode(result.getString(codeIndex));
-                                order.setId(result.getString(idIndex));
-                                order.setStartTime(result.getString(startTimeIndex));
-                                order.setEndTime(result.getString(endTimeIndex));
-                                order.setTotalProducts(result.getInt(totalProductsIndex));
-                                order.setUnitProductCount(result.getInt(unitProductCountIndex));
-                                order.setSuitCount(result.getInt(suitCountIndex));
-                                order.setAcceptanceHuMan(result.getString(acceptanceHuManIndex));
-                                order.setAcceptanceState(result.getString(acceptanceStateIndex));
-                                order.setSuitUniteProductCount(result.getInt(suitUniteProductCountIndex));
+                                order.setAcceptanceState(result.getString(acceptancestateIndex));
+                                order.setAssemblelineno(result.getString(assemblelinenoIndex));
+                                order.setPitposition(result.getString(pitpositionIndex));
                                 order.setBatchCount(result.getString(batchCountIndex));
+                                order.setCustomerId(result.getString(customerIdIndex));
+                                order.setBelongorderid(result.getString(belongorderidIndex));
                                 list.add(order);
                             }
                         }
@@ -112,7 +123,9 @@ public class QuerySortingListCallback extends BaseCallback{
 
                 }
             }
-        });
+        };
+        showLoading(runnable);
+        ThreadManager.getInstance().getHandler().post(runnable);
     }
 
 }

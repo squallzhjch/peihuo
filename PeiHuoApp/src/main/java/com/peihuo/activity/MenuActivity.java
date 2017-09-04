@@ -7,10 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.peihuo.R;
-import com.peihuo.db.MySqlManager;
 import com.peihuo.system.SharedConfigHelper;
 
 /**
@@ -38,10 +36,7 @@ public class MenuActivity extends Activity {
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    finish();
+                    onBackPressed();
                 }
             });
 
@@ -50,7 +45,7 @@ public class MenuActivity extends Activity {
             planButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(MenuActivity.this, PlanSheetActivity.class);
+                    Intent intent = new Intent(MenuActivity.this, PlanFormActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();

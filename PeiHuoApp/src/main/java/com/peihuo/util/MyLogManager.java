@@ -56,14 +56,6 @@ public class MyLogManager {
         mContext = context;
     }
 
-    public void createDirs(Activity activity, boolean qingqiu){
-        if (new File(MYLOG_PATH_SDCARD_DIR).exists() == false) {
-            if(!new File(MYLOG_PATH_SDCARD_DIR).mkdirs() && qingqiu) {
-                ActivityCompat.requestPermissions(activity, new String[]{android
-                        .Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            }
-        }
-    }
 
     public static void w(String tag, Object msg) {//警告信息
         log(tag, msg.toString(), 'w');

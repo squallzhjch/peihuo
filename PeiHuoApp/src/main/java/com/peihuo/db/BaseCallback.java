@@ -1,9 +1,11 @@
 package com.peihuo.db;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 
 import com.peihuo.R;
+import com.peihuo.thread.ThreadManager;
+import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
 import com.peihuo.ui.dialog.LoadingDialog;
 
 /**
@@ -14,7 +16,7 @@ public abstract class BaseCallback {
 
     private LoadingDialog mLoadingDialog;
     private Context mActivity;
-    private int loadingString = R.string.loading;
+    protected int loadingString = R.string.toast_loading;
     protected MySqlManager mySqlManager;
 
     public BaseCallback(Context activity) {
@@ -25,15 +27,22 @@ public abstract class BaseCallback {
 
     protected abstract void loadData();
 
-    protected void showLoading(int id){
+    protected void showLoading(int id, OnDatabaseOperationRunnable runnable){
         loadingString = id;
-        showLoading();
+        showLoading(runnable);
     }
 
-    protected void showLoading() {
+    protected void showLoading(final OnDatabaseOperationRunnable runnable) {
         if (mLoadingDialog == null) {
             mLoadingDialog = new LoadingDialog(mActivity);
             mLoadingDialog.setText(mActivity.getText(loadingString));
+            mLoadingDialog.setCanceledOnTouchOutside(false);
+            mLoadingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    runnable.cancel();
+                }
+            });
         }
         mLoadingDialog.show();
     }

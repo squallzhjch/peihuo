@@ -14,5 +14,6 @@ public class MyApplication extends Application {
         ThreadManager.getInstance().init(this);
         MyLogManager.getInstance().init(this);
         SharedConfigHelper.getInstance().init(this);
+        DataDictionary.getInstance().init(this);
     }
 }

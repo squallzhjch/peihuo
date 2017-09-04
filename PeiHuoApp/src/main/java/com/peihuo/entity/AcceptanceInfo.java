@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 分拣单详情
  */
 
-public class SortingInfo implements Serializable{
+public class AcceptanceInfo implements Serializable{
     /**
      * 验收单号
      */
@@ -18,13 +18,8 @@ public class SortingInfo implements Serializable{
     private String proUnite;//单位
     private int useCount;//使用数量
 
-
-    public int getUseCount() {
-        return useCount;
-    }
-
-    public void setUseCount(int useCount) {
-        this.useCount = useCount;
+    public String getHandlingOrderCode() {
+        return handlingOrderCode;
     }
 
     public String getIs_suit() {
@@ -35,9 +30,6 @@ public class SortingInfo implements Serializable{
         this.is_suit = is_suit;
     }
 
-    public String getHandlingOrderCode() {
-        return handlingOrderCode;
-    }
 
     public void setHandlingOrderCode(String handlingOrderCode) {
         this.handlingOrderCode = handlingOrderCode;
@@ -59,12 +51,22 @@ public class SortingInfo implements Serializable{
         this.proName = proName;
     }
 
+
+
     public String getProUnite() {
         return proUnite;
     }
 
     public void setProUnite(String proUnite) {
         this.proUnite = proUnite;
+    }
+
+    public int getUseCount() {
+        return useCount;
+    }
+
+    public void setUseCount(int useCount) {
+        this.useCount = useCount;
     }
 
 }

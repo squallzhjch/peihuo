@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_color"
+    android:background="@color/color_default_white"
     android:orientation="vertical">
 
     <include layout="@layout/title_layout" />
@@ -41,7 +41,8 @@
         android:layout_weight="1">
         <LinearLayout
             android:id="@+id/sorting_info_list"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:background="@color/color_default_line"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -57,16 +58,19 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/sorting_info_button_last"
             style="@style/red_frame_button_style"
             android:text="@string/last_one" />
 
         <Button
+            android:id="@+id/sorting_info_button_check"
             style="@style/red_frame_button_style"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:text="@string/sorting_over" />
 
         <Button
+            android:id="@+id/sorting_info_button_next"
             style="@style/red_frame_button_style"
             android:text="@string/next" />
     </LinearLayout>

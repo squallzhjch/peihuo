@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.peihuo.entity.AcceptanceForm;
 import com.peihuo.thread.ThreadManager;
+import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
 import com.peihuo.util.MyLogManager;
 
 import java.sql.ResultSet;
@@ -22,8 +23,13 @@ public class QueryAcceptanceListCallback extends BaseCallback{
     private int mCount = 10;
     private int mPage = 0;
 
+    public void loadData(int count, int page) {
+        mCount = count;
+        mPage = page;
+    }
+
     public interface OnLoadDataListener{
-        void onSuccess(List<AcceptanceForm> list);
+        void onSuccess(ArrayList<AcceptanceForm> list);
         void onError();
     }
 
@@ -36,48 +42,54 @@ public class QueryAcceptanceListCallback extends BaseCallback{
 
     @Override
     protected void loadData() {
-        showLoading();
-        ThreadManager.getInstance().getHandler().post(new ThreadManager.OnDatabaseOperationRunnable<List<AcceptanceForm>>() {
+
+        OnDatabaseOperationRunnable runnable = new OnDatabaseOperationRunnable<ArrayList<AcceptanceForm>>() {
             @Override
-            public List<AcceptanceForm> doInBackground() {
-                List<AcceptanceForm> list = null;
+            public ArrayList<AcceptanceForm> doInBackground() {
+                ArrayList<AcceptanceForm> list = null;
                 if (mySqlManager.openDB()) {
                     Statement statement = null;
                     ResultSet result = null;
 
-                    String sql = "SELECT * FROM t_acceptanceform limit "+ mPage * mCount + ", " + mCount + ";";
+                    String sql = "SELECT " +
+                            "t_acceptanceform.transferpath," +
+                            "t_acceptanceform.starttime," +
+                            "t_acceptanceform.suituniteproductcount," +
+                            "t_acceptanceform.acceptanceformcode," +
+                            "t_orders.customerId," +
+                            "t_acceptanceform.batchcount," +
+                            "t_acceptanceform.acceptancestate, " +
+                            "t_acceptanceform.belongorderid " +
+                            " FROM " +
+                            " t_acceptanceform " +
+                            "LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersId " +
+                            " where t_acceptanceform.acceptancestate != '0'" +
+                            " limit "+ mPage * mCount + ", " + mCount + ";";
                     MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
+                        statement.setQueryTimeout(20);
                         result = statement.executeQuery(sql);
                         if (result != null) {
                             list = new ArrayList<>();
                             int codeIndex = result.findColumn("acceptanceformcode");
-                            int idIndex = result.findColumn("belongorderid");
+                            int customerIdIndex = result.findColumn("customerId");
                             int startTimeIndex = result.findColumn("starttime");//开单日期时间
-                            int endTimeIndex = result.findColumn("endtime");//结束日期时间
-                            int totalProductsIndex = result.findColumn("totalproducts");//货品总数
-                            int unitProductCountIndex = result.findColumn("uniteproductcount");//单品数量
-                            int suitCountIndex = result.findColumn("suitcount");//套装菜数量
                             int acceptanceStateIndex = result.findColumn("acceptancestate");//验收状态
                             int suitUniteProductCountIndex = result.findColumn("suituniteproductcount");//合计验收数量
-                            int acceptanceHuManIndex = result.findColumn("acceptancehuman");//验收人
                             int batchCountIndex = result.findColumn("batchcount");//批次
-                            int pathIndex = result.findColumn("transferpath");
+                            int transferpathIndex = result.findColumn("transferpath");
+                            int belongorderidIndex = result.findColumn("belongorderid");
                             while (result.next()){
                                 AcceptanceForm order = new AcceptanceForm();
                                 order.setCode(result.getString(codeIndex));
-                                order.setId(result.getString(idIndex));
                                 order.setStartTime(result.getString(startTimeIndex));
-                                order.setEndTime(result.getString(endTimeIndex));
-                                order.setTotalProducts(result.getInt(totalProductsIndex));
-                                order.setUnitProductCount(result.getInt(unitProductCountIndex));
-                                order.setSuitCount(result.getInt(suitCountIndex));
-                                order.setAcceptanceHuMan(result.getString(acceptanceHuManIndex));
                                 order.setAcceptanceState(result.getString(acceptanceStateIndex));
                                 order.setSuitUniteProductCount(result.getInt(suitUniteProductCountIndex));
                                 order.setBatchCount(result.getString(batchCountIndex));
-                                order.setPath(result.getString(pathIndex));
+                                order.setTransferPath(result.getString(transferpathIndex));
+                                order.setCustomerId(result.getString(customerIdIndex));
+                                order.setBelongorderid(result.getString(belongorderidIndex));
                                 list.add(order);
                             }
                         }
@@ -104,7 +116,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
             }
 
             @Override
-            public void onSuccess(List<AcceptanceForm> value) {
+            public void onSuccess(ArrayList<AcceptanceForm> value) {
                 dismissLoading();
                 if(mListener != null) {
                     if (value == null){
@@ -115,7 +127,9 @@ public class QueryAcceptanceListCallback extends BaseCallback{
 
                 }
             }
-        });
+        };
+        showLoading(runnable);
+        ThreadManager.getInstance().getHandler().post(runnable);
     }
 
 }

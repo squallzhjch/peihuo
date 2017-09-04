@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_default_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/frame_gray_bg_blue"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/acceptance_info_sail_code"
+            style="@style/sorting_list_title_text_style" />
+
+        <TextView
+            android:id="@+id/acceptance_info_path"
+            style="@style/sorting_list_title_text_style" />
+
+        <TextView
+            android:id="@+id/acceptance_info_acceptance_code"
+            style="@style/sorting_list_title_text_style" />
+
+        <TextView
+            android:id="@+id/acceptance_info_batch"
+            style="@style/sorting_list_title_text_style" />
+
+        <TextView
+            android:id="@+id/acceptance_info_time"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:id="@+id/acceptance_info_total"
+            style="@style/sorting_list_title_text_style" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/acceptance_info_single_label"
+                android:background="@drawable/frame_red_bg_2r"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textColor="@color/color_default_white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/acceptance_info_item_single_title"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/color_default_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/acceptance_item_name"
+                    style="@style/sorting_info_text_style"
+                    />
+                <TextView
+                    android:text="@string/acceptance_item_code"
+                    style="@style/sorting_info_text_style"
+                    />
+                <TextView
+                    android:text="@string/acceptance_item_count"
+                    style="@style/sorting_info_text_style"
+                    />
+                <TextView
+                    android:text="@string/acceptance_item_unit"
+                    style="@style/sorting_info_text_style"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/acceptance_info_single_list"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:background="@color/color_default_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </LinearLayout>
+            <TextView
+                android:id="@+id/acceptance_info_group_label"
+                android:background="@drawable/frame_red_bg_2r"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textColor="@color/color_default_white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/acceptance_info_item_group_title"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:background="@color/color_default_orange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/acceptance_item_group_name"
+                    style="@style/sorting_info_text_style"
+                    />
+                <TextView
+                    android:text="@string/acceptance_item_name"
+                    style="@style/sorting_info_text_style"
+                    />
+                <TextView
+                    android:text="@string/acceptance_item_code"
+                    style="@style/sorting_info_text_style"
+                    />
+                <TextView
+                    android:text="@string/acceptance_item_count"
+                    style="@style/sorting_info_text_style"
+                    />
+                <TextView
+                    android:text="@string/acceptance_item_unit"
+                    style="@style/sorting_info_text_style"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/acceptance_info_group_list"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:background="@color/color_default_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/acceptance_info_button_last"
+            style="@style/red_frame_button_style"
+            android:text="@string/last_one" />
+
+        <Button
+            android:id="@+id/acceptance_info_button_pass"
+            style="@style/red_frame_button_style"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/acceptance_pass" />
+
+        <Button
+            android:id="@+id/acceptance_info_button_error"
+            style="@style/red_frame_button_style"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/acceptance_error" />
+
+        <Button
+            android:id="@+id/acceptance_info_button_next"
+            style="@style/red_frame_button_style"
+            android:text="@string/next" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,18 +1,17 @@
 <resources>
-    <string name="app_name">peihuo</string>
+    <string name="app_name">易厨鲜生分拣系统</string>
 
     <!-- 登录页面-->
     <string name="login_name">生鲜电商生产执行系统</string>
-    <string name="user_number">员工编号</string>
-    <string name="user_password">登录密码</string>
-    <string name="remember_password">记住密码</string>
-    <string name="forget_passwor">忘记密码?</string>
+    <string name="login_user_number">员工编号</string>
+    <string name="login_user_password">登录密码</string>
+    <string name="login_remember_password">记住密码</string>
+    <string name="login_forget_passwor">忘记密码?</string>
     <string name="login">登录</string>
+    <string name="login_input_user_num">请输入员工编号</string>
+    <string name="login_input_password">请输入密码</string>
+    <string name="login_work_line">生&#160;产&#160;线</string>
     <string name="out_app">再按一次退出程序</string>
-    <string name="input_user_num">请输入员工编号</string>
-    <string name="input_password">请输入密码</string>
-    <string name="get_userinfo_error">员工信息获取失败！</string>
-    <string name="login_error">员工编号或密码错误！</string>
 
     <!-- 菜单页面-->
     <string name="menu_title">生鲜电商生产执行</string>
@@ -44,14 +43,31 @@
     <string name="sorting_list_position">坑位</string>
     <string name="sorting_list_status">状态</string>
     <string name="sorting_list_operation">操作</string>
-
     <string name="sorting_order_info">分拣单详情</string>
+    <string name="sorting_over">分拣完成</string>
+    <string name="sorting_single">单品</string>
+    <string name="sorting_group">套装菜</string>
 
     <string name="format_sorting_sale_number">销售单号：%1$s</string>
     <string name="format_sorting_customer">客户ID：%1$s</string>
     <string name="format_sorting_batch">批次：%1$s</string>
     <string name="format_sorting_serial">流水：%1$s</string>
     <string name="format_sorting_position">坑位：%1$s</string>
+
+    <string name="format_sorting_item_code">商品编号：%1$s</string>
+    <string name="format_sorting_item_name">商品名称：%1$s</string>
+    <string name="format_sorting_item_count">数量：%1$s</string>
+    <string name="format_sorting_item_unit">单位：%1$s</string>
+    <string name="format_sorting_item_type">类型：%1$s</string>
+    <string name="format_sorting_item_handling">加工单号：%1$s</string>
+
+    <string name="format_acceptance_accptance_code">验收单号：%1$s</string>
+    <string name="format_acceptance_path">路径：%1$s</string>
+    <string name="format_acceptance_order_time">单据时间：%1$s</string>
+    <string name="format_acceptance_total">合计：%1$s</string>
+    <string name="format_acceptance_item_single_title">单品数x%1$s</string>
+    <string name="format_acceptance_item_group_title">套装菜数x%1$s</string>
+
     <!-- 验收单 标题-->
     <!--<string name="acceptance_list_sale_number">销售单号</string>-->
     <string name="acceptance_list_path">路径</string>
@@ -61,17 +77,33 @@
     <string name="acceptance_list_count">合计数量</string>
     <!--<string name="acceptance_list_status">状态</string>-->
     <!--<string name="acceptance_list_operation">操作</string>-->
+    <string name="acceptance_pass">通&#160;&#160;过</string>
+    <string name="acceptance_error">异&#160;&#160;常</string>
+    <string name="acceptance_order_info">验收单详情</string>
 
+    <string name="acceptance_item_name">商品名称</string>
+    <string name="acceptance_item_code">商品编码</string>
+    <string name="acceptance_item_count">数量</string>
+    <string name="acceptance_item_unit">单位</string>
+    <string name="acceptance_item_group_name">套装菜名称</string>
 
-    <string name="loading">正在加载数据...</string>
-    <string name="logining">正在登陆...</string>
-    <string name="db_connect_error">数据库连接失败！</string>
-    
+    <string name="toast_loading">正在加载数据...</string>
+    <string name="toast_logining">正在登陆...</string>
+    <string name="toast_db_connect_error">数据库连接失败！</string>
+    <string name="toast_noting_data">没有跟多数据了!</string>
+    <string name="toast_get_userinfo_error">员工信息获取失败！</string>
+    <string name="toast_login_error">员工编号或密码错误！</string>
+    <string name="toast_load_data_error">获取数据失败</string>
+
     <string name="pullToRefresh_push_label">上拉加载...</string>
     <string name="pullToRefresh_push_loading">正在加载...</string>
 
+    <string name="dictionary_acceptance_status_wait_acceptance">等待验收</string>
+    <string name="dictionary_acceptance_status_wait_sorting">等待分拣</string>
+    <string name="dictionary_acceptance_status_pass">验收通过</string>
+    <string name="dictionary_acceptance_status_no_pass">验收未通过</string>
+
     <string name="details">详情</string>
-    <string name="sorting_over">分拣完成</string>
     <string name="last_one">上一个</string>
     <string name="next">下一个</string>
 </resources>

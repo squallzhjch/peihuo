@@ -1,10 +1,12 @@
 package com.peihuo.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,11 +17,9 @@ import android.widget.Toast;
 import com.peihuo.R;
 import com.peihuo.db.MySqlManager;
 import com.peihuo.entity.UserInfo;
+import com.peihuo.system.DataDictionary;
 import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.db.LoginCallback;
-import com.peihuo.util.MyLogManager;
-
-import java.io.File;
 
 /**
  * Created by hb on 2017/8/25.
@@ -40,8 +40,15 @@ public class LoginActivity extends Activity {
         if (savedInstanceState == null) {
             setContentView(R.layout.activity_login);
             MySqlManager.getInstance().init(this);
-            MyLogManager.getInstance().createDirs(this, true);
 
+            if (Build.VERSION.SDK_INT >= 23) {
+                int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                if (permission != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{android
+                            .Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                }
+
+            }
             mUserName = (EditText) findViewById(R.id.login_user_name);
             mPassword = (EditText) findViewById(R.id.login_password);
 
@@ -51,23 +58,24 @@ public class LoginActivity extends Activity {
                 public void onClick(View view) {
 
                     if (mUserName.getText() == null || mUserName.getText().toString().trim().length() == 0) {
-                        Toast.makeText(LoginActivity.this, getText(R.string.input_user_num), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, getText(R.string.login_input_user_num), Toast.LENGTH_SHORT).show();
                     } else if (mPassword.getText() == null || mPassword.getText().toString().trim().length() == 0) {
-                        Toast.makeText(LoginActivity.this, getText(R.string.input_password), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, getText(R.string.login_input_password), Toast.LENGTH_SHORT).show();
                     } else {
                         mLoginButton.setEnabled(false);
-                        MySqlManager.getInstance().login(mUserName.getText().toString().trim(),
+                        new LoginCallback(LoginActivity.this, mUserName.getText().toString().trim(),
                                 mPassword.getText().toString().trim(),
-                                new LoginCallback() {
+                                new LoginCallback.OnLoginCallbackListener(){
+
                                     @Override
                                     public void onSuccess(UserInfo value) {
-                                        mLoginButton.setEnabled(true);
-                                        if(value == null) {
-                                            Toast.makeText(LoginActivity.this, getText(R.string.get_userinfo_error), Toast.LENGTH_SHORT).show();
+                                        if (value == null) {
+                                            mLoginButton.setEnabled(true);
+                                            Toast.makeText(LoginActivity.this, getText(R.string.toast_get_userinfo_error), Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         SharedConfigHelper.getInstance().setPassword(mPassword.getText().toString().trim());
-                                        SharedConfigHelper.getInstance().setUserId(value.getUserId());
+                                        SharedConfigHelper.getInstance().setUserAccount(value.getAccount());
                                         SharedConfigHelper.getInstance().setUserName(value.getUserName());
                                         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -78,7 +86,8 @@ public class LoginActivity extends Activity {
                                     @Override
                                     public void onError() {
                                         mLoginButton.setEnabled(true);
-                                        Toast.makeText(LoginActivity.this, getText(R.string.login_error), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, getText(R.string.toast_login_error), Toast.LENGTH_SHORT).show();
+
                                     }
                                 });
                     }
@@ -87,8 +96,8 @@ public class LoginActivity extends Activity {
 
             mSaveCheck = (CheckBox) findViewById(R.id.login_save_password);
 
-            mUserName.setText(SharedConfigHelper.getInstance().getUserId());
-            if(SharedConfigHelper.getInstance().getIsSavePassword()){
+            mUserName.setText(SharedConfigHelper.getInstance().getUserAccount());
+            if (SharedConfigHelper.getInstance().getIsSavePassword()) {
                 mSaveCheck.setChecked(true);
                 mPassword.setText(SharedConfigHelper.getInstance().getPassword());
             }
@@ -104,10 +113,10 @@ public class LoginActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if(!isOut){
-            Toast.makeText(this,getText(R.string.out_app), Toast.LENGTH_SHORT).show();
+        if (!isOut) {
+            Toast.makeText(this, getText(R.string.out_app), Toast.LENGTH_SHORT).show();
             isOut = true;
-        }else {
+        } else {
             System.exit(0);
         }
     }
@@ -121,18 +130,17 @@ public class LoginActivity extends Activity {
      * @param permissions  权限
      * @param grantResults 结果
      */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 //        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 1:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //创建文件夹
-                    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                        MyLogManager.getInstance().createDirs(this, false);
-                    }
-                    break;
-                }
-        }
-    }
+//        switch (requestCode) {
+//            case 1:
+//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    创建文件夹
+//                    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+//                    }
+//                    break;
+//                }
+//        }
+//    }
 }

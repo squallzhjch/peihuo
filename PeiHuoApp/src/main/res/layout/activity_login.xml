@@ -38,7 +38,42 @@
                 android:textColor="@color/color_default_text_black_1h"
                 android:textSize="@dimen/h1_title_size" />
         </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginBottom="15dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp">-->
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@mipmap/login_work_line" />-->
+            <!--<TextView-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:textSize="16sp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:textColor="@color/color_default_text_black_2h"-->
+                <!--android:text="@string/login_work_line"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<Button-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="16sp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:minWidth="100dp"-->
+                <!--android:textColor="@color/color_default_text_black_1h"-->
+                <!--android:drawableRight="@mipmap/pull_icon"-->
+                <!--android:drawablePadding="30dp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="5dp"-->
+                <!--android:text="A"-->
+                <!--android:background="@drawable/frame_black"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
 
+        <!--</LinearLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,11 +92,12 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:hint="@string/user_number"
+                android:hint="@string/login_user_number"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:background="@null"
+                android:textSize="16sp"
                 android:textColor="@color/color_default_text_black_2h"
                 android:textColorHint="@color/color_default_text_gray" />
         </LinearLayout>
@@ -97,7 +133,8 @@
                 android:singleLine="true"
                 android:imeOptions="actionDone"
                 android:background="@null"
-                android:hint="@string/user_password"
+                android:textSize="16sp"
+                android:hint="@string/login_user_password"
                 android:paddingLeft="10dp"
                 android:textColor="@color/color_default_text_black_2h"
                 android:textColorHint="@color/color_default_text_gray" />
@@ -124,7 +161,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/remember_password"
+                android:text="@string/login_remember_password"
                 style="@style/checkbox_default_style"/>
             <TextView
                 android:layout_weight="1"
@@ -133,7 +170,7 @@
                 android:gravity="right|center_vertical"
                 android:textColor="@color/color_default_text_gray"
                 android:layout_height="wrap_content"
-                android:text="@string/forget_passwor"/>
+                android:text="@string/login_forget_passwor"/>
         </LinearLayout>
         <Button
             android:id="@+id/login_button"
@@ -143,7 +180,7 @@
             android:background="@drawable/select_drawable_color_green"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="@color/white_color"
+            android:textColor="@color/color_default_white"
             android:text="@string/login"/>
     </LinearLayout>
 </FrameLayout>

@@ -68,9 +68,9 @@ public class SharedConfigHelper {
      *
      * @return
      */
-    public String getUserId() {
+    public String getUserAccount() {
         if (mSharePre != null) {
-            return mSharePre.getString(SystemConfig.SP_KEY_USER_ID, "");
+            return mSharePre.getString(SystemConfig.SP_KEY_USER_ACCOUNT, "");
         }
         return "";
     }
@@ -80,12 +80,12 @@ public class SharedConfigHelper {
      *
      * @param id
      */
-    public void setUserId(String id) {
+    public void setUserAccount(String id) {
         if (id == null)
             id = "";
         if (mSharePre != null) {
             mSharePre.edit()
-                    .putString(SystemConfig.SP_KEY_USER_ID, id)
+                    .putString(SystemConfig.SP_KEY_USER_ACCOUNT, id)
                     .commit();
         }
     }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.peihuo.R;
 import com.peihuo.activity.SortingInfoActivity;
 import com.peihuo.entity.SortingForm;
+import com.peihuo.system.DataDictionary;
 import com.peihuo.system.SystemConfig;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class SortingListAdapter extends BaseAdapter {
 
-    private ArrayList<SortingForm> mList;
+    private ArrayList<SortingForm> mList = new ArrayList<>();
     Activity mActivity;
 
     public SortingListAdapter(Activity context) {
@@ -70,9 +71,19 @@ public class SortingListAdapter extends BaseAdapter {
         }
         if (mList != null && mList.size() > position) {
             SortingForm order = mList.get(position);
-            viewHolder.code.setText(order.getCode());
-            viewHolder.batch.setText(order.getBatchCount());
-            viewHolder.status.setText(order.getAcceptanceState());
+            if(order.getBelongorderid() != null) {
+                viewHolder.code.setText(order.getBelongorderid());
+            }
+            if(order.getBatchCount() != null) {
+                viewHolder.batch.setText(order.getBatchCount());
+            }
+            viewHolder.status.setText(DataDictionary.getInstance().getSortingState(order.getAcceptanceState()));
+            if(order.getAssemblelineno() != null) {
+                viewHolder.serial.setText(order.getAssemblelineno());
+            }
+            if(order.getPitposition() != null) {
+                viewHolder.position.setText(order.getPitposition());
+            }
             viewHolder.operation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,6 +101,14 @@ public class SortingListAdapter extends BaseAdapter {
 
     public void setData(ArrayList<SortingForm> data) {
         this.mList = data;
+    }
+
+    public void addData(ArrayList<SortingForm> list){
+        if(mList != null && list != null){
+            for(SortingForm form:list){
+                mList.add(form);
+            }
+        }
     }
 
     class ViewHolder {

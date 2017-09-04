@@ -1,7 +1,8 @@
+/build.gradle
+buile.gradle
 PeiHuoApp/build.gradle
 gradle
 gradle/wrapper
-/build.gradle
 *.iml
 .gradle
 .idea
@@ -16,3 +17,11 @@ gradle/wrapper
 /build
 /captures
 .externalNativeBuild
+src/main/res/drawable-hdpi/
+src/main/res/drawable-mdpi/
+src/main/res/drawable-xhdpi/
+PeiHuoApp/src/main/res/drawable-hdpi/
+PeiHuoApp/src/main/res/drawable-mdpi/
+PeiHuoApp/src/main/res/drawable-xhdpi/
+library/build.gradle
+library/build/

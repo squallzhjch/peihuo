@@ -7,6 +7,15 @@ package com.peihuo.entity;
 public class UserInfo {
     private String userName;
     private String userId;
+    private String account;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public String getUserId() {
         return userId;
