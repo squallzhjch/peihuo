@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_default_white"
     android:orientation="vertical">
+
     <include layout="@layout/title_layout" />
 
     <LinearLayout
@@ -23,7 +24,8 @@
 
         <TextView
             android:id="@+id/sorting_info_patch"
-            style="@style/sorting_info_title_text_style" />
+            style="@style/sorting_info_title_text_style"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/sorting_info_serial"
@@ -33,76 +35,92 @@
             android:id="@+id/sorting_info_position"
             style="@style/sorting_info_title_text_style" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/frame_gray_bg_blue"
+        android:background="@color/color_default_line"
         android:gravity="center"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        android:paddingBottom="5dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:paddingTop="5dp">
 
         <TextView
-            android:text="@string/acceptance_item_name"
-            style="@style/sorting_list_title_text_style" />
+            style="@style/sorting_info_title2_text_style"
+            android:text="@string/acceptance_item_name" />
 
         <TextView
-            android:text="@string/acceptance_item_code"
-            style="@style/sorting_list_title_text_style" />
+            style="@style/sorting_info_title2_text_style"
+            android:text="@string/acceptance_item_code" />
 
         <TextView
-            android:text="@string/acceptance_item_count"
-            style="@style/sorting_list_title_text_style" />
+            style="@style/sorting_info_title2_text_style"
+            android:text="@string/acceptance_item_count" />
 
         <TextView
-            android:text="@string/acceptance_item_unit"
-            style="@style/sorting_list_title_text_style" />
-        <TextView
-            android:text="@string/acceptance_item_type"
-            style="@style/sorting_list_title_text_style" />
+            style="@style/sorting_info_title2_text_style"
+            android:text="@string/acceptance_item_unit" />
 
         <TextView
-            android:text="@string/acceptance_item_handling"
-            style="@style/sorting_list_title_text_style" />
+            style="@style/sorting_info_title2_text_style"
+            android:text="@string/acceptance_item_type" />
+
+        <TextView
+            style="@style/sorting_info_title2_text_style"
+            android:text="@string/acceptance_item_handling" />
     </LinearLayout>
-    <ScrollView
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-        <LinearLayout
-            android:id="@+id/sorting_info_list"
-            android:orientation="vertical"
-            android:background="@color/color_default_line"
+        android:layout_weight="1"
+        >
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp">
 
-        </LinearLayout>
-    </ScrollView>
+            <LinearLayout
+                android:id="@+id/sorting_info_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_default_line"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+            </LinearLayout>
+        </ScrollView>
 
-        <Button
+        <ImageView
             android:id="@+id/sorting_info_button_last"
-            style="@style/red_frame_button_style"
-            android:text="@string/last_one" />
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="3dp"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/last_item_icon" />
 
-        <Button
-            android:id="@+id/sorting_info_button_check"
-            style="@style/red_frame_button_style"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:text="@string/sorting_over" />
-
-        <Button
+        <ImageView
             android:id="@+id/sorting_info_button_next"
-            style="@style/red_frame_button_style"
-            android:text="@string/next" />
-    </LinearLayout>
+            android:layout_margin="3dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical|right"
+            android:background="@mipmap/next_item_icon" />
+    </FrameLayout>
+
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/sorting_info_button_check"
+        style="@style/red_frame_button_style"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/sorting_over" />
+
+
 </LinearLayout>

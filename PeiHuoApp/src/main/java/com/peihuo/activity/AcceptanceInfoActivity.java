@@ -205,7 +205,7 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
             if (order.getBatchCount() != null)
                 mBatch.setText(getString(R.string.format_sorting_batch, order.getBatchCount()));
             if (order.getStartTime() != null)
-                mTime.setText(getString(R.string.format_acceptance_order_time, order.getStartTime()));
+                mTime.setText(getString(R.string.format_acceptance_order_time, order.getStartTime().substring(0,16)));
             mTotal.setText(getString(R.string.format_acceptance_total, String.valueOf(order.getSuitUniteProductCount())));
             if (order.getTransferPath() != null)
                 mPath.setText(getString(R.string.format_acceptance_path, order.getTransferPath()));

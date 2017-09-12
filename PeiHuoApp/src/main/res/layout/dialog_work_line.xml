@@ -72,8 +72,6 @@
             android:id="@+id/work_line_select_scrollview"
             android:layout_width="match_parent"
             android:visibility="gone"
-            android:paddingLeft="10dp"
-            android:background="@drawable/frame_black"
             android:layout_alignLeft="@+id/work_line_select_button"
             android:layout_alignRight="@+id/work_line_select_button"
             android:layout_below="@+id/work_line_select_button"
@@ -82,10 +80,8 @@
             <LinearLayout
                 android:id="@+id/work_line_list_layout"
                 android:orientation="vertical"
-
-                android:layout_gravity="center_vertical"
                 android:layout_width="match_parent"
-                android:background="@color/color_default_line"
+                android:background="@drawable/frame_black_bg_gray"
                 android:layout_height="wrap_content">
 
             </LinearLayout>

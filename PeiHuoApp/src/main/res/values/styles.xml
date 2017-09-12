@@ -38,14 +38,33 @@
         <item name="android:textColor">@color/select_color_black_green</item>
     </style>
 
-    <style name="sorting_info_title_text_style" commit="计划生产单，工单文字样式">
+    <style name="sorting_info_title_text_style" commit="分拣单详情1标题">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
         <item name="android:textColor">@color/color_default_text_black_2h</item>
+    </style>
+
+    <style name="acceptance_info_title_text_style" commit="验收单详情1标题">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:textColor">@color/color_default_text_black_2h</item>
+    </style>
+
+    <style name="sorting_info_title2_text_style" commit="分拣单详情2标题">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_default_green</item>
     </style>
 
     <style name="sorting_list_title_text_style" commit="计划生产单，工单文字样式">
@@ -78,7 +97,7 @@
     </style>
 
     <style name="sorting_info_text_style" commit="分拣单详情" parent="sorting_info_text_title_style">
-        <item name="android:textColor">@color/color_default_text_gray</item>
+        <!--<item name="android:textColor">@color/color_default_text_black_2h</item>-->
     </style>
 
     <style name="red_frame_button_style" commit="红框按钮">

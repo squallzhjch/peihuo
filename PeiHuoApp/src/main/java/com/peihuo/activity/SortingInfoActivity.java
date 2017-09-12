@@ -41,6 +41,7 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
     private QuerySortingInfoCallback mInfoCallback;
     private LinearLayout.LayoutParams mLayoutParams;
     private List<String> idList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
