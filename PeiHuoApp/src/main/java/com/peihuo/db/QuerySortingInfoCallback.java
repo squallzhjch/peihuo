@@ -58,7 +58,7 @@ public class QuerySortingInfoCallback extends BaseCallback{
                             "t_handlingorder.suit_parent_code" +
                             " FROM " +
                             "t_handlingorder where ordercode = '"+ mCode +"' order by suit_parent_code;";
-                    MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
+                    MyLogManager.writeLogtoFile("数据库查询", "获取分拣单详情", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
                         statement.setQueryTimeout(20);
@@ -100,6 +100,9 @@ public class QuerySortingInfoCallback extends BaseCallback{
                         }
                         mySqlManager.closeDB();
                     }
+                }else {
+                    MyLogManager.writeLogtoFile("数据库连接", "失败", "获取分拣单详情");
+
                 }
                 return list;
             }

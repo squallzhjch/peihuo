@@ -45,7 +45,7 @@ public class MySqlManager {
     public boolean openDB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://47.94.134.88:3306/yichuDev?characterEncoding=UTF-8", "root", "1234");
+            conn = DriverManager.getConnection("jdbc:mysql://rm-2ze0a54en6827wm54o.mysql.rds.aliyuncs.com:3306/echu_jxc?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull", "jinxiaocun", "Jxc20170916");
         } catch (Exception e) {
             Toast.makeText(mContext, mContext.getText(R.string.toast_db_connect_error), Toast.LENGTH_SHORT).show();
             e.printStackTrace();

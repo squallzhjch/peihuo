@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -63,6 +64,16 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
         mProduction = (TextView) findViewById(R.id.plan_title_production);
         mSorting = (TextView) findViewById(R.id.plan_title_sorting);
         mAcceptance = (TextView) findViewById(R.id.plan_title_acceptance);
+
+        String role = SharedConfigHelper.getInstance().getUserUrole();
+
+        if(TextUtils.equals(role, "分拣员")){
+            mSorting.setEnabled(true);
+        }
+
+        if(TextUtils.equals(role, "验收员")){
+            mAcceptance.setEnabled(true);
+        }
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {

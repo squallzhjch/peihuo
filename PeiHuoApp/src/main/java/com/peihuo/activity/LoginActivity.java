@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,6 +21,7 @@ import com.peihuo.entity.UserInfo;
 import com.peihuo.system.DataDictionary;
 import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.db.LoginCallback;
+import com.peihuo.system.SystemConfig;
 
 /**
  * Created by hb on 2017/8/25.
@@ -69,16 +71,24 @@ public class LoginActivity extends Activity {
 
                                     @Override
                                     public void onSuccess(UserInfo value) {
+                                        mLoginButton.setEnabled(true);
                                         if (value == null) {
-                                            mLoginButton.setEnabled(true);
                                             Toast.makeText(LoginActivity.this, getText(R.string.toast_get_userinfo_error), Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                        if(TextUtils.isEmpty(value.getUrole())){
+                                            Toast.makeText(LoginActivity.this, getText(R.string.toast_get_userinfo_role_error), Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         SharedConfigHelper.getInstance().setPassword(mPassword.getText().toString().trim());
                                         SharedConfigHelper.getInstance().setUserAccount(value.getAccount());
                                         SharedConfigHelper.getInstance().setUserName(value.getUserName());
+                                        SharedConfigHelper.getInstance().setUserId(value.getUserId());
+                                        SharedConfigHelper.getInstance().setUserUrole(value.getUrole());
+                                        SharedConfigHelper.getInstance().setRepositoryId(value.getRepositoryid());
                                         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.putExtra(SystemConfig.BUNDLE_KEY_ACTIVITY_FROM_LOGIN, true);
                                         startActivity(intent);
                                         finish();
                                     }

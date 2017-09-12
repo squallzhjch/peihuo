@@ -22,16 +22,18 @@ public class QuerySortingListCallback extends BaseCallback{
     private OnLoadDataListener mListener;
     private int mCount = 10;
     private int mPage = 0;
+    private String mUserId = "";
 
     public interface OnLoadDataListener{
         void onSuccess(ArrayList<SortingForm> list);
         void onError();
     }
 
-    public QuerySortingListCallback(Context context, int count, int page, OnLoadDataListener listener){
+    public QuerySortingListCallback(Context context, String userId , int count, int page, OnLoadDataListener listener){
         super(context);
         mListener = listener;
         mCount = count;
+        mUserId = userId;
         mPage = page;
     }
 
@@ -61,9 +63,10 @@ public class QuerySortingListCallback extends BaseCallback{
                             "t_orders.customerId " +
                             " FROM " +
                             "t_acceptanceform LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersId " +
-                            " where t_acceptanceform.acceptancestate = '0' " +
+                            " WHERE t_acceptanceform.belongorderid in " +
+                            "(SELECT DISTINCT t_handlingorder.ordercode FROM t_handlingorder where state = '未完成' and t_handlingorder.responsiblehuman = '"+mUserId+"')" +
                             " limit "+ mPage * mCount + ", " + mCount + ";";
-                    MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
+                    MyLogManager.writeLogtoFile("数据库查询", "获取分拣单列表", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
                         statement.setQueryTimeout(20);
@@ -107,6 +110,8 @@ public class QuerySortingListCallback extends BaseCallback{
                         }
                         mySqlManager.closeDB();
                     }
+                }else{
+                    MyLogManager.writeLogtoFile("数据库连接", "失败", "获取分拣单列表");
                 }
                 return list;
             }

@@ -9,7 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.peihuo.R;
+import com.peihuo.db.QueryWorkLinesCallback;
+import com.peihuo.entity.WorkLine;
 import com.peihuo.system.SharedConfigHelper;
+import com.peihuo.system.SystemConfig;
+import com.peihuo.ui.dialog.WorkLineDialog;
+
+import java.util.ArrayList;
 
 /**
  * Created by 123 on 2017/8/28.
@@ -51,6 +57,31 @@ public class MenuActivity extends Activity {
                     finish();
                 }
             });
+
+            Bundle bundle = getIntent().getExtras();
+            if(bundle != null){
+                //是否是从登录界面来的
+                boolean bFromLogin = bundle.getBoolean(SystemConfig.BUNDLE_KEY_ACTIVITY_FROM_LOGIN, false);
+                if(bFromLogin){
+                    String urole = SharedConfigHelper.getInstance().getUserUrole();
+                    if(urole.equals("验收员")){
+                        new QueryWorkLinesCallback(this, SharedConfigHelper.getInstance().getRepositoryId(),   new QueryWorkLinesCallback.OnLoadDataListener() {
+                            @Override
+                            public void onSuccess(ArrayList<WorkLine> list) {
+                                WorkLineDialog dialog = new WorkLineDialog(MenuActivity.this);
+                                dialog.setData(list);
+                                dialog.show();
+                            }
+
+                            @Override
+                            public void onError() {
+
+                            }
+                        });
+                    }
+                }
+            }
+
         }
     }
 

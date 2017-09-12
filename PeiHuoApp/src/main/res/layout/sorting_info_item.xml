@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
     android:background="@drawable/select_sorting_info_item_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -28,8 +28,6 @@
         style="@style/sorting_info_text_style"
         />
     <TextView
-        android:paddingTop="1dp"
-        android:paddingBottom="1dp"
         android:id="@+id/sorting_info_item_handling"
         style="@style/sorting_info_text_style"
         />

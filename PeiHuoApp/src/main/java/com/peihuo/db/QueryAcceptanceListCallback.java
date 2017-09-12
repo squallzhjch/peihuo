@@ -22,7 +22,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
     private OnLoadDataListener mListener;
     private int mCount = 10;
     private int mPage = 0;
-
+    private String mLineNo;
     public void loadData(int count, int page) {
         mCount = count;
         mPage = page;
@@ -33,11 +33,12 @@ public class QueryAcceptanceListCallback extends BaseCallback{
         void onError();
     }
 
-    public QueryAcceptanceListCallback(Context context, int count, int page, OnLoadDataListener listener){
+    public QueryAcceptanceListCallback(Context context,String lineNo, int count, int page, OnLoadDataListener listener){
         super(context);
         mListener = listener;
         mCount = count;
         mPage = page;
+        mLineNo = lineNo;
     }
 
     @Override
@@ -63,9 +64,9 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                             " FROM " +
                             " t_acceptanceform " +
                             "LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersId " +
-                            " where t_acceptanceform.acceptancestate != '0'" +
+                            " where t_acceptanceform.acceptancestate != '0' and assemblelineno = '" + mLineNo +"' " +
                             " limit "+ mPage * mCount + ", " + mCount + ";";
-                    MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
+                    MyLogManager.writeLogtoFile("数据库查询", "获取验收单列表", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
                         statement.setQueryTimeout(20);
@@ -111,6 +112,8 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                         }
                         mySqlManager.closeDB();
                     }
+                }else{
+                    MyLogManager.writeLogtoFile("数据库连接", "失败", "获取验收单列表");
                 }
                 return list;
             }

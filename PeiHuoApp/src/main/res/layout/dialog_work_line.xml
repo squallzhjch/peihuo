@@ -1,18 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="300dp"
     android:background="@color/color_default_white"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:background="@drawable/green_title"/>
-    <LinearLayout
+        android:background="@drawable/green_title" />
 
-        android:orientation="horizontal"
+    <Button
+        android:id="@+id/work_line_button"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-    </LinearLayout>
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:background="@drawable/select_drawable_color_green"
+        android:textColor="@color/color_default_white"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/work_line_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/login_work_line" />
+
+        <TextView
+            android:id="@+id/work_line_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@id/work_line_logo"
+            android:paddingLeft="10dp"
+            android:text="@string/login_work_line"
+            android:textColor="@color/color_default_text_black_2h"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/work_line_select_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/work_line_name"
+            android:background="@drawable/frame_black"
+            android:drawablePadding="30dp"
+            android:drawableRight="@mipmap/pull_icon"
+            android:gravity="center_vertical"
+            android:minWidth="150dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:text=""
+            android:textColor="@color/color_default_text_black_1h"
+            android:textSize="16sp" />
+        <ScrollView
+            android:id="@+id/work_line_select_scrollview"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:paddingLeft="10dp"
+            android:background="@drawable/frame_black"
+            android:layout_alignLeft="@+id/work_line_select_button"
+            android:layout_alignRight="@+id/work_line_select_button"
+            android:layout_below="@+id/work_line_select_button"
+            android:layout_marginBottom="20dp"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/work_line_list_layout"
+                android:orientation="vertical"
+
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:background="@color/color_default_line"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
 </RelativeLayout>

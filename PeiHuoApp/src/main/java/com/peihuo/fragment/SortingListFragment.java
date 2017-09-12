@@ -13,6 +13,7 @@ import com.peihuo.R;
 import com.peihuo.adapter.SortingListAdapter;
 import com.peihuo.db.QuerySortingListCallback;
 import com.peihuo.entity.SortingForm;
+import com.peihuo.system.SharedConfigHelper;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,8 @@ public class SortingListFragment extends BaseListFragment {
     protected void initView(View view) {
         mAdapter = new SortingListAdapter(getActivity());
         mListView.setAdapter(mAdapter);
-        callback = new QuerySortingListCallback(getContext(), 10, 0, new QuerySortingListCallback.OnLoadDataListener() {
+        String userId = SharedConfigHelper.getInstance().getUserId();
+        callback = new QuerySortingListCallback(getContext(), userId, 10, 0, new QuerySortingListCallback.OnLoadDataListener() {
             @Override
             public void onSuccess(ArrayList<SortingForm> list) {
                 mListView.onRefreshComplete();

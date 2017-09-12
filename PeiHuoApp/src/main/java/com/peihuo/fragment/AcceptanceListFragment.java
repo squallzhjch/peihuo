@@ -12,6 +12,7 @@ import com.peihuo.R;
 import com.peihuo.adapter.AcceptanceListAdapter;
 import com.peihuo.db.QueryAcceptanceListCallback;
 import com.peihuo.entity.AcceptanceForm;
+import com.peihuo.system.SharedConfigHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class AcceptanceListFragment extends BaseListFragment {
     protected void initView(View view) {
         mAdapter = new AcceptanceListAdapter(getActivity());
         mListView.setAdapter(mAdapter);
-        callback = new QueryAcceptanceListCallback(getContext(), 10, 0, new QueryAcceptanceListCallback.OnLoadDataListener() {
+        callback = new QueryAcceptanceListCallback(getContext(),  SharedConfigHelper.getInstance().getWorkLineId(),10, 0, new QueryAcceptanceListCallback.OnLoadDataListener() {
             @Override
             public void onSuccess(ArrayList<AcceptanceForm> list) {
                 mListView.onRefreshComplete();

@@ -135,4 +135,69 @@ public class SharedConfigHelper {
         }
     }
 
+    public void setUserId(String userId) {
+        if (mSharePre != null) {
+            mSharePre.edit()
+                    .putString(SystemConfig.SP_KEY_USER_ID, userId)
+                    .commit();
+        }
+    }
+
+    public String getUserId() {
+        if (mSharePre != null) {
+            return mSharePre.getString(SystemConfig.SP_KEY_USER_ID, "");
+        }
+        return "";
+    }
+
+    /**
+     * 用户角色
+     *
+     * @param urole
+     */
+    public void setUserUrole(String urole) {
+        if (mSharePre != null && urole != null) {
+            mSharePre.edit()
+                    .putString(SystemConfig.SP_KEY_USER_UROLE, urole)
+                    .commit();
+        }
+    }
+
+    public String getUserUrole() {
+        if (mSharePre != null) {
+            return mSharePre.getString(SystemConfig.SP_KEY_USER_UROLE, "");
+        }
+        return "";
+    }
+    ///仓库号
+    public void setRepositoryId(String urole) {
+        if (mSharePre != null && urole != null) {
+            mSharePre.edit()
+                    .putString(SystemConfig.SP_KEY_USER_REPOSITORY_ID, urole)
+                    .commit();
+        }
+    }
+
+    public String getRepositoryId() {
+        if (mSharePre != null) {
+            return mSharePre.getString(SystemConfig.SP_KEY_USER_REPOSITORY_ID, "");
+        }
+        return "";
+    }
+
+    ///shengchanxian ID
+    public void setWorkLineId(String urole) {
+        if (mSharePre != null && urole != null) {
+            mSharePre.edit()
+                    .putString(SystemConfig.SP_KEY_USER_WORKLINE_ID, urole)
+                    .commit();
+        }
+    }
+
+    public String getWorkLineId() {
+        if (mSharePre != null) {
+            return mSharePre.getString(SystemConfig.SP_KEY_USER_WORKLINE_ID, "");
+        }
+        return "";
+    }
 }

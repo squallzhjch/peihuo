@@ -177,9 +177,9 @@
             android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/select_drawable_color_green"
             android:gravity="center"
             android:textSize="20sp"
+            android:background="@drawable/select_drawable_color_green"
             android:textColor="@color/color_default_white"
             android:text="@string/login"/>
     </LinearLayout>

@@ -3,7 +3,6 @@ package com.peihuo.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,19 +13,16 @@ import android.widget.Toast;
 import com.peihuo.R;
 import com.peihuo.db.QueryAcceptanceInfoCallback;
 import com.peihuo.db.QueryAcceptanceListCallback;
-import com.peihuo.db.QuerySortingInfoCallback;
-import com.peihuo.db.QuerySortingListCallback;
+import com.peihuo.db.UpdateAcceptanceErrorCallback;
+import com.peihuo.db.UpdateAcceptancePassCallback;
 import com.peihuo.entity.AcceptanceForm;
 import com.peihuo.entity.AcceptanceInfo;
-import com.peihuo.entity.SortingForm;
-import com.peihuo.entity.SortingInfo;
 import com.peihuo.system.DataDictionary;
 import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.system.SystemConfig;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 123 on 2017/8/29.
@@ -88,12 +84,15 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
             findViewById(R.id.acceptance_info_button_pass).setOnClickListener(this);
             findViewById(R.id.acceptance_info_button_next).setOnClickListener(this);
 
+
             mSailCode = (TextView) findViewById(R.id.acceptance_info_sail_code);
             mPath = (TextView) findViewById(R.id.acceptance_info_path);
             mBatch = (TextView) findViewById(R.id.acceptance_info_batch);
             mAcceptanceCode = (TextView) findViewById(R.id.acceptance_info_acceptance_code);
             mTime = (TextView) findViewById(R.id.acceptance_info_time);
             mTotal = (TextView) findViewById(R.id.acceptance_info_total);
+
+
 
             mLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             mLayoutParams.setMargins(0, 0, 0, 2);
@@ -253,7 +252,7 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
                     } else {
                         page = listSize / 10;
                     }
-                    new QueryAcceptanceListCallback(this, 10, page, new QueryAcceptanceListCallback.OnLoadDataListener() {
+                    new QueryAcceptanceListCallback(this,  SharedConfigHelper.getInstance().getWorkLineId(), 10, page, new QueryAcceptanceListCallback.OnLoadDataListener() {
                         @Override
                         public void onSuccess(ArrayList<AcceptanceForm> list) {
                             if (list == null || list.size() == 0) {
@@ -277,7 +276,13 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
                     });
                 }
                 break;
-            case R.id.sorting_info_button_check:
+            case R.id.acceptance_info_button_pass:
+                AcceptanceForm order = mList.get(mSelectIndex);
+                new UpdateAcceptancePassCallback(this, order.getCode() );
+                break;
+            case R.id.acceptance_info_button_error:
+                order = mList.get(mSelectIndex);
+                new UpdateAcceptanceErrorCallback(this,order.getCode(), order.getBelongorderid() );
                 break;
         }
     }

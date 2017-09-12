@@ -20,6 +20,7 @@ public class DataDictionary {
     private Map<String, String> sortingStateMap;//分拣状态
     private Map<String, Boolean> sortingSingleOrGroupMap;//单品套餐
     private Map<String, Boolean> acceptanceSingleOrGroupMap;//单品套餐
+
     private Context mContext;
 
     public static DataDictionary getInstance() {

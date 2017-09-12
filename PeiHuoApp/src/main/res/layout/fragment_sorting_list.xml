@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:padding="10dp"
+        >
         <TextView
             android:text="@string/sorting_list_sale_number"
             android:textColor="@color/color_default_red"
@@ -41,6 +41,8 @@
         android:layout_height="match_parent"
         android:divider="@color/color_default_line"
         android:dividerHeight="1px"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         ptr:ptrMode="pullFromEnd"
         >
 

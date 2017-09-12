@@ -15,7 +15,7 @@ import com.peihuo.ui.dialog.LoadingDialog;
 public abstract class BaseCallback {
 
     private LoadingDialog mLoadingDialog;
-    private Context mActivity;
+    protected Context mActivity;
     protected int loadingString = R.string.toast_loading;
     protected MySqlManager mySqlManager;
 

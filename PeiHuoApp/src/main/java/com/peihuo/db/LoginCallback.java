@@ -46,7 +46,11 @@ public class LoginCallback  extends BaseCallback{
                     Statement statement = null;
                     ResultSet result = null;
 
-                    String sql = "SELECT * FROM t_user WHERE account = \"" + mAccount + "\" AND upassword = \"" + mPassword + "\";";
+                    String sql = "SELECT t_user.uid," +
+                            "t_user.repositoryid, " +
+                            "t_roletable.rolename," +
+                            "t_user.uname FROM t_user LEFT JOIN t_roletable ON t_user.roleid = t_roletable.roleid " +
+                            "WHERE account = \"" + mAccount + "\" AND upassword = \"" + mPassword + "\";";
                     MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
@@ -56,9 +60,13 @@ public class LoginCallback  extends BaseCallback{
                             userInfo = new UserInfo();
                             int nameIndex = result.findColumn("uname");
                             int uIdIndex = result.findColumn("uid");
+                            int uroleIndex = result.findColumn("rolename");
+                            int repositoryidIndex = result.findColumn("repositoryid");
                             userInfo.setUserName(result.getString(nameIndex));
                             userInfo.setUserId(result.getString(uIdIndex));
                             userInfo.setAccount(mAccount);
+                            userInfo.setUrole(result.getString(uroleIndex));
+                            userInfo.setRepositoryid(result.getString(repositoryidIndex));
                         }
                     } catch (SQLException e) {
                         MyLogManager.writeLogtoFile("数据库查询", "失败", e.toString());

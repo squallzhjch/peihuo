@@ -9,15 +9,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_height="50dp"
         android:background="@drawable/frame_gray_bg_blue"
-        android:padding="20dp">
+        >
 
         <TextView
             android:id="@+id/plan_title_sorting"
             style="@style/plan_title_text_style"
             android:layout_centerInParent="true"
+            android:enabled="false"
             android:text="@string/plan_sorting" />
 
         <View
@@ -41,12 +41,15 @@
         <TextView
             android:id="@+id/plan_title_production"
             style="@style/plan_title_text_style"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/plan_title_sheet_left"
             android:text="@string/plan_production" />
 
         <TextView
             android:id="@+id/plan_title_acceptance"
             style="@style/plan_title_text_style"
+            android:layout_centerVertical="true"
+            android:enabled="false"
             android:layout_toRightOf="@id/plan_title_sheet_right"
             android:text="@string/plan_acceptance" />
     </RelativeLayout>

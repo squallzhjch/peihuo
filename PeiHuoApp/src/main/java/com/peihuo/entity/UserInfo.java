@@ -8,6 +8,24 @@ public class UserInfo {
     private String userName;
     private String userId;
     private String account;
+    private String rale;// 用户角色
+    private String repositoryid;//仓库号
+
+    public String getRepositoryid() {
+        return repositoryid;
+    }
+
+    public void setRepositoryid(String repositoryid) {
+        this.repositoryid = repositoryid;
+    }
+
+    public String getUrole() {
+        return rale;
+    }
+
+    public void setUrole(String urole) {
+        this.rale = urole;
+    }
 
     public String getAccount() {
         return account;

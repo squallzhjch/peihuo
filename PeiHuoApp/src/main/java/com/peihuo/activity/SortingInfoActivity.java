@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.peihuo.R;
 import com.peihuo.db.QuerySortingInfoCallback;
 import com.peihuo.db.QuerySortingListCallback;
+import com.peihuo.db.UpdateSortingOverCallback;
 import com.peihuo.entity.SortingForm;
 import com.peihuo.entity.SortingInfo;
 import com.peihuo.system.DataDictionary;
@@ -21,6 +22,7 @@ import com.peihuo.system.SystemConfig;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 123 on 2017/8/29.
@@ -38,7 +40,7 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
     private int mSelectIndex = 0;// 当前所选分拣单的位置
     private QuerySortingInfoCallback mInfoCallback;
     private LinearLayout.LayoutParams mLayoutParams;
-
+    private List<String> idList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,25 +92,27 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
                 @Override
                 public void onSuccess(ArrayList<SortingInfo> list) {
                     mLayout.removeAllViews();
+                    idList.clear();
                     if (list != null && list.size() > 0) {
                         for (int i = 0; i < list.size(); i++) {
                             SortingInfo info = list.get(i);
+                            idList.add(info.getHandlingOrderCode());
                             View view = View.inflate(SortingInfoActivity.this, R.layout.sorting_info_item, null);
                             if (info.getProductCode() != null)
-                                ((TextView) view.findViewById(R.id.sorting_info_item_code)).setText(getString(R.string.format_sorting_item_code, info.getProductCode()));
+                                ((TextView) view.findViewById(R.id.sorting_info_item_code)).setText(info.getProductCode());
                             if (info.getProName() != null)
-                                ((TextView) view.findViewById(R.id.sorting_info_item_name)).setText(getString(R.string.format_sorting_item_name, info.getProName()));
-                            ((TextView) view.findViewById(R.id.sorting_info_item_count)).setText(getString(R.string.format_sorting_item_count, String.valueOf(info.getUseCount())));
+                                ((TextView) view.findViewById(R.id.sorting_info_item_name)).setText(info.getProName());
+                            ((TextView) view.findViewById(R.id.sorting_info_item_count)).setText(String.valueOf(info.getUseCount()));
                             if (info.getProUnite() != null)
-                                ((TextView) view.findViewById(R.id.sorting_info_item_unit)).setText(getString(R.string.format_sorting_item_unit, info.getProUnite()));
+                                ((TextView) view.findViewById(R.id.sorting_info_item_unit)).setText(info.getProUnite());
                             if (info.getHandlingOrderCode() != null)
-                                ((TextView) view.findViewById(R.id.sorting_info_item_handling)).setText(getString(R.string.format_sorting_item_handling, info.getHandlingOrderCode()));
+                                ((TextView) view.findViewById(R.id.sorting_info_item_handling)).setText(info.getHandlingOrderCode());
                             if (!DataDictionary.getInstance().isSortingSingleOrGroup(info.getIs_suit())) {
-                                ((TextView) view.findViewById(R.id.sorting_info_item_type)).setText(getString(R.string.format_sorting_item_type, getText(R.string.sorting_single)));
+                                ((TextView) view.findViewById(R.id.sorting_info_item_type)).setText( getText(R.string.sorting_single));
                                 if (i % 2 == 0)
                                     view.setSelected(true);
                             } else {
-                                ((TextView) view.findViewById(R.id.sorting_info_item_type)).setText(getString(R.string.format_sorting_item_type, getText(R.string.sorting_group)));
+                                ((TextView) view.findViewById(R.id.sorting_info_item_type)).setText( getText(R.string.sorting_group));
                                 view.setEnabled(false);
                             }
                             mLayout.addView(view, mLayoutParams);
@@ -196,7 +200,10 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
                     } else {
                         page = listSize / 10;
                     }
-                    new QuerySortingListCallback(this, 10, page, new QuerySortingListCallback.OnLoadDataListener() {
+                    new QuerySortingListCallback(this,
+                            SharedConfigHelper.getInstance().getUserId(),
+                            10, page,
+                            new QuerySortingListCallback.OnLoadDataListener() {
                         @Override
                         public void onSuccess(ArrayList<SortingForm> list) {
                             if (list == null || list.size() == 0) {
@@ -221,6 +228,10 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
                 }
                 break;
             case R.id.sorting_info_button_check:
+                if (mList!= null && mList.size() > mSelectIndex) {
+                    SortingForm form = mList.get(mSelectIndex);
+                    new UpdateSortingOverCallback(this, SharedConfigHelper.getInstance().getUserId(), form.getBelongorderid() , idList);
+                }
                 break;
         }
     }

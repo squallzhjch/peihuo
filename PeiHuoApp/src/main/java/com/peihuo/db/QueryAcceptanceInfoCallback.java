@@ -56,7 +56,7 @@ public class QueryAcceptanceInfoCallback extends BaseCallback{
                             "t_acceptanceform_list.handlingordercode" +
                             " FROM " +
                             "t_acceptanceform_list where acceptancecode = '"+ mCode +"' order by is_suit;";
-                    MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
+                    MyLogManager.writeLogtoFile("数据库查询", "获取验收单详情", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
                         statement.setQueryTimeout(20);
@@ -94,10 +94,12 @@ public class QueryAcceptanceInfoCallback extends BaseCallback{
                                 statement = null;
                             }
                         } catch (SQLException sqle) {
-
+                            MyLogManager.writeLogtoFile("数据库连接", "失败", "获取验收单详情");
                         }
                         mySqlManager.closeDB();
                     }
+                }else{
+
                 }
                 return list;
             }
