@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.peihuo.R;
@@ -45,6 +47,31 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
             //标题
             TextView title = (TextView) findViewById(R.id.title_text);
             title.setText(getText(R.string.plan_title));
+
+            final ImageView exit = (ImageView)findViewById(R.id.exit);
+            exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = View.inflate(PlanFormActivity.this, R.layout.exit_pop_layout, null);
+                    final PopupWindow window =  new PopupWindow(view,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+                    window.setContentView(view);
+                    window.showAsDropDown(v,  20, 20);
+                    view.findViewById(R.id.exit_cancel).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            window.dismiss();
+                        }
+                    });
+                    view.findViewById(R.id.exit_commit).setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                            System.exit(0);
+                        }
+                    });
+                }
+            });
 
             //用户名
             TextView userName = (TextView) findViewById(R.id.title_username_text);

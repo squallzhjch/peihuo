@@ -114,6 +114,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                     }
                 }else{
                     MyLogManager.writeLogtoFile("数据库连接", "失败", "获取验收单列表");
+                    sendConnectDBErrorMsg();
                 }
                 return list;
             }

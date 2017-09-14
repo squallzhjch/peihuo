@@ -57,44 +57,48 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/acceptance_info_single_label"
-                    android:background="@drawable/frame_red_bg_2r"
-                    android:textSize="18sp"
-                    android:visibility="gone"
-                    android:textColor="@color/color_default_white"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:layout_height="wrap_content" />
-                <LinearLayout
-                    android:id="@+id/acceptance_info_item_single_title"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:paddingLeft="50dp"
-                    android:paddingRight="50dp"
-                    android:background="@color/color_default_line"
+                <FrameLayout
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/acceptance_info_item_single_title"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:background="@color/color_default_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/acceptance_item_name"
+                            style="@style/sorting_info_text_style"
+                            />
+                        <TextView
+                            android:text="@string/acceptance_item_code"
+                            style="@style/sorting_info_text_style"
+                            />
+                        <TextView
+                            android:text="@string/acceptance_item_count"
+                            style="@style/sorting_info_text_style"
+                            />
+                        <TextView
+                            android:text="@string/acceptance_item_unit"
+                            style="@style/sorting_info_text_style"
+                            />
+                    </LinearLayout>
                     <TextView
-                        android:text="@string/acceptance_item_name"
-                        style="@style/sorting_info_text_style"
-                        />
-                    <TextView
-                        android:text="@string/acceptance_item_code"
-                        style="@style/sorting_info_text_style"
-                        />
-                    <TextView
-                        android:text="@string/acceptance_item_count"
-                        style="@style/sorting_info_text_style"
-                        />
-                    <TextView
-                        android:text="@string/acceptance_item_unit"
-                        style="@style/sorting_info_text_style"
-                        />
-                </LinearLayout>
+                        android:id="@+id/acceptance_info_single_label"
+                        android:background="@drawable/frame_red_bg_2r"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        android:textColor="@color/color_default_white"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
                 <LinearLayout
                     android:id="@+id/acceptance_info_single_list"
                     android:orientation="vertical"
@@ -103,48 +107,53 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/acceptance_info_group_label"
-                    android:background="@drawable/frame_red_bg_2r"
-                    android:textSize="18sp"
-                    android:visibility="gone"
-                    android:textColor="@color/color_default_white"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:layout_height="wrap_content" />
-                <LinearLayout
-                    android:id="@+id/acceptance_info_item_group_title"
-                    android:orientation="horizontal"
-                    android:paddingLeft="50dp"
-                    android:paddingRight="50dp"
-                    android:visibility="gone"
-                    android:background="@color/color_default_orange"
+
+                <FrameLayout
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/acceptance_info_item_group_title"
+                        android:orientation="horizontal"
+                        android:paddingLeft="60dp"
+                        android:paddingRight="50dp"
+                        android:visibility="gone"
+                        android:background="@color/color_default_orange"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/acceptance_item_group_name"
+                            style="@style/sorting_info_text_style"
+                            />
+                        <TextView
+                            android:text="@string/acceptance_item_name"
+                            style="@style/sorting_info_text_style"
+                            />
+                        <TextView
+                            android:text="@string/acceptance_item_code"
+                            style="@style/sorting_info_text_style"
+                            />
+                        <TextView
+                            android:text="@string/acceptance_item_count"
+                            style="@style/sorting_info_text_style"
+                            />
+                        <TextView
+                            android:text="@string/acceptance_item_unit"
+                            style="@style/sorting_info_text_style"
+                            />
+                    </LinearLayout>
                     <TextView
-                        android:text="@string/acceptance_item_group_name"
-                        style="@style/sorting_info_text_style"
-                        />
-                    <TextView
-                        android:text="@string/acceptance_item_name"
-                        style="@style/sorting_info_text_style"
-                        />
-                    <TextView
-                        android:text="@string/acceptance_item_code"
-                        style="@style/sorting_info_text_style"
-                        />
-                    <TextView
-                        android:text="@string/acceptance_item_count"
-                        style="@style/sorting_info_text_style"
-                        />
-                    <TextView
-                        android:text="@string/acceptance_item_unit"
-                        style="@style/sorting_info_text_style"
-                        />
-                </LinearLayout>
+                        android:id="@+id/acceptance_info_group_label"
+                        android:background="@drawable/frame_red_bg_2r"
+                        android:textSize="18sp"
+                        android:padding="5dp"
+                        android:visibility="gone"
+                        android:textColor="@color/color_default_white"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
                 <LinearLayout
                     android:id="@+id/acceptance_info_group_list"
                     android:orientation="vertical"

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.peihuo.R;
+import com.peihuo.entity.SortingInfo;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.util.MyLogManager;
 
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +25,11 @@ public class UpdateSortingOverCallback extends BaseCallback {
     private String mUserId;
     private String mOrderId;
     private List<String> mHandCodes;
+    private OnUpdateDataListener mListener;
+
+    public interface OnUpdateDataListener{
+        void onSuccess();
+    }
 
     /**
      * @param activity
@@ -30,11 +37,13 @@ public class UpdateSortingOverCallback extends BaseCallback {
      * @param orderId   订单ID
      * @param handcodes 加工好
      */
-    public UpdateSortingOverCallback(Context activity, String userId, String orderId, List<String> handcodes) {
+    public UpdateSortingOverCallback(Context activity, String userId, String orderId, List<String> handcodes, OnUpdateDataListener listener) {
+
         super(activity);
         mUserId = userId;
         mOrderId = orderId;
         mHandCodes = handcodes;
+        mListener = listener;
     }
 
     @Override
@@ -117,6 +126,7 @@ public class UpdateSortingOverCallback extends BaseCallback {
                     }
                 } else {
                     MyLogManager.writeLogtoFile("数据库连接", "失败", "更新分拣单");
+                    sendConnectDBErrorMsg();
                 }
                 return false;
             }
@@ -125,6 +135,9 @@ public class UpdateSortingOverCallback extends BaseCallback {
             public void onSuccess(Boolean value) {
                 dismissLoading();
                 if (value) {
+                    if(mListener != null){
+                        mListener.onSuccess();
+                    }
                     Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_success), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_error), Toast.LENGTH_SHORT).show();

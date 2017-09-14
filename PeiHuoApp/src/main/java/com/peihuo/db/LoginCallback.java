@@ -1,6 +1,7 @@
 package com.peihuo.db;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.peihuo.entity.UserInfo;
 import com.peihuo.thread.ThreadManager;
@@ -86,6 +87,8 @@ public class LoginCallback  extends BaseCallback{
                         }
                         mySqlManager.closeDB();
                     }
+                }else{
+                    sendConnectDBErrorMsg();
                 }
                 return userInfo;
             }

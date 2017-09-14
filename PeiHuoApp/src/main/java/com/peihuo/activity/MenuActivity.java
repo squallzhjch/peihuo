@@ -2,10 +2,15 @@ package com.peihuo.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.peihuo.R;
@@ -43,6 +48,31 @@ public class MenuActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     onBackPressed();
+                }
+            });
+
+            final ImageView exit = (ImageView)findViewById(R.id.exit);
+            exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = View.inflate(MenuActivity.this, R.layout.exit_pop_layout, null);
+                    final PopupWindow window =  new PopupWindow(view,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+                    window.setContentView(view);
+                    window.showAsDropDown(v,  20, 20);
+                    view.findViewById(R.id.exit_cancel).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            window.dismiss();
+                        }
+                    });
+                    view.findViewById(R.id.exit_commit).setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                            System.exit(0);
+                        }
+                    });
                 }
             });
 

@@ -85,6 +85,7 @@ public class QueryWorkLinesCallback extends BaseCallback {
                     }
                 } else {
                     MyLogManager.writeLogtoFile("数据库连接", "失败", "获取生产线");
+                    sendConnectDBErrorMsg();
                 }
                 return list;
             }

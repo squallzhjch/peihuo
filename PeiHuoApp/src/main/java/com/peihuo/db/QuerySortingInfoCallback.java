@@ -102,7 +102,7 @@ public class QuerySortingInfoCallback extends BaseCallback{
                     }
                 }else {
                     MyLogManager.writeLogtoFile("数据库连接", "失败", "获取分拣单详情");
-
+                    sendConnectDBErrorMsg();
                 }
                 return list;
             }

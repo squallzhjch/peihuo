@@ -62,7 +62,7 @@ public class QuerySortingListCallback extends BaseCallback{
                             "t_acceptanceform.belongorderid," +
                             "t_orders.customerId " +
                             " FROM " +
-                            "t_acceptanceform LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersId " +
+                            "t_acceptanceform LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersNo  " +
                             " WHERE t_acceptanceform.belongorderid in " +
                             "(SELECT DISTINCT t_handlingorder.ordercode FROM t_handlingorder where state = '未完成' and t_handlingorder.responsiblehuman = '"+mUserId+"')" +
                             " limit "+ mPage * mCount + ", " + mCount + ";";
@@ -112,6 +112,7 @@ public class QuerySortingListCallback extends BaseCallback{
                     }
                 }else{
                     MyLogManager.writeLogtoFile("数据库连接", "失败", "获取分拣单列表");
+                    sendConnectDBErrorMsg();
                 }
                 return list;
             }

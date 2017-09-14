@@ -30,15 +30,22 @@ public class UpdateAcceptanceErrorCallback extends BaseCallback {
 
     private String mCode;
     private String mOrderId;
+    private OnUpdateDataListener mListener;
+    public interface OnUpdateDataListener{
+        void onSuccess();
+    }
+
+
     /**
      * @param activity //@param userId    用户ID
      *                 //@param orderId   订单ID
      *                 //     * @param handcodes 加工好
      */
-    public UpdateAcceptanceErrorCallback(Context activity, String code, String orderId) {
+    public UpdateAcceptanceErrorCallback(Context activity, String code, String orderId, OnUpdateDataListener listener) {
         super(activity);
         mCode = code;
         mOrderId = orderId;
+        mListener = listener;
     }
 
     @Override
@@ -96,6 +103,7 @@ public class UpdateAcceptanceErrorCallback extends BaseCallback {
                     }
                 } else {
                     MyLogManager.writeLogtoFile("数据库连接", "失败", "异常");
+                    sendConnectDBErrorMsg();
                 }
                 return false;
             }
@@ -105,6 +113,9 @@ public class UpdateAcceptanceErrorCallback extends BaseCallback {
                 dismissLoading();
                 if (value) {
                     Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_success), Toast.LENGTH_SHORT).show();
+                    if(mListener != null){
+                        mListener.onSuccess();
+                    }
                 } else {
                     Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_error), Toast.LENGTH_SHORT).show();
                 }

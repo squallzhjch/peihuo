@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@mipmap/pop_right"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+
+        android:textSize="20sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="确定要退出登录吗？"
+        android:gravity="center"
+        android:textColor="@color/color_default_text_black_2h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/color_default_line"/>
+    <TextView
+        android:id="@+id/exit_cancel"
+        android:layout_width="match_parent"
+        android:textColor="@color/color_default_orange"
+        android:textSize="20sp"
+        android:text="取消"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/color_default_line"/>
+    <TextView
+        android:id="@+id/exit_commit"
+        android:textColor="@color/color_default_green"
+        android:textSize="20sp"
+        android:text="确定"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

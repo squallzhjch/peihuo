@@ -66,7 +66,7 @@
     <string name="format_acceptance_order_time">单据时间：%1$s</string>
     <string name="format_acceptance_total">合计：%1$s</string>
     <string name="format_acceptance_item_single_title">单品数x%1$s</string>
-    <string name="format_acceptance_item_group_title">套装菜数x%1$s</string>
+    <string name="format_acceptance_item_group_title">套装菜x%1$s</string>
 
     <!-- 验收单 标题-->
     <!--<string name="acceptance_list_sale_number">销售单号</string>-->
@@ -92,7 +92,7 @@
     <string name="toast_updating">正在提交数据...</string>
     <string name="toast_loading">正在加载数据...</string>
     <string name="toast_logining">正在登陆...</string>
-    <string name="toast_db_connect_error">数据库连接失败！</string>
+    <string name="toast_db_connect_error">数据库连接失败，请检查网络！</string>
     <string name="toast_noting_data">没有更多数据了!</string>
     <string name="toast_get_userinfo_error">员工信息获取失败！</string>
     <string name="toast_get_userinfo_role_error">该员工没有分配用户角色！</string>

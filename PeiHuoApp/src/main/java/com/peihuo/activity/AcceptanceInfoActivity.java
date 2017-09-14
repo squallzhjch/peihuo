@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,31 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
             TextView leftTitle = (TextView) findViewById(R.id.title_text_left);
             leftTitle.setText(getText(R.string.acceptance_order_info));
             leftTitle.setVisibility(View.VISIBLE);
+
+            final ImageView exit = (ImageView)findViewById(R.id.exit);
+            exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = View.inflate(AcceptanceInfoActivity.this, R.layout.exit_pop_layout, null);
+                    final PopupWindow window =  new PopupWindow(view,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+                    window.setContentView(view);
+                    window.showAsDropDown(v,  20, 20);
+                    view.findViewById(R.id.exit_cancel).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            window.dismiss();
+                        }
+                    });
+                    view.findViewById(R.id.exit_commit).setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                            System.exit(0);
+                        }
+                    });
+                }
+            });
 
             //用户名
             TextView userName = (TextView) findViewById(R.id.title_username_text);
@@ -278,11 +304,21 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
                 break;
             case R.id.acceptance_info_button_pass:
                 AcceptanceForm order = mList.get(mSelectIndex);
-                new UpdateAcceptancePassCallback(this, order.getCode() );
+                new UpdateAcceptancePassCallback(this, order.getCode(), new UpdateAcceptancePassCallback.OnUpdateDataListener() {
+                    @Override
+                    public void onSuccess() {
+                        onClick(findViewById(R.id.acceptance_info_button_next));
+                    }
+                });
                 break;
             case R.id.acceptance_info_button_error:
                 order = mList.get(mSelectIndex);
-                new UpdateAcceptanceErrorCallback(this,order.getCode(), order.getBelongorderid() );
+                new UpdateAcceptanceErrorCallback(this, order.getCode(), order.getBelongorderid(), new UpdateAcceptanceErrorCallback.OnUpdateDataListener() {
+                    @Override
+                    public void onSuccess() {
+                        onClick(findViewById(R.id.acceptance_info_button_next));
+                    }
+                });
                 break;
         }
     }

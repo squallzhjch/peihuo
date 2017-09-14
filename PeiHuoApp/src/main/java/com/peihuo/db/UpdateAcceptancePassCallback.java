@@ -33,14 +33,22 @@ public class UpdateAcceptancePassCallback extends BaseCallback {
 
     private String mCode;
 
+    private OnUpdateDataListener mListener;
+
+    public interface OnUpdateDataListener{
+        void onSuccess();
+    }
+
     /**
      * @param activity //@param userId    用户ID
      *                 //@param orderId   订单ID
      *                 //     * @param handcodes 加工好
      */
-    public UpdateAcceptancePassCallback(Context activity, String code) {
+
+    public UpdateAcceptancePassCallback(Context activity, String code, OnUpdateDataListener listener) {
         super(activity);
         mCode = code;
+        mListener = listener;
     }
 
     @Override
@@ -123,6 +131,7 @@ public class UpdateAcceptancePassCallback extends BaseCallback {
                     }
                 } else {
                     MyLogManager.writeLogtoFile("数据库连接", "失败", "更新分拣单");
+                    sendConnectDBErrorMsg();
                 }
                 return false;
             }
@@ -146,6 +155,9 @@ public class UpdateAcceptancePassCallback extends BaseCallback {
                             try {
                                 Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_success), Toast.LENGTH_SHORT).show();
                                 Log.e("jingo", response.body().string());
+                                if(mListener != null){
+                                    mListener.onSuccess();
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

@@ -2,10 +2,15 @@ package com.peihuo.db;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.widget.Toast;
 
 import com.peihuo.R;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
+import com.peihuo.ui.dialog.BaseToast;
 import com.peihuo.ui.dialog.LoadingDialog;
 
 /**
@@ -19,10 +24,29 @@ public abstract class BaseCallback {
     protected int loadingString = R.string.toast_loading;
     protected MySqlManager mySqlManager;
 
+    protected final int HANDLER_MES_WHAT_CONNECT_DB_ERROR = 0x001;
+
+
+    protected  Handler msgHandler;
+
     public BaseCallback(Context activity) {
         mActivity = activity;
         mySqlManager = MySqlManager.getInstance();
+
+        msgHandler = new Handler(Looper.getMainLooper()) {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case HANDLER_MES_WHAT_CONNECT_DB_ERROR:
+                        BaseToast.makeText(mActivity, mActivity.getResources().getString(R.string.toast_db_connect_error), Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
         loadData();
+
     }
 
     protected abstract void loadData();
@@ -52,6 +76,12 @@ public abstract class BaseCallback {
             mLoadingDialog.dismiss();
         }
         mLoadingDialog = null;
+    }
+
+    protected void sendConnectDBErrorMsg(){
+        if(msgHandler != null){
+            msgHandler.sendEmptyMessage(HANDLER_MES_WHAT_CONNECT_DB_ERROR);
+        }
     }
 
 }

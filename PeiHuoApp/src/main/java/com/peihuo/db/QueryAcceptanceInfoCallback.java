@@ -99,7 +99,7 @@ public class QueryAcceptanceInfoCallback extends BaseCallback{
                         mySqlManager.closeDB();
                     }
                 }else{
-
+                    sendConnectDBErrorMsg();
                 }
                 return list;
             }
