@@ -63,7 +63,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                             "t_acceptanceform.belongorderid " +
                             " FROM " +
                             " t_acceptanceform " +
-                            "LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersId " +
+                            "LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersNo " +
                             " where t_acceptanceform.acceptancestate != '0' and assemblelineno = '" + mLineNo +"' " +
                             " limit "+ mPage * mCount + ", " + mCount + ";";
                     MyLogManager.writeLogtoFile("数据库查询", "获取验收单列表", sql);

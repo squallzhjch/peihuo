@@ -39,6 +39,7 @@
             android:id="@+id/acceptance_info_time"
             style="@style/acceptance_info_title_text_style" />
         <TextView
+            android:visibility="gone"
             android:id="@+id/acceptance_info_total"
             style="@style/acceptance_info_title_text_style" />
     </LinearLayout>

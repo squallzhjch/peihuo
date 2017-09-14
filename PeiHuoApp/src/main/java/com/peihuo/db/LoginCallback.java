@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.peihuo.entity.UserInfo;
 import com.peihuo.thread.ThreadManager;
+import com.peihuo.util.MD5Util;
 import com.peihuo.util.MyLogManager;
 
 import java.sql.ResultSet;
@@ -51,7 +52,7 @@ public class LoginCallback  extends BaseCallback{
                             "t_user.repositoryid, " +
                             "t_roletable.rolename," +
                             "t_user.uname FROM t_user LEFT JOIN t_roletable ON t_user.roleid = t_roletable.roleid " +
-                            "WHERE account = \"" + mAccount + "\" AND upassword = \"" + mPassword + "\";";
+                            "WHERE account = \"" + mAccount + "\" AND upassword = \"" + MD5Util.EncoderByMd5(mPassword) + "\";";
                     MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();

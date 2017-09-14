@@ -155,7 +155,7 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
                             } else {
                                 View view = View.inflate(AcceptanceInfoActivity.this, R.layout.acceptance_info_group_item, null);
                                 if (info.getProName() != null)
-                                    ((TextView) view.findViewById(R.id.acceptance_info_item_group_name)).setText(info.getProName());
+                                    ((TextView) view.findViewById(R.id.acceptance_info_item_group_name)).setText(info.getGroupName());
                                 if (info.getProductCode() != null)
                                     ((TextView) view.findViewById(R.id.acceptance_info_item_code)).setText(info.getProductCode());
                                 if (info.getProName() != null)

@@ -15,8 +15,17 @@ public class AcceptanceInfo implements Serializable{
     private String handlingOrderCode;//加工单号
     private String productCode;//货品编码
     private String proName;//货品名称
+    private String groupName;//货品名称
     private String proUnite;//单位
     private int useCount;//使用数量
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 
     public String getHandlingOrderCode() {
         return handlingOrderCode;

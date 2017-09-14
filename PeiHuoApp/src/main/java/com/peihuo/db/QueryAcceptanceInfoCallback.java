@@ -53,9 +53,11 @@ public class QueryAcceptanceInfoCallback extends BaseCallback{
                             "t_acceptanceform_list.usecount," +
                             "t_acceptanceform_list.prounite," +
                             "t_acceptanceform_list.is_suit," +
-                            "t_acceptanceform_list.handlingordercode" +
-                            " FROM " +
-                            "t_acceptanceform_list where acceptancecode = '"+ mCode +"' order by is_suit;";
+                            "t_acceptanceform_list.handlingordercode," +
+                            "t_productmanager.pname " +
+                            " FROM t_acceptanceform_list " +
+                            "LEFT JOIN t_productmanager ON t_acceptanceform_list.belongproductcode = t_productmanager.proid " +
+                            " where acceptancecode = '"+ mCode +"' order by is_suit;";
                     MyLogManager.writeLogtoFile("数据库查询", "获取验收单详情", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
@@ -69,6 +71,7 @@ public class QueryAcceptanceInfoCallback extends BaseCallback{
                             int is_suitIndex = result.findColumn("is_suit");//是否套装
                             int prouniteIndex = result.findColumn("prounite");   //单位
                             int handlingordercodeIndex = result.findColumn("handlingordercode");
+                            int groupNameIndex = result.findColumn("pname");
                             while (result.next()){
                                 AcceptanceInfo info = new AcceptanceInfo();
                                 info.setProName(result.getString(pronameIndex));
@@ -77,6 +80,7 @@ public class QueryAcceptanceInfoCallback extends BaseCallback{
                                 info.setIs_suit(result.getString(is_suitIndex));
                                 info.setProUnite(result.getString(prouniteIndex));
                                 info.setHandlingOrderCode(result.getString(handlingordercodeIndex));
+                                info.setGroupName(result.getString(groupNameIndex));
                                 list.add(info);
                             }
                         }
