@@ -3,6 +3,7 @@ package com.peihuo.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -47,7 +48,8 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
     private int mSelectIndex = 0;// 当前所选分拣单的位置
     private QueryAcceptanceInfoCallback mInfoCallback;
     private LinearLayout.LayoutParams mLayoutParams;
-
+    private LinearLayout mButtonsLayout;
+    private ImageView mImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +106,8 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
             mGroupTitle = (LinearLayout) findViewById(R.id.acceptance_info_item_group_title);
             mSingleTitle = (LinearLayout) findViewById(R.id.acceptance_info_item_single_title);
 
+            mButtonsLayout = (LinearLayout) findViewById(R.id.acceptance_info_buttons_layout);
+            mImageView = (ImageView) findViewById(R.id.acceptance_info_laber_pass);
             //上一个按钮
             findViewById(R.id.acceptance_info_button_last).setOnClickListener(this);
             findViewById(R.id.acceptance_info_button_error).setOnClickListener(this);
@@ -235,6 +239,14 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
             mTotal.setText(getString(R.string.format_acceptance_total, String.valueOf(order.getSuitUniteProductCount())));
             if (order.getTransferPath() != null)
                 mPath.setText(getString(R.string.format_acceptance_path, order.getTransferPath()));
+
+            if(TextUtils.equals(order.getAcceptanceState(), "2" )){
+                mImageView.setVisibility(View.VISIBLE);
+                mButtonsLayout.setVisibility(View.GONE);
+            }else{
+                mImageView.setVisibility(View.GONE);
+                mButtonsLayout.setVisibility(View.VISIBLE);
+            }
         }
     }
 

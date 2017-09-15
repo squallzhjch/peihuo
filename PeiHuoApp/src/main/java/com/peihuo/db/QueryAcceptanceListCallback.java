@@ -3,6 +3,7 @@ package com.peihuo.db;
 import android.content.Context;
 
 import com.peihuo.entity.AcceptanceForm;
+import com.peihuo.system.SystemConfig;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
 import com.peihuo.util.MyLogManager;
@@ -26,6 +27,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
     public void loadData(int count, int page) {
         mCount = count;
         mPage = page;
+        loadData();
     }
 
     public interface OnLoadDataListener{
@@ -69,7 +71,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                     MyLogManager.writeLogtoFile("数据库查询", "获取验收单列表", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
-                        statement.setQueryTimeout(20);
+                        statement.setQueryTimeout(SystemConfig.DB_CONNECT_TIME);
                         result = statement.executeQuery(sql);
                         if (result != null) {
                             list = new ArrayList<>();

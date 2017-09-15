@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.peihuo.entity.UserInfo;
+import com.peihuo.system.SystemConfig;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.util.MD5Util;
 import com.peihuo.util.MyLogManager;
@@ -56,7 +57,7 @@ public class LoginCallback  extends BaseCallback{
                     MyLogManager.writeLogtoFile("数据库查询", "登录", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
-                        statement.setQueryTimeout(20);
+                        statement.setQueryTimeout(SystemConfig.DB_CONNECT_TIME);
                         result = statement.executeQuery(sql);
                         if (result != null && result.first()) {
                             userInfo = new UserInfo();

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.peihuo.entity.AcceptanceForm;
 import com.peihuo.entity.WorkLine;
+import com.peihuo.system.SystemConfig;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
 import com.peihuo.util.MyLogManager;
@@ -52,7 +53,7 @@ public class QueryWorkLinesCallback extends BaseCallback {
                     MyLogManager.writeLogtoFile("数据库查询", "获取生产线", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
-                        statement.setQueryTimeout(20);
+                        statement.setQueryTimeout(SystemConfig.DB_CONNECT_TIME);
                         result = statement.executeQuery(sql);
                         if (result != null) {
                             list = new ArrayList<>();

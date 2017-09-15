@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.peihuo.R;
+import com.peihuo.system.SystemConfig;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.util.MyLogManager;
 
@@ -67,7 +68,7 @@ public class UpdateAcceptancePassCallback extends BaseCallback {
                                 "where acceptanceformcode = '" + mCode + "'";
 
                         statement = mySqlManager.getConnection().createStatement();
-                        statement.setQueryTimeout(20);
+                        statement.setQueryTimeout(SystemConfig.DB_CONNECT_TIME);
                         MyLogManager.writeLogtoFile("数据库更新", "更新分拣详情表", sql);
                         int count = statement.executeUpdate(sql);
                         if (count > 0) {

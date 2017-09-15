@@ -28,4 +28,6 @@ public class SystemConfig {
     public static final String BUNDLE_KEY_ACTIVITY_FROM_LOGIN = "bundle_key_activity_from_login";//是否来自登录页面
 
     public static final int ACTIVITY_RESULT_BACK = 0x11;
+
+    public static final int DB_CONNECT_TIME = 5;
 }

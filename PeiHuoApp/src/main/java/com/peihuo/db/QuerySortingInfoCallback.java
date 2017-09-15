@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.peihuo.entity.SortingForm;
 import com.peihuo.entity.SortingInfo;
+import com.peihuo.system.SystemConfig;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
 import com.peihuo.util.MyLogManager;
@@ -61,7 +62,7 @@ public class QuerySortingInfoCallback extends BaseCallback{
                     MyLogManager.writeLogtoFile("数据库查询", "获取分拣单详情", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();
-                        statement.setQueryTimeout(20);
+                        statement.setQueryTimeout(SystemConfig.DB_CONNECT_TIME);
                         result = statement.executeQuery(sql);
                         if (result != null) {
                             list = new ArrayList<SortingInfo>();
