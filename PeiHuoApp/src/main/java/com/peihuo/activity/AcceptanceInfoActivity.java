@@ -242,7 +242,12 @@ public class AcceptanceInfoActivity extends Activity implements View.OnClickList
 
             if(TextUtils.equals(order.getAcceptanceState(), "2" )){
                 mImageView.setVisibility(View.VISIBLE);
-                mButtonsLayout.setVisibility(View.GONE);
+                mImageView.setImageResource(R.mipmap.laber_accepetance_pass);
+                mButtonsLayout.setVisibility(View.INVISIBLE);
+            }else if(TextUtils.equals(order.getAcceptanceState(), "3" )){
+                mImageView.setVisibility(View.VISIBLE);
+                mImageView.setImageResource(R.mipmap.laber_accepetance_error);
+                mButtonsLayout.setVisibility(View.INVISIBLE);
             }else{
                 mImageView.setVisibility(View.GONE);
                 mButtonsLayout.setVisibility(View.VISIBLE);

@@ -186,19 +186,17 @@
             android:id="@+id/acceptance_info_laber_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:layout_gravity="center_horizontal|bottom"
             android:src="@mipmap/laber_accepetance_pass"/>
     </FrameLayout>
 
 
     <LinearLayout
-
         android:id="@+id/acceptance_info_buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:orientation="horizontal">
         <Button
