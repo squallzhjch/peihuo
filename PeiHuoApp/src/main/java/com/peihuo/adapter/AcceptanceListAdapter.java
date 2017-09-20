@@ -76,7 +76,7 @@ public class AcceptanceListAdapter extends BaseAdapter {
         if(mList != null && mList.size() > position) {
             AcceptanceForm order = mList.get(position);
             if(order.getCode() != null)
-                viewHolder.code.setText(order.getCode());
+                viewHolder.code.setText(order.getBelongorderid());
             if(order.getBatchCount() != null)
                 viewHolder.batch.setText(order.getBatchCount());
             if(order.getAcceptanceState() != null)

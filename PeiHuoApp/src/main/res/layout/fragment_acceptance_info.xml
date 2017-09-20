@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_default_white"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/frame_gray_bg_blue"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/acceptance_info_sail_code"
+            style="@style/acceptance_info_title_text_style" />
+
+        <TextView
+            android:id="@+id/acceptance_info_path"
+            style="@style/acceptance_info_title_text_style"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/acceptance_info_acceptance_code"
+            style="@style/acceptance_info_title_text_style" />
+
+        <TextView
+            android:id="@+id/acceptance_info_batch"
+            style="@style/acceptance_info_title_text_style"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/acceptance_info_time"
+            style="@style/acceptance_info_title_text_style" />
+
+        <TextView
+            android:id="@+id/acceptance_info_total"
+            style="@style/acceptance_info_title_text_style"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/acceptance_info_item_single_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_default_line"
+                        android:orientation="horizontal"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_name" />
+
+                        <TextView
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_code" />
+
+                        <TextView
+                            style="@style/sorting_info_text_style"
+                            android:layout_weight="0.5"
+                            android:text="@string/acceptance_item_count" />
+
+                        <TextView
+                            android:layout_weight="0.5"
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_unit" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/acceptance_info_single_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/frame_red_bg_2r"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_white"
+                        android:textSize="18sp"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/acceptance_info_single_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_default_line"
+                    android:orientation="vertical"
+                    android:visibility="gone"></LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/acceptance_info_item_group_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_default_orange"
+                        android:orientation="horizontal"
+                        android:paddingLeft="60dp"
+                        android:paddingRight="50dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_group_name" />
+
+                        <TextView
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_name" />
+
+                        <TextView
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_code" />
+
+                        <TextView
+                            style="@style/sorting_info_text_style"
+                            android:layout_weight="0.5"
+                            android:text="@string/acceptance_item_count" />
+
+                        <TextView
+                            android:layout_weight="0.5"
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_unit" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/acceptance_info_group_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/frame_red_bg_2r"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:textColor="@color/color_default_white"
+                        android:textSize="18sp"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/acceptance_info_group_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_default_line"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <!--<ImageView-->
+            <!--android:id="@+id/acceptance_info_button_last"-->
+            <!--android:layout_width="55dp"-->
+            <!--android:layout_height="55dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_margin="3dp"-->
+            <!--android:background="@mipmap/last_item_icon" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/acceptance_info_button_next"-->
+            <!--android:layout_width="55dp"-->
+            <!--android:layout_height="55dp"-->
+            <!--android:layout_gravity="center_vertical|right"-->
+            <!--android:layout_margin="3dp"-->
+            <!--android:background="@mipmap/next_item_icon" />-->
+
+        <ImageView
+            android:id="@+id/acceptance_info_laber_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:src="@mipmap/laber_accepetance_pass"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/acceptance_info_buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/acceptance_info_button_pass"
+            style="@style/red_frame_button_style"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/acceptance_pass" />
+
+        <Button
+            android:id="@+id/acceptance_info_button_error"
+            style="@style/red_frame_button_style"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/acceptance_error" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -134,7 +134,7 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
                                 ((TextView) view.findViewById(R.id.sorting_info_item_unit)).setText(info.getProUnite());
                             if (info.getHandlingOrderCode() != null)
                                 ((TextView) view.findViewById(R.id.sorting_info_item_handling)).setText(info.getHandlingOrderCode());
-                            if (!DataDictionary.getInstance().isSortingSingleOrGroup(info.getIs_suit())) {
+                            if (DataDictionary.getInstance().isSortingSingleOrGroup(info.getIs_suit())) {
                                 ((TextView) view.findViewById(R.id.sorting_info_item_type)).setText( getText(R.string.sorting_single));
                                 if (i % 2 == 0)
                                     view.setSelected(true);

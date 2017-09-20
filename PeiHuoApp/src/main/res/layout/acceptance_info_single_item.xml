@@ -15,10 +15,12 @@
         style="@style/sorting_info_text_style"
         />
     <TextView
+        android:layout_weight="0.5"
         android:id="@+id/acceptance_info_item_count"
         style="@style/sorting_info_text_style"
         />
     <TextView
+        android:layout_weight="0.5"
         android:id="@+id/acceptance_info_item_unit"
         style="@style/sorting_info_text_style"
         />

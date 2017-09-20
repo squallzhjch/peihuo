@@ -167,7 +167,7 @@ public class UpdateAcceptancePassCallback extends BaseCallback {
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
                             dismissLoading();
-                            Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_error), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_error), Toast.LENGTH_SHORT).show();
                             t.printStackTrace();
                         }
                     });

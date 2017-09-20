@@ -26,6 +26,7 @@ public class SystemConfig {
     public static final String BUNDLE_KEY_SORTING_LIST_INDEX = "bundle_key_sorting_list_index";//分拣单列表所选位置
     public static final String BUNDLE_KEY_BACK_LIST_TYPE = "bundle_key_back_list_type";//从详情会列表的类型
     public static final String BUNDLE_KEY_ACTIVITY_FROM_LOGIN = "bundle_key_activity_from_login";//是否来自登录页面
+    public static final String BUNDLE_KEY_ACCEPTANCE_INFO = "";//验收单
 
     public static final int ACTIVITY_RESULT_BACK = 0x11;
 

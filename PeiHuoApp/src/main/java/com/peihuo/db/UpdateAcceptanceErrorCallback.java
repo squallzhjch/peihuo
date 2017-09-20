@@ -113,7 +113,7 @@ public class UpdateAcceptanceErrorCallback extends BaseCallback {
             public void onSuccess(Boolean value) {
                 dismissLoading();
                 if (value) {
-                    Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_success), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mActivity, mActivity.getText(R.string.toast_commit_success), Toast.LENGTH_SHORT).show();
                     if(mListener != null){
                         mListener.onSuccess();
                     }

@@ -56,19 +56,23 @@
 
         <TextView
             style="@style/sorting_info_title2_text_style"
+            android:layout_weight="0.5"
             android:text="@string/acceptance_item_count" />
 
         <TextView
             style="@style/sorting_info_title2_text_style"
+            android:layout_weight="0.5"
             android:text="@string/acceptance_item_unit" />
 
         <TextView
             style="@style/sorting_info_title2_text_style"
+            android:layout_weight="0.5"
             android:text="@string/acceptance_item_type" />
 
         <TextView
             style="@style/sorting_info_title2_text_style"
-            android:text="@string/acceptance_item_handling" />
+            android:text="@string/acceptance_item_handling"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <FrameLayout
