@@ -65,7 +65,7 @@ public class QuerySortingListCallback extends BaseCallback{
                             " FROM " +
                             "t_acceptanceform LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersNo  " +
                             " WHERE t_acceptanceform.belongorderid in " +
-                            "(SELECT DISTINCT t_handlingorder.ordercode FROM t_handlingorder where state = '未完成' and t_handlingorder.responsiblehuman = '"+mUserId+"')" +
+                            "(SELECT DISTINCT t_handlingorder.ordercode FROM t_handlingorder where state = '未完成' and t_handlingorder.responsiblehuman = '"+mUserId+"') order by t_acceptanceform.belongorderid" +
                             " limit "+ mPage * mCount + ", " + mCount + ";";
                     MyLogManager.writeLogtoFile("数据库查询", "获取分拣单列表", sql);
                     try {
