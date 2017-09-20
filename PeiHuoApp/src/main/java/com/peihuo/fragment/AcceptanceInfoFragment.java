@@ -42,6 +42,7 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
     private TextView mAcceptanceCode;//验收单号
     private TextView mTime;//单据时间
     private TextView mTotal;//合计
+    private TextView mPitposition;// 坑位
     private LinearLayout mSingleLayout;//单品容器
     private LinearLayout mGroupLayout;
     private TextView mSingleLabel;
@@ -185,7 +186,7 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
         mAcceptanceCode = (TextView) view.findViewById(R.id.acceptance_info_acceptance_code);
         mTime = (TextView) view.findViewById(R.id.acceptance_info_time);
         mTotal = (TextView) view.findViewById(R.id.acceptance_info_total);
-
+        mPitposition = (TextView) view.findViewById(R.id.acceptance_info_pitposition);
 
         mLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mLayoutParams.setMargins(0, 0, 0, 2);
@@ -202,6 +203,8 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
             mBatch.setText(getString(R.string.format_sorting_batch, mForm.getBatchCount()));
         if (mForm.getStartTime() != null)
             mTime.setText(getString(R.string.format_acceptance_order_time, mForm.getStartTime().substring(0, 16)));
+        if (mForm.getPitposition() != null)
+            mPitposition.setText(getString(R.string.format_acceptance_order_pitposition, mForm.getPitposition()));
         mTotal.setText(getString(R.string.format_acceptance_total, String.valueOf(mForm.getSuitUniteProductCount())));
         if (mForm.getTransferPath() != null)
             mPath.setText(getString(R.string.format_acceptance_path, mForm.getTransferPath()));

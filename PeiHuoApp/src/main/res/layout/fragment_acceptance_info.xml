@@ -27,12 +27,16 @@
 
         <TextView
             android:id="@+id/acceptance_info_acceptance_code"
-            style="@style/acceptance_info_title_text_style" />
+            style="@style/acceptance_info_title_text_style"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/acceptance_info_batch"
             style="@style/acceptance_info_title_text_style"
             android:visibility="gone" />
+        <TextView
+            android:id="@+id/acceptance_info_pitposition"
+            style="@style/acceptance_info_title_text_style" />
 
         <TextView
             android:id="@+id/acceptance_info_time"

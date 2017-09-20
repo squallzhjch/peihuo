@@ -23,15 +23,17 @@ public class QuerySortingInfoCallback extends BaseCallback{
 
     private OnLoadDataListener mListener;
     private String mCode;
+    private String mUserId;
     public interface OnLoadDataListener{
         void onSuccess(ArrayList<SortingInfo> list);
         void onError();
     }
 
-    public QuerySortingInfoCallback(Context context, String code, OnLoadDataListener listener){
+    public QuerySortingInfoCallback(Context context, String code, String userId, OnLoadDataListener listener){
         super(context);
         mListener = listener;
         mCode = code;
+        mUserId = userId;
     }
 
     public void loadData(String code){
@@ -58,7 +60,9 @@ public class QuerySortingInfoCallback extends BaseCallback{
                             "t_handlingorder.prounite," +
                             "t_handlingorder.suit_parent_code" +
                             " FROM " +
-                            "t_handlingorder where ordercode = '"+ mCode +"' order by suit_parent_code;";
+                            "t_handlingorder where ordercode = '"+ mCode +"' " +
+                            " and t_handlingorder.responsiblehuman = '"+mUserId+"' " +
+                            "order by suit_parent_code;";
                     MyLogManager.writeLogtoFile("数据库查询", "获取分拣单详情", sql);
                     try {
                         statement = mySqlManager.getConnection().createStatement();

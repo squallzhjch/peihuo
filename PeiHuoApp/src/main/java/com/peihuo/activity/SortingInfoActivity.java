@@ -115,7 +115,9 @@ public class SortingInfoActivity extends Activity implements View.OnClickListene
     private void initData() {
         if (mList != null && mList.size() > mSelectIndex) {
             SortingForm order = mList.get(mSelectIndex);
-            mInfoCallback = new QuerySortingInfoCallback(this, order.getBelongorderid(), new QuerySortingInfoCallback.OnLoadDataListener() {
+            mInfoCallback = new QuerySortingInfoCallback(this, order.getBelongorderid(),
+                    SharedConfigHelper.getInstance().getUserId(),
+                    new QuerySortingInfoCallback.OnLoadDataListener() {
                 @Override
                 public void onSuccess(ArrayList<SortingInfo> list) {
                     mLayout.removeAllViews();

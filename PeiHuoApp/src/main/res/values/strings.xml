@@ -65,6 +65,7 @@
     <string name="format_acceptance_path">路径：%1$s</string>
     <string name="format_acceptance_order_time">单据时间：%1$s</string>
     <string name="format_acceptance_total">合计：%1$s</string>
+    <string name="format_acceptance_order_pitposition">坑位：%1$s</string>
     <string name="format_acceptance_item_single_title">单品数x%1$s</string>
     <string name="format_acceptance_item_group_title">套装菜x%1$s</string>
 

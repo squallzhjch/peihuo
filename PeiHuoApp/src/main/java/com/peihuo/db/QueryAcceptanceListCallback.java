@@ -62,7 +62,8 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                             "t_orders.customerId," +
                             "t_acceptanceform.batchcount," +
                             "t_acceptanceform.acceptancestate, " +
-                            "t_acceptanceform.belongorderid " +
+                            "t_acceptanceform.belongorderid, " +
+                            "t_acceptanceform.pitposition" +
                             " FROM " +
                             " t_acceptanceform " +
                             "LEFT JOIN t_orders ON t_acceptanceform.belongorderid = t_orders.ordersNo " +
@@ -83,6 +84,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                             int batchCountIndex = result.findColumn("batchcount");//批次
                             int transferpathIndex = result.findColumn("transferpath");
                             int belongorderidIndex = result.findColumn("belongorderid");
+                            int pitpositionIndex = result.findColumn("pitposition");
                             while (result.next()){
                                 AcceptanceForm order = new AcceptanceForm();
                                 order.setCode(result.getString(codeIndex));
@@ -93,6 +95,7 @@ public class QueryAcceptanceListCallback extends BaseCallback{
                                 order.setTransferPath(result.getString(transferpathIndex));
                                 order.setCustomerId(result.getString(customerIdIndex));
                                 order.setBelongorderid(result.getString(belongorderidIndex));
+                                order.setPitposition(result.getString(pitpositionIndex));
                                 list.add(order);
                             }
                         }
