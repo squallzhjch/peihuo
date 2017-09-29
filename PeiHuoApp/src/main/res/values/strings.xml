@@ -69,6 +69,7 @@
     <string name="format_acceptance_item_group_title">套装菜x%1$s</string>
     <string name="format_acceptance_pitposition">坑位:%1$s</string>
 
+
     <!-- 验收单 标题-->
     <!--<string name="acceptance_list_sale_number">销售单号</string>-->
     <string name="acceptance_list_path">路径</string>

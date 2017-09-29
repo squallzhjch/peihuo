@@ -78,6 +78,8 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
         return fragmentV;
     }
 
+
+
     private void onDataChange() {
         Log.e("jingo", "onDataChange");
         Bundle bundle = getArguments();

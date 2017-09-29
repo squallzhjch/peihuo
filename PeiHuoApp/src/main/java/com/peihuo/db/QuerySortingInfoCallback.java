@@ -52,6 +52,8 @@
 //                    Statement statement = null;
 //                    ResultSet result = null;
 //
+
+
 //                    String sql = "SELECT " +
 //                            "t_handlingorder.handlingordercode," +
 //                            "t_handlingorder.pname," +

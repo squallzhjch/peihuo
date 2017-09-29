@@ -283,6 +283,8 @@ public class SortingInfoActivity extends FragmentActivity implements View.OnClic
 //                        }
 //                    });
 //                }
+
+
 //                break;
 //            case R.id.sorting_info_button_check:
 //
