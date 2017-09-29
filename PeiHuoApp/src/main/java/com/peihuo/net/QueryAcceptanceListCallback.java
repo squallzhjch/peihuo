@@ -31,7 +31,7 @@ public class QueryAcceptanceListCallback extends BaseCallback {
     private int mCount = 10;
     private int mPage = 0;
     private String mLineNo;
-
+    private int mState;
     public void loadData(int count, int page) {
         mCount = count;
         mPage = page;
@@ -40,30 +40,31 @@ public class QueryAcceptanceListCallback extends BaseCallback {
 
     public interface OnLoadDataListener {
         void onSuccess(ArrayList<AcceptanceForm> list);
-
         void onError();
     }
 
-    public QueryAcceptanceListCallback(Context context, String lineNo, int count, int page, OnLoadDataListener listener) {
-        super(context, count, page, lineNo);
+    public QueryAcceptanceListCallback(Context context, String lineNo, int count, int page, int state, OnLoadDataListener listener) {
+        super(context, count, page, lineNo, state);
         mListener = listener;
         mCount = count;
         mPage = page;
+        mState = state;
         mLineNo = lineNo;
     }
 
     @Override
     protected void initData(Object... objects) {
-        if (objects != null && objects.length > 2) {
+        if (objects != null && objects.length > 3) {
             mCount = (int) objects[0];
             mPage = (int) objects[1];
             mLineNo = String.valueOf(objects[2]);
+            mState = (int) objects[3];
         }
     }
 
     @Override
     protected void loadData() {
-        Call<ResponseBody> call = NetManager.getInstance().getNetService().queryAcceptanceList(mLineNo, mPage, mCount);
+        Call<ResponseBody> call = NetManager.getInstance().getNetService().queryAcceptanceList(mLineNo, mPage, mCount, mState);
         showLoading(call);
         call.enqueue(new Callback<ResponseBody>() {
             @Override

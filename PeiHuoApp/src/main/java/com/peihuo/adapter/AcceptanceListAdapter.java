@@ -27,7 +27,8 @@ import java.util.ArrayList;
 public class AcceptanceListAdapter extends BaseAdapter {
 
     private ArrayList<AcceptanceForm> mList = new ArrayList<>();
-    Activity mActivity;
+    private Activity mActivity;
+    private int mState = 1;
 
     public AcceptanceListAdapter(Activity context) {
         mActivity = context;
@@ -109,6 +110,7 @@ public class AcceptanceListAdapter extends BaseAdapter {
                     Intent intent = new Intent(mActivity, AcceptanceInfoActivity.class);
                     intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST_INDEX, position);
                     intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST, mList);
+                    intent.putExtra(SystemConfig.BUNDLE_KEY_ACCEPTANCE_STATE, mState);
                     mActivity.startActivity(intent);
                     mActivity.finish();
                 }
@@ -128,6 +130,11 @@ public class AcceptanceListAdapter extends BaseAdapter {
                 mList.add(form);
             }
         }
+    }
+
+
+    public void setState(int state) {
+        this.mState = state;
     }
 
     class ViewHolder {

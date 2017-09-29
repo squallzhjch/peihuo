@@ -25,6 +25,7 @@ import java.util.List;
 public class AcceptanceListFragment extends BaseListFragment {
     private AcceptanceListAdapter mAdapter;
     private QueryAcceptanceListCallback callback;
+    private int mState = 1;
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_acceptance_list, null);
@@ -35,7 +36,7 @@ public class AcceptanceListFragment extends BaseListFragment {
     protected void initView(View view) {
         mAdapter = new AcceptanceListAdapter(getActivity());
         mListView.setAdapter(mAdapter);
-        callback = new QueryAcceptanceListCallback(getContext(),  SharedConfigHelper.getInstance().getWorkLineId(),10, 0, new QueryAcceptanceListCallback.OnLoadDataListener() {
+        callback = new QueryAcceptanceListCallback(getContext(),  SharedConfigHelper.getInstance().getWorkLineId(),10, 0, mState, new QueryAcceptanceListCallback.OnLoadDataListener() {
             @Override
             public void onSuccess(ArrayList<AcceptanceForm> list) {
                 mListView.onRefreshComplete();
@@ -50,7 +51,7 @@ public class AcceptanceListFragment extends BaseListFragment {
                     Toast.makeText(getContext(), getText(R.string.toast_noting_data), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                mAdapter.setState(mState);
                 mAdapter.addData(list);
                 mAdapter.notifyDataSetChanged();
             }
@@ -78,5 +79,34 @@ public class AcceptanceListFragment extends BaseListFragment {
         });
     }
 
+    public void setStateType(int type){
+        mState = type;
+        new QueryAcceptanceListCallback(getContext(),  SharedConfigHelper.getInstance().getWorkLineId(),10, 0, mState, new QueryAcceptanceListCallback.OnLoadDataListener() {
+            @Override
+            public void onSuccess(ArrayList<AcceptanceForm> list) {
+                mListView.onRefreshComplete();
+
+                if(list.size() < 10){
+                    mListView.setMode(PullToRefreshBase.Mode.DISABLED);
+                }else {
+                    mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+                }
+
+                if (list.size() == 0) {
+                    Toast.makeText(getContext(), getText(R.string.toast_noting_data), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                mAdapter.setState(mState);
+                mAdapter.setData(list);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError() {
+                mListView.onRefreshComplete();
+                Toast.makeText(getContext(), getText(R.string.toast_load_data_error), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

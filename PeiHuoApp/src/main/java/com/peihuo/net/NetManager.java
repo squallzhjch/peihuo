@@ -97,7 +97,7 @@ public class NetManager {
         Call<ResponseBody> queryWorkLines(@Query("repCode") String repCode);
 
         @GET("androidInterface/acceptanceList")
-        Call<ResponseBody> queryAcceptanceList(@Query("lineNo") String lineNo, @Query("pageNum") int pageNum, @Query("pageSize")int pageSize);
+        Call<ResponseBody> queryAcceptanceList(@Query("lineNo") String lineNo, @Query("pageNum") int pageNum, @Query("pageSize")int pageSize,  @Query("state")int state);
 
         @GET("androidInterface/sortingInfo")
         Call<ResponseBody> querySortingInfo(@Query("ordercode") String ordercode, @Query("humanId") String userid);

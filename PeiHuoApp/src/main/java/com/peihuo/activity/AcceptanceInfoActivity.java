@@ -36,7 +36,7 @@ public class AcceptanceInfoActivity extends FragmentActivity {
     private ArrayList<AcceptanceForm> mList;//上个页面的数据
     private MyViewPager mViewPager;
     private AcceptanceInfoAdapter mAdapter;
-
+    private int mState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +128,7 @@ public class AcceptanceInfoActivity extends FragmentActivity {
                         } else {
                             page = listSize / 10;
                         }
-                        new QueryAcceptanceListCallback(AcceptanceInfoActivity.this, SharedConfigHelper.getInstance().getWorkLineId(), 10, page, new QueryAcceptanceListCallback.OnLoadDataListener() {
+                        new QueryAcceptanceListCallback(AcceptanceInfoActivity.this, SharedConfigHelper.getInstance().getWorkLineId(), 10, page,mState, new QueryAcceptanceListCallback.OnLoadDataListener() {
                             @Override
                             public void onSuccess(ArrayList<AcceptanceForm> list) {
                                 if (list == null || list.size() == 0) {
@@ -173,6 +173,7 @@ public class AcceptanceInfoActivity extends FragmentActivity {
                 mList = (ArrayList<AcceptanceForm>) serializable;
             }
             mSelectIndex = bundle.getInt(SystemConfig.BUNDLE_KEY_SORTING_LIST_INDEX, 0);
+            mState = bundle.getInt(SystemConfig.BUNDLE_KEY_ACCEPTANCE_STATE, 1);
         }
     }
 

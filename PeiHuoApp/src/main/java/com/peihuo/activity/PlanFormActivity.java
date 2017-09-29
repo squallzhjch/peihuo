@@ -30,7 +30,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
     private TextView mAcceptance;//验收单
     private int mLastSelectType = -1;//被选中的栏
     private FragmentManager mFragmentManager;
-
+    private ImageView mPullIcon;
     //分拣单
     private SortingListFragment mSortingListFragment;
     //生产计划单
@@ -91,6 +91,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
         mProduction = (TextView) findViewById(R.id.plan_title_production);
         mSorting = (TextView) findViewById(R.id.plan_title_sorting);
         mAcceptance = (TextView) findViewById(R.id.plan_title_acceptance);
+        mPullIcon = (ImageView) findViewById(R.id.acceptance_list_pull_icon);
 
         String role = SharedConfigHelper.getInstance().getUserUrole();
 
@@ -116,6 +117,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
         mProduction.setOnClickListener(this);
         mSorting.setOnClickListener(this);
         mAcceptance.setOnClickListener(this);
+        mPullIcon.setOnClickListener(this);
     }
 
 
@@ -142,7 +144,46 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
             case R.id.plan_title_sorting:
                 switchFragment(1);
                 break;
+            case R.id.acceptance_list_pull_icon:
+                showPullPop();
+                break;
         }
+    }
+
+    private void showPullPop() {
+        View view = View.inflate(this, R.layout.pull_pop_layout, null);
+        final PopupWindow window = new PopupWindow(view,
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        window.setContentView(view);
+        window.showAsDropDown(mPullIcon, -150, 20);
+        view.findViewById(R.id.pull_list_no_pass).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                window.dismiss();
+                if(mAcceptanceListFragment != null){
+                    mAcceptanceListFragment.setStateType(1);
+                }
+
+            }
+        });
+        view.findViewById(R.id.pull_list_error).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                window.dismiss();
+                if(mAcceptanceListFragment != null){
+                    mAcceptanceListFragment.setStateType(2);
+                }
+            }
+        });
+        view.findViewById(R.id.pull_list_all).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                window.dismiss();
+                if(mAcceptanceListFragment != null){
+                    mAcceptanceListFragment.setStateType(0);
+                }
+            }
+        });
     }
 
     private void switchFragment(int type) {
@@ -153,6 +194,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
         } else if (mLastSelectType == 1) {
             mSorting.setSelected(false);
         } else if (mLastSelectType == 2) {
+            mPullIcon.setVisibility(View.GONE);
             mAcceptance.setSelected(false);
         }
         mLastSelectType = type;
@@ -169,6 +211,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
             }
             showFragment(mSortingListFragment);
         } else if (type == 2) {
+            mPullIcon.setVisibility(View.VISIBLE);
             mAcceptance.setSelected(true);
             if (mAcceptanceListFragment == null) {
                 mAcceptanceListFragment = new AcceptanceListFragment();
