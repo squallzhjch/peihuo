@@ -44,24 +44,30 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/plan_title_sheet_left"
             android:text="@string/plan_production" />
-
-        <TextView
-            android:id="@+id/plan_title_acceptance"
-            style="@style/plan_title_text_style"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_centerVertical="true"
-            android:enabled="false"
-            android:paddingRight="1dp"
+            android:gravity="center"
             android:layout_toRightOf="@id/plan_title_sheet_right"
-            android:text="@string/plan_acceptance" />
-        <ImageView
-            android:visibility="gone"
-            android:paddingRight="20dp"
-            android:id="@+id/acceptance_list_pull_icon"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/plan_title_acceptance"
-            android:src="@mipmap/icon_pull"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/plan_title_acceptance"
+                style="@style/plan_title_text_style"
+                android:enabled="false"
+                android:paddingRight="1dp"
+                android:text="@string/plan_acceptance" />
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/acceptance_list_pull_icon"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/plan_title_acceptance"
+                android:src="@mipmap/icon_pull"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
     </RelativeLayout>
 
     <FrameLayout

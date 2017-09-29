@@ -122,7 +122,7 @@ public class SortingInfoActivity extends FragmentActivity implements View.OnClic
                         } else {
                             page = listSize / 10;
                         }
-                        new QuerySortingListCallback(SortingInfoActivity.this, SharedConfigHelper.getInstance().getWorkLineId(), 10, page, new QuerySortingListCallback.OnLoadDataListener() {
+                        new QuerySortingListCallback(SortingInfoActivity.this, SharedConfigHelper.getInstance().getUserId(), SharedConfigHelper.getInstance().getWorkLineId(), 10, page, new QuerySortingListCallback.OnLoadDataListener() {
                             @Override
                             public void onSuccess(ArrayList<SortingForm> list) {
                                 if (list == null || list.size() == 0) {

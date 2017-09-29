@@ -90,8 +90,8 @@ public class MenuActivity extends Activity {
                 //是否是从登录界面来的
                 boolean bFromLogin = bundle.getBoolean(SystemConfig.BUNDLE_KEY_ACTIVITY_FROM_LOGIN, false);
                 if(bFromLogin){
-                    String urole = SharedConfigHelper.getInstance().getUserUrole();
-                    if(urole.equals("验收员") || urole.equals("超级管理员")){
+//                    String urole = SharedConfigHelper.getInstance().getUserUrole();
+//                    if(urole.equals("验收员") || urole.equals("超级管理员")){
                         new QueryWorkLinesCallback(this, SharedConfigHelper.getInstance().getRepositoryId(),   new QueryWorkLinesCallback.OnLoadDataListener() {
                             @Override
                             public void onSuccess(ArrayList<WorkLine> list) {
@@ -105,7 +105,7 @@ public class MenuActivity extends Activity {
 
                             }
                         });
-                    }
+//                    }
                 }
             }
 

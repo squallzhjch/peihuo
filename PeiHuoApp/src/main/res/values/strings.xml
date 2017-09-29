@@ -39,7 +39,7 @@
     <!-- 分拣单 标题-->
     <string name="sorting_list_sale_number">销售单号</string>
     <string name="sorting_list_batch">批次</string>
-    <string name="sorting_list_serial">流水</string>
+    <string name="sorting_list_serial">流水线</string>
     <string name="sorting_list_position">坑位</string>
     <string name="sorting_list_status">状态</string>
     <string name="sorting_list_operation">操作</string>

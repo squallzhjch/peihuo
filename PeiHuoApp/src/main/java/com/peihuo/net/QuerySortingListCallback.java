@@ -40,18 +40,19 @@ public class QuerySortingListCallback extends BaseCallback {
     private int mCount = 10;
     private int mPage = 0;
     private String mUserId = "";
-
+    private String mLineNo ;
     public interface OnLoadDataListener {
         void onSuccess(ArrayList<SortingForm> list);
 
         void onError();
     }
 
-    public QuerySortingListCallback(Context context, String userId, int count, int page, OnLoadDataListener listener) {
-        super(context, userId, count, page);
+    public QuerySortingListCallback(Context context, String userId, String lineNo, int count, int page, OnLoadDataListener listener) {
+        super(context, userId,lineNo, count, page);
         mListener = listener;
         mUserId = userId;
         mCount = count;
+        mLineNo = lineNo;
         mPage = page;
     }
 
@@ -64,16 +65,17 @@ public class QuerySortingListCallback extends BaseCallback {
 
     @Override
     protected void initData(Object... objects) {
-        if (objects != null && objects.length > 2) {
+        if (objects != null && objects.length > 3) {
             mUserId = String.valueOf(objects[0]);
-            mCount = (Integer) objects[1];
-            mPage = (Integer) objects[2];
+            mLineNo = String.valueOf(objects[1]);
+            mCount = (Integer) objects[2];
+            mPage = (Integer) objects[3];
         }
     }
 
     @Override
     protected void loadData() {
-        Call<ResponseBody> call = NetManager.getInstance().getNetService().querySortingList(mUserId, mPage, mCount);
+        Call<ResponseBody> call = NetManager.getInstance().getNetService().querySortingList(mUserId, mLineNo, mPage, mCount);
         showLoading(call);
         call.enqueue(new Callback<ResponseBody>() {
             @Override

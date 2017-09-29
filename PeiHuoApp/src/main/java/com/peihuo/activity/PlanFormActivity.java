@@ -155,7 +155,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
         final PopupWindow window = new PopupWindow(view,
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         window.setContentView(view);
-        window.showAsDropDown(mPullIcon, -150, 20);
+        window.showAsDropDown(mPullIcon, -70, 0);
         view.findViewById(R.id.pull_list_no_pass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,8 +187,12 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
     }
 
     private void switchFragment(int type) {
-        if (type == mLastSelectType)
+        if (type == mLastSelectType) {
+            if(type == 2){
+                showPullPop();
+            }
             return;
+        }
         if (mLastSelectType == 0) {
             mProduction.setSelected(false);
         } else if (mLastSelectType == 1) {

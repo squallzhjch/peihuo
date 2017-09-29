@@ -39,7 +39,7 @@ public class SortingListFragment extends BaseListFragment {
         mListView.setAdapter(mAdapter);
         String userId = SharedConfigHelper.getInstance().getUserId();
 
-        callback = new QuerySortingListCallback(getContext(), userId, 10, 0, new QuerySortingListCallback.OnLoadDataListener() {
+        callback = new QuerySortingListCallback(getContext(), userId, SharedConfigHelper.getInstance().getWorkLineId(),10, 0, new QuerySortingListCallback.OnLoadDataListener() {
             @Override
             public void onSuccess(ArrayList<SortingForm> list) {
                 mListView.onRefreshComplete();

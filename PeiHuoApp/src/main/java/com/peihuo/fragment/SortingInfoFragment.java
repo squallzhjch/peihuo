@@ -50,7 +50,7 @@ public class SortingInfoFragment extends Fragment implements View.OnClickListene
     private Button mPass;
     private SortingForm mForm;
     private ImageView mImageView;
-
+    private ImageView mBg;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -120,6 +120,7 @@ public class SortingInfoFragment extends Fragment implements View.OnClickListene
     }
 
     public void initView(View view) {
+        mBg = (ImageView) view.findViewById(R.id.sorting_info_pitposition_bg);
         mLayout = (LinearLayout) view.findViewById(R.id.sorting_info_list);
 
         //上一个按钮
@@ -155,6 +156,11 @@ public class SortingInfoFragment extends Fragment implements View.OnClickListene
         if (order.getPitposition() != null)
             position.setText(getString(R.string.format_sorting_position, order.getPitposition()));
         initStatus(mForm, false);
+
+        int resId;
+        resId = DataDictionary.getInstance().getPitPostionBg(mForm.getPitposition());
+        if(resId > 0)
+            mBg.setImageResource(resId);
     }
 
     @Override

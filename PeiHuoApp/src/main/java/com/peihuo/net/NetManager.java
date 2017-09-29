@@ -91,7 +91,7 @@ public class NetManager {
         Call<ResponseBody> login(@Query("account") String username, @Query("password") String password);
 
         @GET("androidInterface/sortingList")
-        Call<ResponseBody> querySortingList(@Query("userID") String userID, @Query("pageNum") int pageNum, @Query("pageSize") int pageSize);
+        Call<ResponseBody> querySortingList(@Query("userID") String userID,@Query("lineNo") String lineNo, @Query("pageNum") int pageNum, @Query("pageSize") int pageSize);
 
         @GET("androidInterface/findPipeline")
         Call<ResponseBody> queryWorkLines(@Query("repCode") String repCode);
