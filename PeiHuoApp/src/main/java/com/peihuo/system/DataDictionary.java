@@ -89,4 +89,32 @@ public class DataDictionary {
             return acceptanceSingleOrGroupMap.get(key);
         return false;
     }
+
+    public int getPitPostionBg(String pitposition) {
+        if(pitposition == null){
+            return -1;
+        }
+        if(pitposition.equals("1")){
+            return R.mipmap.pitposition_1;
+        }else if(pitposition.equals("2")){
+            return R.mipmap.pitposition_2;
+        }else if(pitposition.equals("3")){
+            return R.mipmap.pitposition_3;
+        }else if(pitposition.equals("4")){
+            return R.mipmap.pitposition_4;
+        }else if(pitposition.equals("5")){
+            return R.mipmap.pitposition_5;
+        }else if(pitposition.equals("6")){
+            return R.mipmap.pitposition_6;
+        }else if(pitposition.equals("7")){
+            return R.mipmap.pitposition_7;
+        }else if(pitposition.equals("8")){
+            return R.mipmap.pitposition_8;
+        }else if(pitposition.equals("9")){
+            return R.mipmap.pitposition_9;
+        }else if(pitposition.equals("10")){
+            return R.mipmap.pitposition_10;
+        }else
+        return -1;
+    }
 }

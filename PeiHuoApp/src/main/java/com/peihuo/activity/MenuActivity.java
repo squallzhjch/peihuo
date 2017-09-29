@@ -2,20 +2,17 @@ package com.peihuo.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.peihuo.R;
-import com.peihuo.db.QueryWorkLinesCallback;
 import com.peihuo.entity.WorkLine;
+import com.peihuo.net.QueryWorkLinesCallback;
 import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.system.SystemConfig;
 import com.peihuo.ui.dialog.WorkLineDialog;
@@ -94,7 +91,7 @@ public class MenuActivity extends Activity {
                 boolean bFromLogin = bundle.getBoolean(SystemConfig.BUNDLE_KEY_ACTIVITY_FROM_LOGIN, false);
                 if(bFromLogin){
                     String urole = SharedConfigHelper.getInstance().getUserUrole();
-                    if(urole.equals("验收员")){
+                    if(urole.equals("验收员") || urole.equals("超级管理员")){
                         new QueryWorkLinesCallback(this, SharedConfigHelper.getInstance().getRepositoryId(),   new QueryWorkLinesCallback.OnLoadDataListener() {
                             @Override
                             public void onSuccess(ArrayList<WorkLine> list) {

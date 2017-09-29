@@ -18,6 +18,7 @@
             android:text="@string/acceptance_list_path"
             style="@style/sorting_list_title_text_style" />
         <TextView
+            android:visibility="gone"
             android:text="@string/acceptance_list_customer"
             style="@style/sorting_list_title_text_style" />
         <TextView
@@ -28,12 +29,19 @@
             style="@style/sorting_list_title_text_style" />
         <TextView
             android:text="@string/acceptance_list_count"
+            android:layout_weight="0.5"
+            style="@style/sorting_list_title_text_style" />
+        <TextView
+            android:layout_weight="0.5"
+            android:text="@string/sorting_list_position"
             style="@style/sorting_list_title_text_style" />
         <TextView
             android:text="@string/sorting_list_status"
+            android:layout_weight="0.5"
             style="@style/sorting_list_title_text_style" />
         <TextView
             android:text="@string/sorting_list_operation"
+            android:layout_weight="0.5"
             style="@style/sorting_list_title_text_style" />
     </LinearLayout>
     <View

@@ -17,13 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.peihuo.R;
-import com.peihuo.activity.AcceptanceInfoActivity;
-import com.peihuo.db.QueryAcceptanceInfoCallback;
-import com.peihuo.db.UpdateAcceptanceErrorCallback;
-import com.peihuo.db.UpdateAcceptancePassCallback;
 import com.peihuo.entity.AcceptanceForm;
 import com.peihuo.entity.AcceptanceInfo;
+import com.peihuo.net.QueryAcceptanceInfoCallback;
+import com.peihuo.net.UpdateAcceptanceErrorCallback;
+import com.peihuo.net.UpdateAcceptancePassCallback;
 import com.peihuo.system.DataDictionary;
+import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.system.SystemConfig;
 
 import java.io.Serializable;
@@ -42,6 +42,7 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
     private TextView mAcceptanceCode;//验收单号
     private TextView mTime;//单据时间
     private TextView mTotal;//合计
+    private TextView mPitposition;//坑位
     private LinearLayout mSingleLayout;//单品容器
     private LinearLayout mGroupLayout;
     private TextView mSingleLabel;
@@ -54,6 +55,7 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
     private LinearLayout.LayoutParams mLayoutParams;
     private LinearLayout mButtonsLayout;
     private ImageView mImageView;
+    private ImageView mBg;
 
     private AcceptanceForm mForm;
     private Button mPass;
@@ -84,7 +86,13 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
             if (serializable != null && serializable instanceof AcceptanceForm) {
                 mForm = (AcceptanceForm) serializable;
                 initTitles();
-                mInfoCallback = new QueryAcceptanceInfoCallback(getActivity(), mForm.getCode(), new QueryAcceptanceInfoCallback.OnLoadDataListener() {
+                int resId;
+                resId = DataDictionary.getInstance().getPitPostionBg(mForm.getPitposition());
+                if(resId > 0)
+                    mBg.setImageResource(resId);
+
+                mInfoCallback = new QueryAcceptanceInfoCallback(getActivity(), mForm.getCode(),
+                        new QueryAcceptanceInfoCallback.OnLoadDataListener() {
                     @Override
                     public void onSuccess(ArrayList<AcceptanceInfo> list) {
                         mSingleLayout.removeAllViews();
@@ -159,6 +167,7 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
     }
 
     public void initView(View view) {
+        mBg = (ImageView) view.findViewById(R.id.acceptance_info_pitposition_bg);
         mSingleLayout = (LinearLayout) view.findViewById(R.id.acceptance_info_single_list);
         mGroupLayout = (LinearLayout) view.findViewById(R.id.acceptance_info_group_list);
 
@@ -185,7 +194,7 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
         mAcceptanceCode = (TextView) view.findViewById(R.id.acceptance_info_acceptance_code);
         mTime = (TextView) view.findViewById(R.id.acceptance_info_time);
         mTotal = (TextView) view.findViewById(R.id.acceptance_info_total);
-
+        mPitposition = (TextView) view.findViewById(R.id.acceptance_info_pitposition);
 
         mLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mLayoutParams.setMargins(0, 0, 0, 2);
@@ -200,19 +209,29 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
             mAcceptanceCode.setText(getString(R.string.format_acceptance_accptance_code, mForm.getCode()));
         if (mForm.getBatchCount() != null)
             mBatch.setText(getString(R.string.format_sorting_batch, mForm.getBatchCount()));
-        if (mForm.getStartTime() != null)
-            mTime.setText(getString(R.string.format_acceptance_order_time, mForm.getStartTime().substring(0, 16)));
+        if (mForm.getStartTime() != null) {
+            if(mForm.getStartTime().length() > 16)
+                mTime.setText(getString(R.string.format_acceptance_order_time, mForm.getStartTime().substring(0, 16)));
+            else
+                mTime.setText(getString(R.string.format_acceptance_order_time, mForm.getStartTime()));
+
+        }
         mTotal.setText(getString(R.string.format_acceptance_total, String.valueOf(mForm.getSuitUniteProductCount())));
         if (mForm.getTransferPath() != null)
             mPath.setText(getString(R.string.format_acceptance_path, mForm.getTransferPath()));
-
+        if(mForm.getPitposition() != null){
+            mPitposition.setText(getString(R.string.format_acceptance_pitposition, mForm.getPitposition()));
+        }
         initStatus(mForm, false);
     }
 
     @Override
     public void onClick(View v) {
         if(v == mPass){
-            new UpdateAcceptancePassCallback(getActivity(), mForm.getCode(), new UpdateAcceptancePassCallback.OnUpdateDataListener() {
+            new UpdateAcceptancePassCallback(getActivity(),
+                    mForm.getCode(),
+                    SharedConfigHelper.getInstance().getUserId(),
+                    new UpdateAcceptancePassCallback.OnUpdateDataListener() {
                     @Override
                     public void onSuccess() {
                         mForm.setAcceptanceState("2");

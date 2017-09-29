@@ -62,11 +62,12 @@
     <string name="format_sorting_item_handling">加工单号：%1$s</string>
 
     <string name="format_acceptance_accptance_code">验收单号：%1$s</string>
-    <string name="format_acceptance_path">路径：%1$s</string>
+    <string name="format_acceptance_path">路径:%1$s</string>
     <string name="format_acceptance_order_time">单据时间：%1$s</string>
-    <string name="format_acceptance_total">合计：%1$s</string>
+    <string name="format_acceptance_total">合计:%1$s</string>
     <string name="format_acceptance_item_single_title">单品数x%1$s</string>
     <string name="format_acceptance_item_group_title">套装菜x%1$s</string>
+    <string name="format_acceptance_pitposition">坑位:%1$s</string>
 
     <!-- 验收单 标题-->
     <!--<string name="acceptance_list_sale_number">销售单号</string>-->
@@ -96,10 +97,12 @@
     <string name="toast_noting_data">没有更多数据了!</string>
     <string name="toast_get_userinfo_error">员工信息获取失败！</string>
     <string name="toast_get_userinfo_role_error">该员工没有分配用户角色！</string>
-    <string name="toast_login_error">员工编号或密码错误！</string>
+    <string name="toast_login_error">登录失败！请检查用户名和密码，网络是否正常</string>
     <string name="toast_load_data_error">获取数据失败</string>
     <string name="toast_commit_success" >提交成功!</string>
     <string name="toast_commit_error" >提交失败!</string>
+    <string name="toast_net_connect" >网络连接失败!</string>
+    <string name="toast_json_error" >json数据不正确</string>
 
     <string name="pullToRefresh_push_label">上拉加载...</string>
     <string name="pullToRefresh_push_loading">正在加载...</string>

@@ -15,7 +15,15 @@ public class AcceptanceForm implements Serializable{
     private String customerId;//用户id
     private String startTime;//开始时间
     private String belongorderid;//订单ID
+    private String pitposition;//坑位
 
+    public String getPitposition() {
+        return pitposition;
+    }
+
+    public void setPitposition(String pitposition) {
+        this.pitposition = pitposition;
+    }
 
     public String getBelongorderid() {
         return belongorderid;

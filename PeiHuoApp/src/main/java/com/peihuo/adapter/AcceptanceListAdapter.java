@@ -69,6 +69,7 @@ public class AcceptanceListAdapter extends BaseAdapter {
             viewHolder.startTime = (TextView)convertView.findViewById(R.id.adapter_acceptance_start_time);
             viewHolder.total = (TextView)convertView.findViewById(R.id.adapter_acceptance_total);
             viewHolder.status = (TextView) convertView.findViewById(R.id.adapter_acceptance_status);
+            viewHolder.pistion = (TextView)convertView.findViewById(R.id.adapter_acceptance_pistion);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -84,6 +85,9 @@ public class AcceptanceListAdapter extends BaseAdapter {
 
             if(order.getCustomerId()  != null)
                 viewHolder.customer.setText(order.getCustomerId());
+            if(order.getPitposition() != null){
+                viewHolder.pistion.setText(order.getPitposition());
+            }
 
             if(!TextUtils.isEmpty(order.getStartTime())){
                 if (order.getStartTime().length() > 16) {
@@ -127,7 +131,7 @@ public class AcceptanceListAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        TextView code, path, batch, customer, startTime, total, status;
+        TextView code, path, batch, customer, startTime, total, status, pistion;
         Button operation;
     }
 }

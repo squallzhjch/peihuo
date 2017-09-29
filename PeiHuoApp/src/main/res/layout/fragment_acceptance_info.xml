@@ -26,6 +26,7 @@
             android:visibility="gone" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/acceptance_info_acceptance_code"
             style="@style/acceptance_info_title_text_style" />
 
@@ -33,6 +34,10 @@
             android:id="@+id/acceptance_info_batch"
             style="@style/acceptance_info_title_text_style"
             android:visibility="gone" />
+        <TextView
+            android:id="@+id/acceptance_info_pitposition"
+            style="@style/acceptance_info_title_text_style"
+             />
 
         <TextView
             android:id="@+id/acceptance_info_time"
@@ -176,7 +181,12 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
+        <ImageView
+            android:focusable="false"
+            android:layout_gravity="center"
+            android:id="@+id/acceptance_info_pitposition_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
         <!--<ImageView-->
             <!--android:id="@+id/acceptance_info_button_last"-->
             <!--android:layout_width="55dp"-->

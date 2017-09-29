@@ -18,6 +18,7 @@
         />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/adapter_acceptance_customer"
         style="@style/adapter_plan_list_text_style"
         />
@@ -32,19 +33,26 @@
         style="@style/adapter_plan_list_text_style"
         />
 
+
     <TextView
         android:id="@+id/adapter_acceptance_total"
         style="@style/adapter_plan_list_text_style"
+        android:layout_weight="0.5"
         />
-
+    <TextView
+        android:id="@+id/adapter_acceptance_pistion"
+        style="@style/adapter_plan_list_text_style"
+        android:layout_weight="0.5"
+        />
     <TextView
         android:id="@+id/adapter_acceptance_status"
         style="@style/adapter_plan_list_text_style"
+        android:layout_weight="0.5"
         />
 
     <FrameLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:layout_height="wrap_content">
         <Button
             android:paddingLeft="10dp"

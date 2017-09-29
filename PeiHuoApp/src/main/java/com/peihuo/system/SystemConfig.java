@@ -26,9 +26,20 @@ public class SystemConfig {
     public static final String BUNDLE_KEY_SORTING_LIST_INDEX = "bundle_key_sorting_list_index";//分拣单列表所选位置
     public static final String BUNDLE_KEY_BACK_LIST_TYPE = "bundle_key_back_list_type";//从详情会列表的类型
     public static final String BUNDLE_KEY_ACTIVITY_FROM_LOGIN = "bundle_key_activity_from_login";//是否来自登录页面
-    public static final String BUNDLE_KEY_ACCEPTANCE_INFO = "";//验收单
+    public static final String BUNDLE_KEY_ACCEPTANCE_INFO = "bundle_key_acceptance_info";//验收单
+    public static final String BUNDLE_KEY_SORTING_INFO = "bundle_key_sorting_info";//验收单
+
+    public static final String JSON_KEY_CODE = "code";
+    public static final String JSON_KEY_MESSAGE = "message";
+    public static final String JSON_VALUE_CODE_SUCCESS = "1111";
+    public static final String JSON_VALUE_CODE_FAILED = "0000";
+
 
     public static final int ACTIVITY_RESULT_BACK = 0x11;
 
     public static final int DB_CONNECT_TIME = 5;
+
+    public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop/";
+
+    public static final boolean DEBUG_LOG = true;
 }

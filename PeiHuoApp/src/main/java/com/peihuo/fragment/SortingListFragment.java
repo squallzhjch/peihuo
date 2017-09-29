@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.peihuo.R;
 import com.peihuo.adapter.SortingListAdapter;
-import com.peihuo.db.QuerySortingListCallback;
 import com.peihuo.entity.SortingForm;
+import com.peihuo.net.QuerySortingListCallback;
 import com.peihuo.system.SharedConfigHelper;
 
 import java.util.ArrayList;
@@ -38,6 +38,7 @@ public class SortingListFragment extends BaseListFragment {
         mAdapter = new SortingListAdapter(getActivity());
         mListView.setAdapter(mAdapter);
         String userId = SharedConfigHelper.getInstance().getUserId();
+
         callback = new QuerySortingListCallback(getContext(), userId, 10, 0, new QuerySortingListCallback.OnLoadDataListener() {
             @Override
             public void onSuccess(ArrayList<SortingForm> list) {
@@ -58,7 +59,6 @@ public class SortingListFragment extends BaseListFragment {
             @Override
             public void onError() {
                 mListView.onRefreshComplete();
-                Toast.makeText(getContext(), getText(R.string.toast_load_data_error), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -73,7 +73,7 @@ public class SortingListFragment extends BaseListFragment {
                 } else {
                     page = count / 10;
                 }
-                callback.loadData(10, page);
+                callback.loadData(SharedConfigHelper.getInstance().getUserId(),10, page);
             }
         });
     }

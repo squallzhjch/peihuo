@@ -16,11 +16,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.peihuo.R;
-import com.peihuo.db.MySqlManager;
 import com.peihuo.entity.UserInfo;
-import com.peihuo.system.DataDictionary;
+import com.peihuo.net.LoginCallback;
 import com.peihuo.system.SharedConfigHelper;
-import com.peihuo.db.LoginCallback;
 import com.peihuo.system.SystemConfig;
 
 /**
@@ -41,7 +39,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             setContentView(R.layout.activity_login);
-            MySqlManager.getInstance().init(this);
+//            MySqlManager.getInstance().init(this);
 
             if (Build.VERSION.SDK_INT >= 23) {
                 int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -65,9 +63,11 @@ public class LoginActivity extends Activity {
                         Toast.makeText(LoginActivity.this, getText(R.string.login_input_password), Toast.LENGTH_SHORT).show();
                     } else {
                         mLoginButton.setEnabled(false);
+
                         new LoginCallback(LoginActivity.this, mUserName.getText().toString().trim(),
                                 mPassword.getText().toString().trim(),
-                                new LoginCallback.OnLoginCallbackListener(){
+                                new LoginCallback.OnLoginCallbackListener() {
+
 
                                     @Override
                                     public void onSuccess(UserInfo value) {
@@ -96,10 +96,9 @@ public class LoginActivity extends Activity {
                                     @Override
                                     public void onError() {
                                         mLoginButton.setEnabled(true);
-                                        Toast.makeText(LoginActivity.this, getText(R.string.toast_login_error), Toast.LENGTH_SHORT).show();
-
                                     }
-                                });
+                                }
+                        );
                     }
                 }
             });

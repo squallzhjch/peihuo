@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.peihuo.R;
 import com.peihuo.adapter.AcceptanceListAdapter;
-import com.peihuo.db.QueryAcceptanceListCallback;
 import com.peihuo.entity.AcceptanceForm;
+import com.peihuo.net.QueryAcceptanceListCallback;
 import com.peihuo.system.SharedConfigHelper;
 
 import java.util.ArrayList;

@@ -94,12 +94,16 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
 
         String role = SharedConfigHelper.getInstance().getUserUrole();
 
-        if(TextUtils.equals(role, "分拣员")){
+        if(TextUtils.equals(role, "分拣员") || TextUtils.equals(role, "超级管理员")){
             mSorting.setEnabled(true);
+        }else{
+            mSorting.setEnabled(false);
         }
 
-        if(TextUtils.equals(role, "验收员")){
+        if(TextUtils.equals(role, "验收员") || TextUtils.equals(role, "超级管理员")){
             mAcceptance.setEnabled(true);
+        }else{
+            mAcceptance.setEnabled(false);
         }
 
         Bundle bundle = getIntent().getExtras();

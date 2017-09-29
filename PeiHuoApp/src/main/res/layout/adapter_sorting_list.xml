@@ -18,22 +18,25 @@
         />
 
     <TextView
+        android:layout_weight="0.6"
         android:id="@+id/adapter_sorting_serial"
         style="@style/adapter_plan_list_text_style"
         />
 
     <TextView
+        android:layout_weight="0.5"
         android:id="@+id/adapter_sorting_position"
         style="@style/adapter_plan_list_text_style"
         />
 
     <TextView
+        android:layout_weight="0.5"
         android:id="@+id/adapter_sorting_status"
         style="@style/adapter_plan_list_text_style"
         />
     <FrameLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:layout_height="wrap_content">
         <Button
             android:paddingLeft="10dp"

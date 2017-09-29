@@ -130,6 +130,8 @@ public class MyLogManager {
      * @return
      **/
     public static void writeLogtoFile(String mylogtype, String tag, String text) {
+        if(!SystemConfig.DEBUG_LOG)
+            return;
         if (!flag&&isPrint) {
             flag = true;
             try {
