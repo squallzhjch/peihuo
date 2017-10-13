@@ -90,6 +90,7 @@
     <string name="acceptance_item_group_name">套装菜名称</string>
     <string name="acceptance_item_handling">加工单号</string>
     <string name="acceptance_item_type">类型</string>
+    <string name="acceptance_item_prostandard">规格</string>
 
     <string name="toast_updating">正在提交数据...</string>
     <string name="toast_loading">正在加载数据...</string>

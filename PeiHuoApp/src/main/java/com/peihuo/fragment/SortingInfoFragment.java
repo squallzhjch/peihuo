@@ -95,6 +95,9 @@ public class SortingInfoFragment extends Fragment implements View.OnClickListene
                                         ((TextView) view.findViewById(R.id.sorting_info_item_count)).setText(String.valueOf(info.getUseCount()));
                                         if (info.getProUnite() != null)
                                             ((TextView) view.findViewById(R.id.sorting_info_item_unit)).setText(info.getProUnite());
+                                        if(info.getProstandard() != null){
+                                            ((TextView) view.findViewById(R.id.sorting_info_item_prostandard)).setText(info.getProstandard());
+                                        }
                                         if (info.getHandlingOrderCode() != null)
                                             ((TextView) view.findViewById(R.id.sorting_info_item_handling)).setText(info.getHandlingOrderCode());
                                         if (DataDictionary.getInstance().isSortingSingleOrGroup(info.getIs_suit())) {

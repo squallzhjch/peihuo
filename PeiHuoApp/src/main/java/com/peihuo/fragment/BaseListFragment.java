@@ -58,11 +58,6 @@ public abstract class BaseListFragment extends Fragment {
         View listView = view.findViewById(R.id.plan_activity_fragment_list);
         if (listView != null && listView instanceof PullToRefreshListView) {
             mListView = (PullToRefreshListView) listView;
-
-            ILoadingLayout end =  mListView.getLoadingLayoutProxy(false, true);
-            end.setPullLabel("1");
-            end.setRefreshingLabel("2");
-            end.setReleaseLabel("4");
         }
     }
 

@@ -103,6 +103,9 @@ public class QuerySortingInfoCallback extends BaseCallback {
                                             if(userObject.has("prounite")){
                                                 info.setProUnite(userObject.getString("prounite"));
                                             }
+                                            if(userObject.has("prostandard")){
+                                                info.setProstandard(userObject.getString("prostandard"));
+                                            }
                                             list.add(info);
                                         }
                                     }

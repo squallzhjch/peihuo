@@ -65,6 +65,11 @@
         <TextView
             style="@style/sorting_info_title2_text_style"
             android:layout_weight="0.5"
+            android:text="@string/acceptance_item_prostandard" />
+
+        <TextView
+            style="@style/sorting_info_title2_text_style"
+            android:layout_weight="0.5"
             android:text="@string/acceptance_item_type" />
 
         <TextView

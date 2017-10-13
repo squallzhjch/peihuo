@@ -124,7 +124,7 @@ public class SortingInfoActivity extends FragmentActivity implements View.OnClic
                         }
                         new QuerySortingListCallback(SortingInfoActivity.this, SharedConfigHelper.getInstance().getUserId(), SharedConfigHelper.getInstance().getWorkLineId(), 10, page, new QuerySortingListCallback.OnLoadDataListener() {
                             @Override
-                            public void onSuccess(ArrayList<SortingForm> list) {
+                            public void onSuccess(ArrayList<SortingForm> list, int page) {
                                 if (list == null || list.size() == 0) {
                                     Toast.makeText(SortingInfoActivity.this, R.string.toast_noting_data, Toast.LENGTH_SHORT).show();
                                 }
