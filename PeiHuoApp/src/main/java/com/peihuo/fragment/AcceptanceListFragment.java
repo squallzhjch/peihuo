@@ -38,13 +38,12 @@ public class AcceptanceListFragment extends BaseListFragment {
         mListView.setAdapter(mAdapter);
         callback = new QueryAcceptanceListCallback(getContext(),  SharedConfigHelper.getInstance().getWorkLineId(),10, 0, mState, new QueryAcceptanceListCallback.OnLoadDataListener() {
             @Override
-            public void onSuccess(ArrayList<AcceptanceForm> list) {
+            public void onSuccess(ArrayList<AcceptanceForm> list, int page) {
                 mListView.onRefreshComplete();
-
                 if(list.size() < 10){
-                    mListView.setMode(PullToRefreshBase.Mode.DISABLED);
+                    mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
                 }else {
-                    mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+                    mListView.setMode(PullToRefreshBase.Mode.BOTH);
                 }
 
                 if (list.size() == 0) {
@@ -52,7 +51,12 @@ public class AcceptanceListFragment extends BaseListFragment {
                     return;
                 }
                 mAdapter.setState(mState);
-                mAdapter.addData(list);
+                if(page == 0) {
+                    mAdapter.setData(list);
+                }else{
+                    mAdapter.addData(list);
+                }
+
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -63,9 +67,14 @@ public class AcceptanceListFragment extends BaseListFragment {
 
             }
         });
-        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                callback.loadData(10, 0);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 int count = mAdapter.getCount();
                 int page = 0;
                 if (count % 10 > 0) {
@@ -74,8 +83,8 @@ public class AcceptanceListFragment extends BaseListFragment {
                     page = count / 10;
                 }
                 callback.loadData(10, page);
-                mListView.onRefreshComplete();
             }
+
         });
     }
 
@@ -83,7 +92,7 @@ public class AcceptanceListFragment extends BaseListFragment {
         mState = type;
         new QueryAcceptanceListCallback(getContext(),  SharedConfigHelper.getInstance().getWorkLineId(),10, 0, mState, new QueryAcceptanceListCallback.OnLoadDataListener() {
             @Override
-            public void onSuccess(ArrayList<AcceptanceForm> list) {
+            public void onSuccess(ArrayList<AcceptanceForm> list, int page) {
                 mListView.onRefreshComplete();
 
                 if(list.size() < 10){

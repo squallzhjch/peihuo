@@ -39,7 +39,7 @@ public class QueryAcceptanceListCallback extends BaseCallback {
     }
 
     public interface OnLoadDataListener {
-        void onSuccess(ArrayList<AcceptanceForm> list);
+        void onSuccess(ArrayList<AcceptanceForm> list, int page);
         void onError();
     }
 
@@ -111,7 +111,7 @@ public class QueryAcceptanceListCallback extends BaseCallback {
                                             }
                                         }
                                         if (mListener != null) {
-                                            mListener.onSuccess(list);
+                                            mListener.onSuccess(list, mPage);
                                         }
                                         return;
                                     }

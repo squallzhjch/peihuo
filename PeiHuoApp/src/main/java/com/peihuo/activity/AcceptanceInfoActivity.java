@@ -130,7 +130,7 @@ public class AcceptanceInfoActivity extends FragmentActivity {
                         }
                         new QueryAcceptanceListCallback(AcceptanceInfoActivity.this, SharedConfigHelper.getInstance().getWorkLineId(), 10, page,mState, new QueryAcceptanceListCallback.OnLoadDataListener() {
                             @Override
-                            public void onSuccess(ArrayList<AcceptanceForm> list) {
+                            public void onSuccess(ArrayList<AcceptanceForm> list, int pafge) {
                                 if (list == null || list.size() == 0) {
                                     Toast.makeText(AcceptanceInfoActivity.this, R.string.toast_noting_data, Toast.LENGTH_SHORT).show();
                                 }
