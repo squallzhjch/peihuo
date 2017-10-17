@@ -42,7 +42,7 @@ public class QuerySortingListCallback extends BaseCallback {
     private String mUserId = "";
     private String mLineNo ;
     public interface OnLoadDataListener {
-        void onSuccess(ArrayList<SortingForm> list);
+        void onSuccess(ArrayList<SortingForm> list, int page);
 
         void onError();
     }
@@ -118,7 +118,7 @@ public class QuerySortingListCallback extends BaseCallback {
                                             }
                                         }
                                         if (mListener != null) {
-                                            mListener.onSuccess(list);
+                                            mListener.onSuccess(list, mPage);
                                         }
                                         return;
                                     }

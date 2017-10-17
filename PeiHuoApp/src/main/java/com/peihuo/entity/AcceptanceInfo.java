@@ -18,6 +18,15 @@ public class AcceptanceInfo implements Serializable{
     private String groupName;//货品名称
     private String proUnite;//单位
     private int useCount;//使用数量
+    private String prostandard;//规格
+
+    public String getProstandard() {
+        return prostandard;
+    }
+
+    public void setProstandard(String prostandard) {
+        this.prostandard = prostandard;
+    }
 
     public String getGroupName() {
         return groupName;

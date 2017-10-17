@@ -41,18 +41,22 @@ public class SortingListFragment extends BaseListFragment {
 
         callback = new QuerySortingListCallback(getContext(), userId, SharedConfigHelper.getInstance().getWorkLineId(),10, 0, new QuerySortingListCallback.OnLoadDataListener() {
             @Override
-            public void onSuccess(ArrayList<SortingForm> list) {
+            public void onSuccess(ArrayList<SortingForm> list, int page) {
                 mListView.onRefreshComplete();
                 if(list.size() < 10){
-                    mListView.setMode(PullToRefreshBase.Mode.DISABLED);
+                    mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
                 }else {
-                    mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+                    mListView.setMode(PullToRefreshBase.Mode.BOTH);
                 }
                 if (list.size() == 0) {
                     Toast.makeText(getContext(), getText(R.string.toast_noting_data), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                mAdapter.addData(list);
+                if(page == 0){
+                    mAdapter.setData(list);
+                }else {
+                    mAdapter.addData(list);
+                }
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -62,10 +66,15 @@ public class SortingListFragment extends BaseListFragment {
             }
         });
 
-        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+
+        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                Log.e("jingo","onRefresh");
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                callback.loadData(SharedConfigHelper.getInstance().getUserId(),10, 0);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 int count = mAdapter.getCount();
                 int page = 0;
                 if (count % 10 > 0) {
@@ -75,6 +84,7 @@ public class SortingListFragment extends BaseListFragment {
                 }
                 callback.loadData(SharedConfigHelper.getInstance().getUserId(),10, page);
             }
+
         });
     }
 }
