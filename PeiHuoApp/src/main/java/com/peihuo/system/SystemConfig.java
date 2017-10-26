@@ -40,8 +40,9 @@ public class SystemConfig {
 
     public static final int DB_CONNECT_TIME = 5;
 
-//    public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop/";
+    //正式
+    public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop/";
     //ceshi
-    public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop1/";
+//    public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop1/";
     public static final boolean DEBUG_LOG = true;
 }
