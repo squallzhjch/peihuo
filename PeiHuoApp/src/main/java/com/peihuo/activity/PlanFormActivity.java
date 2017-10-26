@@ -25,7 +25,7 @@ import com.peihuo.system.SystemConfig;
  */
 
 public class PlanFormActivity extends FragmentActivity implements View.OnClickListener {
-    private TextView mProduction;//生产单
+//    private TextView mProduction;//生产单
     private TextView mSorting;//分拣单
     private TextView mAcceptance;//验收单
     private int mLastSelectType = -1;//被选中的栏
@@ -34,7 +34,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
     //分拣单
     private SortingListFragment mSortingListFragment;
     //生产计划单
-    private ProductionListFragment mProductionPlanFragment;
+//    private ProductionListFragment mProductionPlanFragment;
     //验收单
     private AcceptanceListFragment mAcceptanceListFragment;
 
@@ -88,7 +88,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
     }
 
     private void initTitles() {
-        mProduction = (TextView) findViewById(R.id.plan_title_production);
+//        mProduction = (TextView) findViewById(R.id.plan_title_production);
         mSorting = (TextView) findViewById(R.id.plan_title_sorting);
         mAcceptance = (TextView) findViewById(R.id.plan_title_acceptance);
         mPullIcon = (ImageView) findViewById(R.id.acceptance_list_pull_icon);
@@ -111,10 +111,10 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
         if(bundle != null) {
             switchFragment(bundle.getInt(SystemConfig.BUNDLE_KEY_BACK_LIST_TYPE, 0));
         }else{
-            switchFragment(0);
+            switchFragment(1);
         }
 
-        mProduction.setOnClickListener(this);
+//        mProduction.setOnClickListener(this);
         mSorting.setOnClickListener(this);
         mAcceptance.setOnClickListener(this);
         mPullIcon.setOnClickListener(this);
@@ -138,9 +138,9 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
             case R.id.plan_title_acceptance:
                 switchFragment(2);
                 break;
-            case R.id.plan_title_production:
-                switchFragment(0);
-                break;
+//            case R.id.plan_title_production:
+//                switchFragment(0);
+//                break;
             case R.id.plan_title_sorting:
                 switchFragment(1);
                 break;
@@ -194,7 +194,7 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
             return;
         }
         if (mLastSelectType == 0) {
-            mProduction.setSelected(false);
+//            mProduction.setSelected(false);
         } else if (mLastSelectType == 1) {
             mSorting.setSelected(false);
         } else if (mLastSelectType == 2) {
@@ -203,11 +203,11 @@ public class PlanFormActivity extends FragmentActivity implements View.OnClickLi
         }
         mLastSelectType = type;
         if (type == 0) {
-            mProduction.setSelected(true);
-            if (mProductionPlanFragment == null) {
-                mProductionPlanFragment = new ProductionListFragment();
-            }
-            showFragment(mProductionPlanFragment);
+//            mProduction.setSelected(true);
+//            if (mProductionPlanFragment == null) {
+//                mProductionPlanFragment = new ProductionListFragment();
+//            }
+//            showFragment(mProductionPlanFragment);
         } else if (type == 1) {
             mSorting.setSelected(true);
             if (mSortingListFragment == null) {
