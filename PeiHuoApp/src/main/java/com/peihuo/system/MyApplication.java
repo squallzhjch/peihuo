@@ -79,6 +79,6 @@ public class MyApplication extends Application {
 
         /***** 统一初始化Bugly产品，包含Beta *****/
 //        Bugly.init(this, "27b2e07773", false, strategy);
-        Bugly.init(getApplicationContext(), "27b2e07773", false);
+        Bugly.init(getApplicationContext(), SystemConfig.BUGLY_ID, true);
     }
 }

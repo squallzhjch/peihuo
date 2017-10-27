@@ -15,7 +15,7 @@ android {
         applicationId "com.peihuo"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 5
+        versionCode 1
         versionName "1.0.5"
         ndk {
             //设置支持的SO库架构
@@ -40,6 +40,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'

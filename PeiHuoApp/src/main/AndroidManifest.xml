@@ -13,6 +13,7 @@
         <activity
             android:name="com.peihuo.activity.LoginActivity"
             android:screenOrientation="sensorLandscape"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
