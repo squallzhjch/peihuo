@@ -112,7 +112,9 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
                                     ((TextView) view.findViewById(R.id.acceptance_info_item_count)).setText(String.valueOf(info.getUseCount()));
                                     if (info.getProUnite() != null)
                                         ((TextView) view.findViewById(R.id.acceptance_info_item_unit)).setText(info.getProUnite());
-
+                                    if(info.getProstandard() != null){
+                                        ((TextView) view.findViewById(R.id.acceptance_info_item_prostandard)).setText(info.getProstandard());
+                                    }
                                     mSingleLayout.addView(view, mLayoutParams);
                                 } else {
                                     View view = View.inflate(getContext(), R.layout.acceptance_info_group_item, null);
@@ -125,6 +127,9 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
                                     ((TextView) view.findViewById(R.id.acceptance_info_item_count)).setText(String.valueOf(info.getUseCount()));
                                     if (info.getProUnite() != null)
                                         ((TextView) view.findViewById(R.id.acceptance_info_item_unit)).setText(info.getProUnite());
+                                    if(info.getProstandard() != null){
+                                        ((TextView) view.findViewById(R.id.acceptance_info_item_prostandard)).setText(info.getProstandard());
+                                    }
                                     mGroupLayout.addView(view, mLayoutParams);
                                 }
                             }

@@ -93,7 +93,10 @@
                             style="@style/sorting_info_text_style"
                             android:layout_weight="0.5"
                             android:text="@string/acceptance_item_count" />
-
+                        <TextView
+                            android:layout_weight="0.5"
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_prostandard" />
                         <TextView
                             android:layout_weight="0.5"
                             style="@style/sorting_info_text_style"
@@ -151,6 +154,11 @@
                             style="@style/sorting_info_text_style"
                             android:layout_weight="0.5"
                             android:text="@string/acceptance_item_count" />
+
+                        <TextView
+                            android:layout_weight="0.5"
+                            style="@style/sorting_info_text_style"
+                            android:text="@string/acceptance_item_prostandard" />
 
                         <TextView
                             android:layout_weight="0.5"

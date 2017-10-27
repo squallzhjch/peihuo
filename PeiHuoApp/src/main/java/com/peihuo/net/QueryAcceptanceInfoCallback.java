@@ -106,8 +106,8 @@ public class QueryAcceptanceInfoCallback extends BaseCallback {
                                             if(userObject.has("pname")){
                                                 info.setGroupName(userObject.getString("pname"));
                                             }
-                                            if(userObject.has("prostandard")){
-                                                info.setProstandard(userObject.getString("prostandard"));
+                                            if(userObject.has("prostandered")){
+                                                info.setProstandard(userObject.getString("prostandered"));
                                             }
                                             list.add(info);
                                         }
