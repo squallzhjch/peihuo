@@ -75,6 +75,7 @@ public class WorkLineDialog extends Dialog {
         if(selectButton != null && scrollView != null && list != null && list.size() > 0) {
             selectButton.setText(list.get(0).getPipeline());
             SharedConfigHelper.getInstance().setWorkLineId(list.get(0).getId());
+            SharedConfigHelper.getInstance().setWorkLineHoleNum(list.get(0).getHolenum());
             selectLayout.removeAllViews();
             for(final WorkLine line:list) {
                 View view = View.inflate(getContext(), R.layout.work_line_only_text, null);
@@ -87,6 +88,7 @@ public class WorkLineDialog extends Dialog {
                     public void onClick(View v) {
                         scrollView.setVisibility(View.GONE);
                         SharedConfigHelper.getInstance().setWorkLineId(line.getId());
+                        SharedConfigHelper.getInstance().setWorkLineHoleNum(line.getHolenum());
                         selectButton.setText(((TextView)v).getText());
                     }
                 });

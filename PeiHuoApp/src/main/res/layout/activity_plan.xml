@@ -13,37 +13,42 @@
         android:background="@drawable/frame_gray_bg_blue"
         >
 
-        <TextView
-            android:id="@+id/plan_title_sorting"
-            style="@style/plan_title_text_style"
-            android:layout_centerInParent="true"
-            android:enabled="false"
-            android:text="@string/plan_sorting" />
-
-        <View
-            android:id="@+id/plan_title_sheet_left"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_alignBottom="@id/plan_title_sorting"
-            android:layout_alignTop="@id/plan_title_sorting"
-            android:layout_toLeftOf="@id/plan_title_sorting"
-            android:background="@color/color_default_line" />
-
         <View
             android:id="@+id/plan_title_sheet_right"
             android:layout_width="1dp"
             android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
             android:layout_alignBottom="@id/plan_title_sorting"
             android:layout_alignTop="@id/plan_title_sorting"
-            android:layout_toRightOf="@id/plan_title_sorting"
             android:background="@color/color_default_line" />
 
+
         <TextView
-            android:id="@+id/plan_title_production"
+            android:id="@+id/plan_title_sorting"
             style="@style/plan_title_text_style"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/plan_title_sheet_left"
-            android:text="@string/plan_production" />
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/plan_title_sheet_right"
+            android:enabled="false"
+            android:text="@string/plan_sorting" />
+
+        <!--<View-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/plan_title_sheet_left"-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_alignBottom="@id/plan_title_sorting"-->
+            <!--android:layout_alignTop="@id/plan_title_sorting"-->
+            <!--android:layout_toLeftOf="@id/plan_title_sorting"-->
+            <!--android:background="@color/color_default_line" />-->
+
+
+        <!--<TextView-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/plan_title_production"-->
+            <!--style="@style/plan_title_text_style"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toLeftOf="@id/plan_title_sheet_left"-->
+            <!--android:text="@string/plan_production" />-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_centerVertical="true"

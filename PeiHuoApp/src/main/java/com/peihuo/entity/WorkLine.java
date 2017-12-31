@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class WorkLine implements Serializable {
     private String pipeline;//生产线
     private String id;
+    private int holenum;//坑位总数
 
     public String getId() {
         return id;
@@ -24,5 +25,13 @@ public class WorkLine implements Serializable {
 
     public void setPipeline(String pipeline) {
         this.pipeline = pipeline;
+    }
+
+    public int getHolenum() {
+        return holenum;
+    }
+
+    public void setHolenum(int holenum) {
+        this.holenum = holenum;
     }
 }

@@ -10,6 +10,7 @@ import com.peihuo.entity.AcceptanceForm;
 import com.peihuo.entity.SortingForm;
 import com.peihuo.entity.SortingInfo;
 import com.peihuo.entity.UserInfo;
+import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.system.SystemConfig;
 import com.peihuo.thread.ThreadManager;
 import com.peihuo.thread.ThreadManager.OnDatabaseOperationRunnable;
@@ -40,15 +41,16 @@ public class QuerySortingListCallback extends BaseCallback {
     private int mCount = 10;
     private int mPage = 0;
     private String mUserId = "";
-    private String mLineNo ;
+    private String mLineNo;
+
     public interface OnLoadDataListener {
-        void onSuccess(ArrayList<SortingForm> list, int page);
+        void onSuccess(SortingForm[] list, int page);
 
         void onError();
     }
 
     public QuerySortingListCallback(Context context, String userId, String lineNo, int count, int page, OnLoadDataListener listener) {
-        super(context, userId,lineNo, count, page);
+        super(context, userId, lineNo, count, page);
         mListener = listener;
         mUserId = userId;
         mCount = count;
@@ -75,7 +77,9 @@ public class QuerySortingListCallback extends BaseCallback {
 
     @Override
     protected void loadData() {
-        Call<ResponseBody> call = NetManager.getInstance().getNetService().querySortingList(mUserId, mLineNo, mPage, mCount);
+//        Call<ResponseBody> call = NetManager.getInstance().getNetService().querySortingList(mUserId, mLineNo, mPage, mCount);
+        final int holeNum = SharedConfigHelper.getInstance().getWorkLineHoleNum();
+        Call<ResponseBody> call = NetManager.getInstance().getNetService().querySortingListByHoleNum(mUserId, mLineNo, holeNum);
         showLoading(call);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -89,15 +93,14 @@ public class QuerySortingListCallback extends BaseCallback {
                     if (jsonObject.has(SystemConfig.JSON_KEY_CODE)) {
                         String code = jsonObject.getString(SystemConfig.JSON_KEY_CODE);
                         if (TextUtils.equals(code, SystemConfig.JSON_VALUE_CODE_SUCCESS)) {
-                            ArrayList<SortingForm> list = null;
+                            SortingForm[] list = new SortingForm[holeNum];
                             if (jsonObject.has("data")) {
-                                JSONObject dataObject = jsonObject.getJSONObject("data");
+                                JSONArray dataObject = jsonObject.getJSONArray("data");
                                 if (dataObject != null) {
-                                    JSONArray listArray = dataObject.getJSONArray("list");
-                                    if (listArray != null && listArray.length() > 0) {
-                                        list = new ArrayList<>();
-                                        for (int i = 0; i < listArray.length(); i++) {
-                                            JSONObject object = listArray.getJSONObject(i);
+//                                    JSONArray listArray = dataObject.getJSONArray("list");
+                                    if (dataObject.length() > 0) {
+                                        for (int i = 0; i < dataObject.length(); i++) {
+                                            JSONObject object = dataObject.getJSONObject(i);
                                             if (object != null) {
                                                 SortingForm line = new SortingForm();
                                                 if (object.has("belongorderid"))
@@ -114,7 +117,10 @@ public class QuerySortingListCallback extends BaseCallback {
                                                     line.setAcceptanceState(object.getString("acceptancestate"));
                                                 if (object.has("batchcount"))
                                                     line.setBatchCount(object.getString("batchcount"));
-                                                list.add(line);
+                                                int pos = Integer.parseInt(line.getPitposition());
+                                                if (pos <= holeNum && pos > 0) {
+                                                    list[pos - 1] = line;
+                                                }
                                             }
                                         }
                                         if (mListener != null) {

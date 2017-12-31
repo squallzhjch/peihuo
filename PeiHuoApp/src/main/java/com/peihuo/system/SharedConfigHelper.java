@@ -194,10 +194,26 @@ public class SharedConfigHelper {
         }
     }
 
+
     public String getWorkLineId() {
         if (mSharePre != null) {
             return mSharePre.getString(SystemConfig.SP_KEY_USER_WORKLINE_ID, "");
         }
         return "";
+    }
+
+    public void setWorkLineHoleNum(int num) {
+        if (mSharePre != null ) {
+            mSharePre.edit()
+                    .putInt(SystemConfig.SP_KEY_USER_HOLE_NUM, num)
+                    .commit();
+        }
+    }
+
+    public int getWorkLineHoleNum() {
+        if (mSharePre != null) {
+            return mSharePre.getInt(SystemConfig.SP_KEY_USER_HOLE_NUM, 0);
+        }
+        return 0;
     }
 }

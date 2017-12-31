@@ -56,50 +56,53 @@ public class LoginActivity extends Activity {
             mLoginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    if (mUserName.getText() == null || mUserName.getText().toString().trim().length() == 0) {
-                        Toast.makeText(LoginActivity.this, getText(R.string.login_input_user_num), Toast.LENGTH_SHORT).show();
-                    } else if (mPassword.getText() == null || mPassword.getText().toString().trim().length() == 0) {
-                        Toast.makeText(LoginActivity.this, getText(R.string.login_input_password), Toast.LENGTH_SHORT).show();
-                    } else {
-                        mLoginButton.setEnabled(false);
-
-                        new LoginCallback(LoginActivity.this, mUserName.getText().toString().trim(),
-                                mPassword.getText().toString().trim(),
-                                new LoginCallback.OnLoginCallbackListener() {
-
-
-                                    @Override
-                                    public void onSuccess(UserInfo value) {
-                                        mLoginButton.setEnabled(true);
-                                        if (value == null) {
-                                            Toast.makeText(LoginActivity.this, getText(R.string.toast_get_userinfo_error), Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                        if(TextUtils.isEmpty(value.getUrole())){
-                                            Toast.makeText(LoginActivity.this, getText(R.string.toast_get_userinfo_role_error), Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                        SharedConfigHelper.getInstance().setPassword(mPassword.getText().toString().trim());
-                                        SharedConfigHelper.getInstance().setUserAccount(value.getAccount());
-                                        SharedConfigHelper.getInstance().setUserName(value.getUserName());
-                                        SharedConfigHelper.getInstance().setUserId(value.getUserId());
-                                        SharedConfigHelper.getInstance().setUserUrole(value.getUrole());
-                                        SharedConfigHelper.getInstance().setRepositoryId(value.getRepositoryid());
-                                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        intent.putExtra(SystemConfig.BUNDLE_KEY_ACTIVITY_FROM_LOGIN, true);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-
-                                    @Override
-                                    public void onError() {
-                                        mLoginButton.setEnabled(true);
-                                    }
-                                }
-                        );
+                    {
+                        Toast.makeText(LoginActivity.this, "试用版本已过期，请续费后使用", Toast.LENGTH_LONG).show();
+                        return;
                     }
+//                    if (mUserName.getText() == null || mUserName.getText().toString().trim().length() == 0) {
+//                        Toast.makeText(LoginActivity.this, getText(R.string.login_input_user_num), Toast.LENGTH_SHORT).show();
+//                    } else if (mPassword.getText() == null || mPassword.getText().toString().trim().length() == 0) {
+//                        Toast.makeText(LoginActivity.this, getText(R.string.login_input_password), Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        mLoginButton.setEnabled(false);
+//
+//                        new LoginCallback(LoginActivity.this, mUserName.getText().toString().trim(),
+//                                mPassword.getText().toString().trim(),
+//                                new LoginCallback.OnLoginCallbackListener() {
+//
+//
+//                                    @Override
+//                                    public void onSuccess(UserInfo value) {
+//                                        mLoginButton.setEnabled(true);
+//                                        if (value == null) {
+//                                            Toast.makeText(LoginActivity.this, getText(R.string.toast_get_userinfo_error), Toast.LENGTH_SHORT).show();
+//                                            return;
+//                                        }
+//                                        if(TextUtils.isEmpty(value.getUrole())){
+//                                            Toast.makeText(LoginActivity.this, getText(R.string.toast_get_userinfo_role_error), Toast.LENGTH_SHORT).show();
+//                                            return;
+//                                        }
+//                                        SharedConfigHelper.getInstance().setPassword(mPassword.getText().toString().trim());
+//                                        SharedConfigHelper.getInstance().setUserAccount(value.getAccount());
+//                                        SharedConfigHelper.getInstance().setUserName(value.getUserName());
+//                                        SharedConfigHelper.getInstance().setUserId(value.getUserId());
+//                                        SharedConfigHelper.getInstance().setUserUrole(value.getUrole());
+//                                        SharedConfigHelper.getInstance().setRepositoryId(value.getRepositoryid());
+//                                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+//                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                        intent.putExtra(SystemConfig.BUNDLE_KEY_ACTIVITY_FROM_LOGIN, true);
+//                                        startActivity(intent);
+//                                        finish();
+//                                    }
+//
+//                                    @Override
+//                                    public void onError() {
+//                                        mLoginButton.setEnabled(true);
+//                                    }
+//                                }
+//                        );
+//                    }
                 }
             });
 

@@ -41,22 +41,24 @@ public class SortingListFragment extends BaseListFragment {
 
         callback = new QuerySortingListCallback(getContext(), userId, SharedConfigHelper.getInstance().getWorkLineId(),10, 0, new QuerySortingListCallback.OnLoadDataListener() {
             @Override
-            public void onSuccess(ArrayList<SortingForm> list, int page) {
+            public void onSuccess(SortingForm[] list, int page) {
                 mListView.onRefreshComplete();
-                if(list.size() < 10){
-                    mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
-                }else {
-                    mListView.setMode(PullToRefreshBase.Mode.BOTH);
-                }
-                if (list.size() == 0) {
-                    Toast.makeText(getContext(), getText(R.string.toast_noting_data), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(page == 0){
-                    mAdapter.setData(list);
-                }else {
-                    mAdapter.addData(list);
-                }
+//                if(list.size() < 10){
+//                    mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+//                }else {
+//                    mListView.setMode(PullToRefreshBase.Mode.BOTH);
+//                }
+                mListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+//                if (list.size() == 0) {
+//                    Toast.makeText(getContext(), getText(R.string.toast_noting_data), Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                if(page == 0){
+//                    mAdapter.setData(list);
+//                }else {
+//                    mAdapter.addData(list);
+//                }
+                mAdapter.setData(list);
                 mAdapter.notifyDataSetChanged();
             }
 

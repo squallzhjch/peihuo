@@ -19,6 +19,7 @@ public class SystemConfig {
     public static final String SP_KEY_USER_UROLE = "sp_key_user_urole";
     public static final String SP_KEY_USER_REPOSITORY_ID = "sp_key_user_repository_id";
     public static final String SP_KEY_USER_WORKLINE_ID = "sp_key_user_workline_id";
+    public static final String SP_KEY_USER_HOLE_NUM = "sp_key_user_hole_num";
     public static final String SP_KEY_REMEMBER_PASSWORD = "sp_key_remember_password";
     public static final String SP_KEY_USER_ID = "sp_key_user_id";
 
@@ -40,8 +41,13 @@ public class SystemConfig {
 
     public static final int DB_CONNECT_TIME = 5;
 
+    //正式
     public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop/";
+    public static final String BUGLY_ID = "27b2e07773";
     //ceshi
-//    public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop1/";
+//    public static final String APP_IP = "http://47.95.12.49:8084/echuxianshengshop2/";
+//    public static final String BUGLY_ID = "458498261f";
+
     public static final boolean DEBUG_LOG = true;
+
 }

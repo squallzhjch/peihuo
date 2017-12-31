@@ -93,6 +93,10 @@ public class NetManager {
         @GET("androidInterface/sortingList")
         Call<ResponseBody> querySortingList(@Query("userID") String userID,@Query("lineNo") String lineNo, @Query("pageNum") int pageNum, @Query("pageSize") int pageSize);
 
+        @GET("androidInterface/sortingListByHoleNum")
+        Call<ResponseBody> querySortingListByHoleNum(@Query("userID") String userID,@Query("lineNo") String lineNo, @Query("holeNum") int pageNum);
+
+
         @GET("androidInterface/findPipeline")
         Call<ResponseBody> queryWorkLines(@Query("repCode") String repCode);
 
@@ -101,6 +105,9 @@ public class NetManager {
 
         @GET("androidInterface/sortingInfo")
         Call<ResponseBody> querySortingInfo(@Query("ordercode") String ordercode, @Query("humanId") String userid);
+
+        @GET("androidInterface/sortingInfoByHoleNo")
+        Call<ResponseBody> querySortingInfoByHoleNo(@Query("ordercode") String ordercode, @Query("humanId") String userid, @Query("holeNo") String holeNo);
 
         @GET("androidInterface/sortingPass")
         Call<ResponseBody> updateSortingPass(@Query("userId") String userId, @Query("id") String id);

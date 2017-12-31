@@ -76,8 +76,10 @@ public class SortingInfoFragment extends Fragment implements View.OnClickListene
             if (serializable != null && serializable instanceof SortingForm) {
                 mForm = (SortingForm) serializable;
                 initTitles();
-                mInfoCallback = new QuerySortingInfoCallback(getContext(), mForm.getBelongorderid(),
+                mInfoCallback = new QuerySortingInfoCallback(getContext(),
+                        mForm.getBelongorderid(),
                         SharedConfigHelper.getInstance().getUserId(),
+                        mForm.getPitposition(),
                         new QuerySortingInfoCallback.OnLoadDataListener() {
                             @Override
                             public void onSuccess(ArrayList<SortingInfo> list) {

@@ -1,14 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword 'zhangjingchao'
+            storeFile file('G:/git/peihuo/peihua.jks')
+            storePassword 'zhangjingchao'
+        }
+    }
     compileSdkVersion 23
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.peihuo"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 8
+        versionName "1.0.8"
         ndk {
             //设置支持的SO库架构
             abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -18,6 +26,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+        }
+        debug {
+            jniDebuggable true
         }
     }
 }
@@ -25,14 +40,16 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    implementation files('libs/mysql-connector-java-5.1.43-bin.jar')
+    //    implementation files('libs/mysql-connector-java-5.1.43-bin.jar')
     compile project(path: ':library')
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
-    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
-
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
 }

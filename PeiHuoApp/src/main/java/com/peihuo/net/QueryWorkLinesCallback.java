@@ -79,6 +79,8 @@ public class QueryWorkLinesCallback extends BaseCallback {
                                                 line.setId(object.getString("id"));
                                             if (object.has("pipeline"))
                                                 line.setPipeline(object.getString("pipeline"));
+                                            if(object.has("holenum"))
+                                                line.setHolenum(object.getInt("holenum"));
                                             list.add(line);
                                         }
                                     }

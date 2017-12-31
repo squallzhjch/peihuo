@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="20dp"
+    android:background="@color/color_default_white"
+    android:layout_width="300dp"
+    android:layout_height="200dp">
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/green_title" />
+
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:text="是否真的要变为异常?"
+        android:textColor="@color/color_default_text_black_1h"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/app_ok"
+            android:background="@drawable/select_drawable_color_green"
+            android:textColor="@color/color_default_white"
+            />
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/app_cancel"
+            android:background="@drawable/select_drawable_color_green"
+            android:textColor="@color/color_default_white"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

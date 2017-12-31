@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">易厨鲜生分拣系统</string>
+    <string name="app_name">易厨生鲜分拣系统</string>
 
     <!-- 登录页面-->
     <string name="login_name">生鲜电商生产执行系统</string>
@@ -51,7 +51,7 @@
     <string name="format_sorting_sale_number">销售单号：%1$s</string>
     <string name="format_sorting_customer">客户ID：%1$s</string>
     <string name="format_sorting_batch">批次：%1$s</string>
-    <string name="format_sorting_serial">流水：%1$s</string>
+    <string name="format_sorting_serial">流水线：%1$s</string>
     <string name="format_sorting_position">坑位：%1$s</string>
 
     <string name="format_sorting_item_code">商品编号：%1$s</string>
@@ -111,11 +111,11 @@
 
     <string name="dictionary_acceptance_status_wait_acceptance">等待验收</string>
     <string name="dictionary_acceptance_status_wait_sorting">等待分拣</string>
+    <string name="dictionary_acceptance_status_sorting_over">分拣完成</string>
     <string name="dictionary_acceptance_status_pass">验收通过</string>
     <string name="dictionary_acceptance_status_no_pass">验收未通过</string>
 
     <string name="details">详情</string>
     <string name="last_one">上一个</string>
     <string name="next">下一个</string>
-    <string name="confirm">确定</string>
 </resources>

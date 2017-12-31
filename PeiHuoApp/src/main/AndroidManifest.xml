@@ -13,6 +13,7 @@
         <activity
             android:name="com.peihuo.activity.LoginActivity"
             android:screenOrientation="sensorLandscape"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -44,6 +45,17 @@
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan"></activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />

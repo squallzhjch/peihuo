@@ -1,5 +1,6 @@
 package com.peihuo.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import com.peihuo.net.UpdateAcceptancePassCallback;
 import com.peihuo.system.DataDictionary;
 import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.system.SystemConfig;
+import com.peihuo.ui.dialog.AcceptanceErrorDialog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -247,14 +249,29 @@ public class AcceptanceInfoFragment extends Fragment implements View.OnClickList
                     }
                 });
         }else if(v == mError){
-            new UpdateAcceptanceErrorCallback(getActivity(), mForm.getCode(), mForm.getBelongorderid(), new UpdateAcceptanceErrorCallback.OnUpdateDataListener() {
-                    @Override
-                    public void onSuccess() {
-                        mForm.setAcceptanceState("3");
-                        initStatus(mForm, true);
+            mError.setEnabled(false);
+            final AcceptanceErrorDialog dialog = new AcceptanceErrorDialog(getActivity());
+            dialog.setOnSubmitListener(new AcceptanceErrorDialog.OnSubmitListener() {
+                @Override
+                public void onSubmit() {
+                    dialog.dismiss();
+                    new UpdateAcceptanceErrorCallback(getActivity(), mForm.getCode(), mForm.getBelongorderid(), new UpdateAcceptanceErrorCallback.OnUpdateDataListener() {
+                        @Override
+                        public void onSuccess() {
+                            mForm.setAcceptanceState("3");
+                            initStatus(mForm, true);
 //                        onClick(findViewById(R.id.acceptance_info_button_next));
-                    }
-                });
+                        }
+                    });
+                }
+            });
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mError.setEnabled(true);
+                }
+            });
+            dialog.show();
         }
     }
 

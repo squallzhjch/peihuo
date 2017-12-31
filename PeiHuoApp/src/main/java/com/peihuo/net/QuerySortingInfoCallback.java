@@ -30,23 +30,26 @@ public class QuerySortingInfoCallback extends BaseCallback {
     private OnLoadDataListener mListener;
     private String mCode;
     private String mUserId;
+    private String mHoleNo;
     public interface OnLoadDataListener{
         void onSuccess(ArrayList<SortingInfo> list);
         void onError();
     }
 
-    public QuerySortingInfoCallback(Context context, String code, String userid, OnLoadDataListener listener){
-        super(context, code, userid);
+    public QuerySortingInfoCallback(Context context, String code, String userid, String holeNo, OnLoadDataListener listener){
+        super(context, code, userid, holeNo);
         mListener = listener;
         mCode = code;
         mUserId = userid;
+        mHoleNo = holeNo;
     }
 
     @Override
     protected void initData(Object... objects) {
-        if(objects != null && objects.length > 1) {
+        if(objects != null && objects.length > 2) {
             mCode = String.valueOf(objects[0]);
             mUserId = String.valueOf(objects[1]);
+            mHoleNo = String.valueOf(objects[2]);
         }
     }
 
@@ -62,7 +65,7 @@ public class QuerySortingInfoCallback extends BaseCallback {
         if(mUserId == null){
             return;
         }
-        Call<ResponseBody> call = NetManager.getInstance().getNetService().querySortingInfo(mCode, mUserId);
+        Call<ResponseBody> call = NetManager.getInstance().getNetService().querySortingInfoByHoleNo(mCode, mUserId, mHoleNo);
         showLoading(call);
         call.enqueue(new Callback<ResponseBody>() {
             @Override

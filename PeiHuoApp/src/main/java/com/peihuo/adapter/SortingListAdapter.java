@@ -13,6 +13,7 @@ import com.peihuo.R;
 import com.peihuo.activity.SortingInfoActivity;
 import com.peihuo.entity.SortingForm;
 import com.peihuo.system.DataDictionary;
+import com.peihuo.system.SharedConfigHelper;
 import com.peihuo.system.SystemConfig;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 
 public class SortingListAdapter extends BaseAdapter {
 
-    private ArrayList<SortingForm> mList = new ArrayList<>();
+    private SortingForm[] mList = new SortingForm[SharedConfigHelper.getInstance().getWorkLineHoleNum()];
     Activity mActivity;
 
     public SortingListAdapter(Activity context) {
@@ -34,15 +35,15 @@ public class SortingListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mList != null) {
-            return mList.size();
+            return mList.length;
         }
         return 0;
     }
 
     @Override
     public Object getItem(int position) {
-        if (mList != null && mList.size() > position)
-            return mList.get(position);
+        if (mList != null && mList.length > position)
+            return mList[position];
         return null;
     }
 
@@ -69,47 +70,65 @@ public class SortingListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        if (mList != null && mList.size() > position) {
-            SortingForm order = mList.get(position);
-            if(order.getBelongorderid() != null) {
-                viewHolder.code.setText(order.getBelongorderid());
-            }
-            if(order.getBatchCount() != null) {
-                viewHolder.batch.setText(order.getBatchCount());
-            }
-            viewHolder.status.setText(DataDictionary.getInstance().getSortingState(order.getAcceptanceState()));
-            if(order.getAssemblelineno() != null) {
-                viewHolder.serial.setText(order.getAssemblelineno());
-            }
-            if(order.getPitposition() != null) {
-                viewHolder.position.setText(order.getPitposition());
-            }
-            viewHolder.operation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mActivity, SortingInfoActivity.class);
-                    intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST_INDEX, position);
-                    intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST, mList);
-                    mActivity.startActivity(intent);
-                    mActivity.finish();
+        if (mList != null && mList.length > position) {
+            SortingForm order = mList[position];
+            if(order == null){
+                viewHolder.position.setText(String.valueOf(position + 1));
+                viewHolder.operation.setEnabled(false);
+            }else {
+                viewHolder.operation.setEnabled(true);
+                if (order.getBelongorderid() != null) {
+                    viewHolder.code.setText(order.getBelongorderid());
                 }
-            });
+                if (order.getBatchCount() != null) {
+                    viewHolder.batch.setText(order.getBatchCount());
+                }
+                viewHolder.status.setText(DataDictionary.getInstance().getSortingState(order.getAcceptanceState()));
+                if (order.getAssemblelineno() != null) {
+                    viewHolder.serial.setText(order.getAssemblelineno());
+                }
+                if (order.getPitposition() != null) {
+                    viewHolder.position.setText(String.valueOf(position + 1));
+                }
+                viewHolder.operation.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mActivity, SortingInfoActivity.class);
+                        int index = 0;
+                        ArrayList<SortingForm> list = new ArrayList<>();
+                        for(int i = 0;i<mList.length;i++){
+                            SortingForm form = mList[i];
+                            if(form != null){
+                                if(form.getPitposition().equals(String.valueOf(position + 1))){
+                                    index = list.size();
+                                }
+                                list.add(form);
+                            }
+
+                        }
+                        intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST_INDEX, index);
+                        intent.putExtra(SystemConfig.BUNDLE_KEY_SORTING_LIST, list);
+                        mActivity.startActivity(intent);
+                        mActivity.finish();
+                    }
+                });
+            }
         }
 
         return convertView;
     }
 
-    public void setData(ArrayList<SortingForm> data) {
+    public void setData(SortingForm[] data) {
         this.mList = data;
     }
 
-    public void addData(ArrayList<SortingForm> list){
-        if(mList != null && list != null){
-            for(SortingForm form:list){
-                mList.add(form);
-            }
-        }
-    }
+//    public void addData(ArrayList<SortingForm> list){
+//        if(mList != null && list != null){
+//            for(SortingForm form:list){
+//                mList.add(form);
+//            }
+//        }
+//    }
 
     class ViewHolder {
         TextView code, batch, serial, position, status;

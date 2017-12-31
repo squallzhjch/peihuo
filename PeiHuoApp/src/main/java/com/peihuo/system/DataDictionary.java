@@ -46,7 +46,7 @@ public class DataDictionary {
         sortingStateMap = new HashMap<>();
         sortingStateMap.put("0", mContext.getString(R.string.dictionary_acceptance_status_wait_sorting));
         sortingStateMap.put("1", mContext.getString(R.string.dictionary_acceptance_status_wait_acceptance));
-        sortingStateMap.put("2", mContext.getString(R.string.dictionary_acceptance_status_pass));
+        sortingStateMap.put("2", mContext.getString(R.string.dictionary_acceptance_status_sorting_over));
         sortingStateMap.put("3", mContext.getString(R.string.dictionary_acceptance_status_no_pass));
     }
 

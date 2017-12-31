@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:gravity="center"
-        android:text="@string/confirm"
+        android:text="@string/app_ok"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:paddingLeft="80dp"

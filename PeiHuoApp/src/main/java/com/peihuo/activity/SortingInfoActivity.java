@@ -122,30 +122,30 @@ public class SortingInfoActivity extends FragmentActivity implements View.OnClic
                         } else {
                             page = listSize / 10;
                         }
-                        new QuerySortingListCallback(SortingInfoActivity.this, SharedConfigHelper.getInstance().getUserId(), SharedConfigHelper.getInstance().getWorkLineId(), 10, page, new QuerySortingListCallback.OnLoadDataListener() {
-                            @Override
-                            public void onSuccess(ArrayList<SortingForm> list, int page) {
-                                if (list == null || list.size() == 0) {
-                                    Toast.makeText(SortingInfoActivity.this, R.string.toast_noting_data, Toast.LENGTH_SHORT).show();
-                                }
-                                for (SortingForm form : list) {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putSerializable(SystemConfig.BUNDLE_KEY_SORTING_INFO, form);
-                                    SortingInfoFragment fragment = new SortingInfoFragment();
-                                    fragment.setArguments(bundle);
-                                    mAdapter.addFragment(fragment);
-                                    mList.add(form);
-                                }
-                                mAdapter.notifyDataSetChanged();
-                                mViewPager.setCurrentItem(mSelectIndex);
-                            }
-
-
-                            @Override
-                            public void onError() {
-                                Toast.makeText(SortingInfoActivity.this, R.string.toast_noting_data, Toast.LENGTH_SHORT).show();
-                            }
-                        });
+//                        new QuerySortingListCallback(SortingInfoActivity.this, SharedConfigHelper.getInstance().getUserId(), SharedConfigHelper.getInstance().getWorkLineId(), 10, page, new QuerySortingListCallback.OnLoadDataListener() {
+//                            @Override
+//                            public void onSuccess(ArrayList<SortingForm> list, int page) {
+//                                if (list == null || list.size() == 0) {
+//                                    Toast.makeText(SortingInfoActivity.this, R.string.toast_noting_data, Toast.LENGTH_SHORT).show();
+//                                }
+//                                for (SortingForm form : list) {
+//                                    Bundle bundle = new Bundle();
+//                                    bundle.putSerializable(SystemConfig.BUNDLE_KEY_SORTING_INFO, form);
+//                                    SortingInfoFragment fragment = new SortingInfoFragment();
+//                                    fragment.setArguments(bundle);
+//                                    mAdapter.addFragment(fragment);
+//                                    mList.add(form);
+//                                }
+//                                mAdapter.notifyDataSetChanged();
+//                                mViewPager.setCurrentItem(mSelectIndex);
+//                            }
+//
+//
+//                            @Override
+//                            public void onError() {
+//                                Toast.makeText(SortingInfoActivity.this, R.string.toast_noting_data, Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
                     }
                 }
 
