@@ -184,13 +184,27 @@ public class SortingInfoFragment extends Fragment implements View.OnClickListene
 
     private void initStatus(SortingForm order, boolean bAnim) {
         if (TextUtils.equals(order.getAcceptanceState(), "1")) {
+            mImageView.setImageResource(R.mipmap.laber_sorting_over_pass);
+            mImageView.setVisibility(View.VISIBLE);
+            if (bAnim) {
+                startAnim();
+            }
+            mPass.setVisibility(View.INVISIBLE);
+        }else   if (TextUtils.equals(order.getAcceptanceState(), "2")) {
             mImageView.setImageResource(R.mipmap.laber_accepetance_pass);
             mImageView.setVisibility(View.VISIBLE);
             if (bAnim) {
                 startAnim();
             }
             mPass.setVisibility(View.INVISIBLE);
-        }  else {
+        } else   if (TextUtils.equals(order.getAcceptanceState(), "3")) {
+            mImageView.setImageResource(R.mipmap.laber_accepetance_error);
+            mImageView.setVisibility(View.VISIBLE);
+            if (bAnim) {
+                startAnim();
+            }
+            mPass.setVisibility(View.INVISIBLE);
+        }   else {
             mImageView.setVisibility(View.GONE);
             mPass.setVisibility(View.VISIBLE);
         }
